@@ -207,7 +207,8 @@ public class ProfileFragment extends Fragment {
                 alertDialog.setPositiveButton("YA",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                sharedPrefManager.saveSPBoolean(SharedPrefManager.notif, true);
+//                                sharedPrefManager.saveSPBoolean(SharedPrefManager.notif, true);
+                                stuffShareApp.setNotification(true);
                                 Toasty.success(getContext(), "notification saved!!!", Toasty.LENGTH_SHORT, true).show();
                                 Intent goMain = new Intent(getContext(), MainActivity.class);
                                 goMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

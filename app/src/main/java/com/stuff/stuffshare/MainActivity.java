@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void myAlarm() {
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 45);
 
-        if (sharedPrefManager.getSPNotif()){
+        if (stuffShareApp.isNotification()){
             if (calendar.getTime().compareTo(new Date()) < 0)
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
 

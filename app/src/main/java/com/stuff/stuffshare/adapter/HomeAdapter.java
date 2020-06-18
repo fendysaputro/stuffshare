@@ -104,11 +104,12 @@ public class HomeAdapter extends ArrayAdapter {
                     public void onClick(View view) {
                         Log.i(stuffShareApp.TAG, "idUser " + stuffShareApp.getData().getIduser());
                         Log.i(stuffShareApp.TAG, "idUser " + sharedPrefManager.getSPUserid());
-                        if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid())){
-                            if (stuffShareApp.getData().getMasaDonasi() > 0){
+                        Log.i(stuffShareApp.TAG, "masaDonasi " + stuffShareApp.getData().getMasaDonasi());
+                        if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
+//                            if (stuffShareApp.getData().getMasaDonasi() > 0){
                                 Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
                                 context.startActivity(goAlertHaveCampaignActivity);
-                            }
+//                            }
                         } else {
                             Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
                             context.startActivity(goAlertQuestionActivity);

@@ -58,6 +58,7 @@ public class StuffShareApp extends Application {
     boolean picture;
     public static int notificationId = 1;
     Data data;
+    boolean notification;
 
     // ++ code by herux
     private ArrayList<CategoryBarang> CategoryBarangs = new ArrayList<CategoryBarang>();
@@ -420,5 +421,13 @@ public class StuffShareApp extends Application {
 
     public void setData(Data data) {
         this.data = data;
+    }
+
+    public boolean isNotification() {
+        return notification;
+    }
+
+    public void setNotification(boolean notification) {
+        this.notification = notification;
     }
 }
