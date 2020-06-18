@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorThankyou"
+    >
+
+    <RelativeLayout
+        android:id="@+id/lLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/txtThankyouTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/txtSendDonation"
+            android:layout_below="@+id/txtThankyouTitle"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtAddressSent"
+            android:layout_below="@+id/txtSendDonation"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/buttonDonationNow"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/txtTransferDonation"
+            android:layout_below="@+id/txtAddressSent"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txtNorekDonation"
+            android:layout_below="@+id/txtTransferDonation"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/buttonDonationNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/txtQuote"
+            android:layout_below="@+id/txtNorekDonation"
+            android:layout_marginTop="40dp"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="10dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_below="@+id/lLinearLayout"
+        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/donation_now"
+        android:layout_centerHorizontal="true"
+        android:text="Kembali"
+        android:textSize="20dp"
+        android:textColor="@color/textColorWhite"
+        android:textAllCaps="false">
+    </Button>
+
+</RelativeLayout>

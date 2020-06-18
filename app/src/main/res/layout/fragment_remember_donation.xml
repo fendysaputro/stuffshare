@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTransparent"
+    tools:context=".fragment.MyDonationFragment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/backgroundLogin"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/listDonationTitle"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/textColorWhite"
+        android:clickable="false"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="20dp"
+        android:text="@string/remember_donation"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/lLinearLayoutImage"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textColorWhite"
+        android:orientation="horizontal" >
+
+
+        <Button
+            android:id="@+id/btnSenin"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/senin"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnSelasa"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/selasa"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnRabu"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/rabu"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnKamis"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/kamis"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnJumat"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/jumat"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnSabtu"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/sabtu"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+        <Button
+            android:id="@+id/btnAhad"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/ahad"
+            android:textAllCaps="false"
+            android:drawablePadding="1dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentBottom="true"
+            android:drawableBottom="@drawable/star" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:background="@drawable/donation_now"
+        android:layout_width="wrap_content"
+        android:text="  Simpan Pengingat  "
+        android:textAllCaps="false"
+        android:textColor="@color/textColorWhite"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content" >
+
+    </Button>
+
+
+</LinearLayout>

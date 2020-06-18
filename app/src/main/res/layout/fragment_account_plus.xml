@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/borderEditTextDonation"
+    android:paddingBottom="200dp"
+    android:clipToPadding="false"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/relativeAccountPlus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTransparent"
+        tools:context=".fragment.AccountPlusFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:paddingRight="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/accountPlus_title"
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/textColorWhite"
+            android:clickable="false"
+            android:gravity="center|center_vertical"
+            android:paddingLeft="20dp"
+            android:text="@string/title_account_plus"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
+        <RelativeLayout
+            android:id="@+id/relativeGeneralPlus"
+            android:layout_below="@+id/accountPlus_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textColorWhite"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/nameCommunityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Komunitas / Yayasan"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:id="@+id/edNameCommunity"
+                android:layout_below="@+id/nameCommunityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_account_plus"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/addressCommunityTitle"
+                android:layout_below="@+id/edNameCommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat Komunitas / Yayasan"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edAddressCommunity"
+                android:layout_below="@+id/addressCommunityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_account_plus"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/nomorAktaCommunityTitle"
+                android:layout_below="@+id/edAddressCommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor Akta Komunitas / Yayasan"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edNomorAktaCommunity"
+                android:layout_below="@+id/nomorAktaCommunityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_account_plus"
+                android:inputType="number"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/nameKetuaCommunityTitle"
+                android:layout_below="@+id/edNomorAktaCommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Penanggung Jawab / Ketua"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edNameKetuaCommunity"
+                android:layout_below="@+id/nameKetuaCommunityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_account_plus"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/nomorNPWPKetuaCommunityTitle"
+                android:layout_below="@+id/edNameKetuaCommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor NPWP Penanggung Jawab / Ketua"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edNomorNPWPKetuaCommunity"
+                android:layout_below="@+id/nomorNPWPKetuaCommunityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_account_plus"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:inputType="number"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <RelativeLayout
+                android:id="@+id/relativeChooseFileAkta"
+                android:layout_below="@+id/edNomorNPWPKetuaCommunity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/textColorWhite"
+                >
+
+                <TextView
+                    android:id="@+id/uploadAktaTitle"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Akta"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="5dp"
+                    >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edUploadAkta"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@+id/uploadAktaTitle"
+                    android:background="@drawable/edit_text_account_plus"></EditText>
+
+                <Button
+                    android:id="@+id/btnUploadAkta"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_toRightOf="@+id/edUploadAkta"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/rounded_btn_upload"
+                    android:text="Pilih File"
+                    android:textAllCaps="false"
+                    android:enabled="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    >
+
+                </Button>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeChooseFileNpwp"
+                android:layout_below="@+id/relativeChooseFileAkta"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/textColorWhite"
+                >
+
+                <TextView
+                    android:id="@+id/uploadNPWPTitle"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Upload NPWP"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="5dp"
+                    >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edUploadNPWP"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_account_plus"
+                    android:layout_toRightOf="@+id/uploadNPWPTitle"
+                    android:layout_marginStart="10dp"
+                    >
+                </EditText>
+
+                <Button
+                    android:id="@+id/btnUploadNPWP"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_toRightOf="@+id/edUploadNPWP"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/rounded_btn_upload"
+                    android:text="Pilih File"
+                    android:layout_alignParentRight="true"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="5dp"
+                    >
+
+                </Button>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeChooseImageCommunity"
+                android:layout_below="@+id/relativeChooseFileNpwp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/textColorWhite"
+                >
+
+                <TextView
+                    android:id="@+id/uploadImageTitle"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Foto Komunitas"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="5dp"
+                    >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/edUploadImage"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_account_plus"
+                    android:layout_toRightOf="@+id/uploadImageTitle"
+                    android:layout_marginStart="10dp"
+                    >
+                </EditText>
+
+                <Button
+                    android:id="@+id/btnUploadImage"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_toRightOf="@+id/edUploadImage"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/rounded_btn_upload"
+                    android:text="Pilih File"
+                    android:layout_alignParentRight="true"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="5dp"
+                    >
+
+                </Button>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeButton"
+                android:layout_below="@+id/relativeChooseImageCommunity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/textColorWhite"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="20dp"
+                >
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/shape_left"
+                    android:text="Batal"
+                    android:textAllCaps="true"
+                    android:layout_alignParentLeft="true"
+                    />
+
+                <Button
+                    android:id="@+id/btnContinue"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_right"
+                    android:text="Selesai"
+                    android:textAllCaps="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

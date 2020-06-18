@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewPenggalang"
+        android:layout_width="146dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/wakaf" />
+
+    <RelativeLayout
+        android:id="@+id/relativeSisaHari"
+        android:layout_below="@+id/imageViewPenggalang"
+        android:layout_marginTop="-10dp"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/tvSisaHariTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Sisa Hari"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvSisaHari"
+            android:textSize="12sp"
+            android:text="7 Hari"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end|right" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dividerId"
+        android:layout_width="146dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/relativeSisaHari"
+        android:background="@color/borderEditTextDonation"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeStatus"
+        android:layout_below="@+id/dividerId"
+        android:layout_marginTop="0dp"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/tvStatusTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Status"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:textSize="12sp"
+            android:text="On Progress"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvPenggalangTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="6dp"
+        android:text="Penggalang"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewCommunity"
+        android:layout_width="60dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="39dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sepeda" />
+
+    <View
+        android:id="@+id/dividerImageCommunity"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/imageViewCommunity"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/borderEditTextDonation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCommunity" />
+
+    <TextView
+        android:id="@+id/tVPenggalangName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginRight="5dp"
+        android:text="Komunitas Sepeda duaRoda"
+        android:textColor="#656565"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeMasaDonasi"
+        android:layout_below="@+id/dividerImageCommunity"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/relativeSisaHari"
+        android:orientation="horizontal"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/tvRangeDonationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="Masa Donasi"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tVRangeDonation"
+            android:textSize="12sp"
+            android:text="7 Hari"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:gravity="right" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dividerRangeDonation"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/relativeMasaDonasi"
+        android:layout_marginStart="175dp"
+        android:background="@color/borderEditTextDonation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeScheduleDonation"
+        android:layout_below="@+id/dividerRangeDonation"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/relativeSisaHari"
+        android:orientation="horizontal"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/tvScheduleDonationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="Jadwal Donasi"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tVScheduleDonation"
+            android:textSize="12sp"
+            android:text="1 April 2020"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dividerSchedule"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/relativeScheduleDonation"
+        android:layout_marginStart="175dp"
+        android:background="@color/borderEditTextDonation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeCountDonation"
+        android:layout_below="@+id/dividerSchedule"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/relativeSisaHari"
+        android:orientation="horizontal"
+        android:background="@color/textColorWhite">
+
+        <TextView
+            android:id="@+id/tvCountDonationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:text="Donasi Terkumpul"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tVCountDonation"
+            android:textSize="12sp"
+            android:text="27 Barang"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

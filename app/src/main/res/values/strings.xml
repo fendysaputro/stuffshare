@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">stuffshare</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_list_donation">Donasi Saya</string>
+    <string name="title_add_donation">Galang Donasi</string>
+    <string name="title_account">Akun</string>
+    <string name="title_donation_choice">Donasi Pilihan</string>
+    <string name="title_schedule_donation">Daftar Jadwal Donasi</string>
+    <string name="title_account_plus">Tingkatkan Akun Untuk Melakukan Penggalangan Membantu Sesama</string>
+    <string name="question_item_donation">Barang apa sajakah yang bisa didonasikan?</string>
+    <string name="data_schedule_donation">Data Jadwal Donasi</string>
+    <string name="story_title">Cerita</string>
+    <string name="story_body">Musim penghujan panjang menyebabkan terjadinya banjir bandang di beberapa wilayah
+        di kota Wonosobo, seperti di desa Lengkong dan sekitarnya.
+        Banjir sudah merendam desa selama 5 hari, warga membutuhkan bantuan
+        barang - barang seperti pakaian, bahan makanan dan beberapa barang lainnya.</string>
+    <string name="documentation_title">Dokumentasi</string>
+    <string name="maps_title">Lokasi</string>
+    <string name="google_maps_api">AIzaSyA5W8p1c7-HGOJyoKjjWJ9YnC_0AdhmfB0</string>
+    <string name="thankyou_body">Terima Kasih Telah Mendaftar Akun Plus.
+        Mohon Tunggu Verifikasi terlebih dahulu</string>
+    <string name="toolbar_submission">Isi Data dibawah ini untuk melakukan penggalangan</string>
+    <string name="alert_title">Penggalangan Donasi</string>
+    <string name="alert_question">Untuk mengajukan penggalangan donasi akun harus terdaftar sebagai akun plus</string>
+    <string name="alert_new">Apakah anda sudah terdaftar di akun plus</string>
+    <string name="detail_submission">Detail Penggalangan Barang, Dana dan Perkiraan Rencana</string>
+    <string name="example_forwhat">contoh : 30 pakaian, 10 sepatu, 3 televisi untuk kebutuhan sementara korban banjir dan
+        Rp. 5.000.000 untuk membeli obat-obatan untuk korban banjir</string>
+    <string name="upload_submission">Upload Foto Penggalangan dan Ceritakan Kisahnya</string>
+    <string name="story_upload_submission">Ceritakan kisah penggalangan kamu sebagai informasi kepada donatur</string>
+    <string name="story_upload">Contoh : Banjir yang melanda pedesaan di wilayah kota sukabumi
+        3 hari yang lalu sungguh mengenaskan, hal tersebut berdampak pada pengungsi yang
+        membutuhkan pakaian sementara dan beberapa bahan makanan serta obat - obatan.
+        Marilah kita sebagai sesama manusia saling membantu dalam menghadapi bencana ini.</string>
+    <string name="upload_image_title">Pilih salah satu foto aksi penggalangan kamu</string>
+    <string name="list_donation_title">History Donasi</string>
+    <string name="change_password">Ubah Password</string>
+    <string name="remember_donation">Pilih Hari Pengingat Donasi</string>
+    <string name="senin">Senin</string>
+    <string name="selasa">Selasa</string>
+    <string name="rabu">Rabu</string>
+    <string name="kamis">Kamis</string>
+    <string name="jumat">Jumat</string>
+    <string name="sabtu">Sabtu</string>
+    <string name="ahad">Minggu</string>
+    <string name="confirmation_title">Konfirmasi Pembayaran</string>
+</resources>

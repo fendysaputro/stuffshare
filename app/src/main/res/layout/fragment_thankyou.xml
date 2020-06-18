@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOpacity"
+    android:id="@+id/relativeTransparent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorOpacity"
+        >
+
+        <TextView
+            android:id="@+id/txtThankyouTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/thankyou_body"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_below="@+id/txtThankyouTitle"
+            android:layout_marginTop="0dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/donation_now"
+            android:layout_centerHorizontal="true"
+            android:text="Kembali"
+            android:textSize="20dp"
+            android:textColor="@color/textColorWhite"
+            android:textAllCaps="false">
+        </Button>
+
+    </RelativeLayout>
+
+</RelativeLayout>

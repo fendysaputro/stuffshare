@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_items">
+        <item>Whatsapp</item>
+        <item>Ubah Password</item>
+        <item>Ingatkan Donasi</item>
+        <item>Beri Rating Aplikasi</item>
+        <item>Keluar</item>
+    </string-array>
+</resources>

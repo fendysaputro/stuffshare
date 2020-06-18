@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundLogin"
+    android:paddingBottom="200dp"
+    android:clipToPadding="false"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/relativeSubmission"
+        android:layout_below="@+id/scrollViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/borderEditTextDonation"
+        tools:context=".activity.DetailSubmissionActivity"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:textAllCaps="true"
+                android:text="@string/detail_submission"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/lRelativeLayout"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/backgroundLogin" >
+
+            <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="2"
+                android:background="@drawable/submission_number"
+                android:textSize="18sp"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_vertical|center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/accountPlus_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/txtNumber"
+                android:clickable="false"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Detail"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeEditText"
+            android:layout_below="@+id/lRelativeLayout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:paddingBottom="30dp"
+            >
+
+            <TextView
+                android:id="@+id/detailDonationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Judul Penggalangan"
+                android:textColor="@color/colorAccent"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/edDetailDonation"
+                android:layout_below="@+id/detailDonationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:hint=" contoh : Donasikan barang dan uang untuk kemanusiaan"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/needDonationTitle"
+                android:layout_below="@+id/edDetailDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kebutuhan Dana"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edNeedDonation"
+                android:layout_below="@+id/needDonationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:inputType="number"
+                android:hint=" Rp 0"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/needBarangTitle"
+                android:layout_below="@+id/edNeedDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kebutuhan Barang"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/lLcontent"
+                android:layout_below="@+id/needBarangTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <GridView
+                    android:id="@+id/itemCollectDetailSubmission"
+                    android:layout_below="@+id/needBarangTitle"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:numColumns="2"
+                    android:horizontalSpacing="5dp"
+                    android:verticalSpacing="5dp"
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/forWhatTitle"
+                android:layout_below="@+id/lLcontent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Untuk apa barang dan dana digunakan?"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/edForWhat"
+                android:layout_below="@+id/forWhatTitle"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/example_forwhat"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/periodeGalang"
+                android:layout_below="@+id/edForWhat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Periode penggalangan dana"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                />
+
+
+            <AutoCompleteTextView
+                android:id="@+id/autoPeriode"
+                android:layout_below="@+id/periodeGalang"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:hint="pilih periode penggalangan donasi"
+                />
+
+            <Button
+                android:id="@+id/btnCancelDetail"
+                android:layout_below="@+id/autoPeriode"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_left"
+                android:text="Kembali"
+                android:textAllCaps="true"
+                android:layout_alignParentLeft="true"
+                />
+
+            <Button
+                android:id="@+id/btnContinueDetail"
+                android:layout_below="@+id/autoPeriode"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_right"
+                android:text="Lanjut"
+                android:textAllCaps="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

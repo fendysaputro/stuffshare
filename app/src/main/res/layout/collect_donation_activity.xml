@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.CollectDonationActivity"
+    android:background="@color/colorTransparent"
+    tools:showIn="@layout/collect_donation_activity">
+
+    <include
+        android:id="@+id/pImageToolbar"
+        layout="@layout/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtNote"
+        android:layout_below="@+id/pImageToolbar"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/txtInfoDonationNote"
+        android:layout_below="@+id/txtNote"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        />
+
+    <RelativeLayout
+        android:id="@+id/lLinearLayout"
+        android:layout_below="@+id/txtInfoDonationNote"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/donatur_rounded">
+
+        <TextView
+            android:id="@+id/txtDonationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/txtDonaturDays"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:id="@+id/iLinearLayoutImage"
+            android:layout_below="@+id/txtDonaturDays"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/iconBicycle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="hello"
+                android:paddingRight="10dp"
+                android:layout_marginLeft="5dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/txtDonationCommunity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp"
+                    />
+
+                <TextView
+                    android:id="@+id/hastag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtJmlDonation"
+        android:layout_below="@+id/lLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="gravity"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:textSize="15sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:background="@color/textColorWhite"
+        android:divider="@color/colorTransparent"
+        />
+
+    <ListView
+        android:id="@+id/lVcollectDonation"
+        android:layout_below="@+id/txtJmlDonation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textColorWhite"
+        android:divider="@color/colorTransparent"
+        />
+
+    <Button
+        android:id="@+id/btnDonation"
+        android:layout_below="@+id/lVcollectDonation"
+        android:layout_marginTop="20dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/donation_now"
+        android:layout_centerHorizontal="true"
+        android:text="Donasi Sekarang"
+        android:textColor="@color/textColorWhite"
+        android:textAllCaps="false"
+        >
+
+    </Button>
+
+</RelativeLayout>

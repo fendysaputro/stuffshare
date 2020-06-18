@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:id="@+id/scrollViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="50dp"
+    android:clipToPadding="false"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".activity.CollectDonationActivity"
+        android:background="@color/colorTransparent"
+        tools:showIn="@layout/collect_donation_list_activity">
+
+        <RelativeLayout
+            android:id="@+id/generalRelative"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/pImageToolbar"
+                layout="@layout/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/scrollViewNew"
+            android:layout_below="@+id/generalRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            android:clipToPadding="false"
+            android:scrollbarStyle="outsideOverlay"
+            >
+
+            <RelativeLayout
+                android:id="@+id/rltvLayout"
+                android:layout_below="@+id/pImageToolbar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txtCategory"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/txtBarang"
+                    android:layout_below="@+id/txtCategory"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/buttonDonationNow"
+                    android:textStyle="bold"
+                    />
+
+                <GridView
+                    android:id="@+id/itemCollectGrid"
+                    android:layout_below="@+id/txtBarang"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:numColumns="2"
+                    android:horizontalSpacing="5dp"
+                    android:verticalSpacing="5dp"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/lLinearLayout"
+                    android:layout_below="@+id/itemCollectGrid"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/textColorWhite">
+
+                    <TextView
+                        android:id="@+id/txtPengiriman"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtMetodeKirim"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/buttonDonationNow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lRelativeLayout"
+                    android:layout_below="@+id/lLinearLayout"
+                    android:layout_marginTop="0dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/textColorWhite">
+
+                    <TextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtToAddress"
+                        android:layout_below="@+id/txtAddress"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/buttonDonationNow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txtUang"
+                    android:layout_below="@+id/lRelativeLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/buttonDonationNow"
+                    android:textStyle="bold"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutDonasiUangOne"
+                    android:layout_below="@+id/txtUang"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/textColorWhite">
+
+                    <TextView
+                        android:id="@+id/txtKirimUang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtMetodeTransfer"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/buttonDonationNow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutDonasiUangTwo"
+                    android:layout_below="@+id/relativeLayoutDonasiUangOne"
+                    android:layout_marginTop="0dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/textColorWhite">
+
+                    <EditText
+                        android:id="@+id/edNominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@drawable/edit_text_donation"
+                        android:inputType="number"
+                        android:gravity="left"
+                        android:hint=" Rp"
+                        android:ems="10"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="0dp" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btnDonation"
+                    android:layout_below="@+id/relativeLayoutDonasiUangTwo"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/donation_now"
+                    android:layout_centerHorizontal="true"
+                    android:text="Proses Donasi"
+                    android:textSize="20dp"
+                    android:textColor="@color/textColorWhite"
+                    android:textAllCaps="false">
+                </Button>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</ScrollView>

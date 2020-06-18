@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewMyDonation"
+        android:layout_width="142dp"
+        android:layout_height="130dp"
+        app:srcCompat="@drawable/berkah"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <TextView
+        android:id="@+id/textViewMyDonation"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageViewMyDonation"
+        android:text="#BekasJadiBerkah"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="50dp" />
+
+    <Button
+        android:id="@+id/buttonMyDonation"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/textViewMyDonation"
+        android:text="Done"
+        android:background="@drawable/shape_with_border"
+        android:textAllCaps="false"
+        tools:layout_editor_absoluteX="275dp"
+        tools:layout_editor_absoluteY="6dp" />
+
+    <TextView
+        android:id="@+id/textViewMyDonationDate"
+        android:layout_below="@+id/buttonMyDonation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_toRightOf="@+id/textViewMyDonation"
+        android:text="20 mei 2020"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/bullet"
+        android:drawablePadding="5dp"
+        tools:layout_editor_absoluteX="283dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <TextView
+        android:id="@+id/textViewMyDonatonJmlUang"
+        android:layout_below="@+id/textViewMyDonationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/textViewMyDonation"
+        android:drawablePadding="5dp"
+        android:text="5 Barang"
+        android:drawableLeft="@drawable/bullet"
+        tools:layout_editor_absoluteX="283dp"
+        tools:layout_editor_absoluteY="103dp" />
+
+    <TextView
+        android:id="@+id/textViewMyDonationJmlBarang"
+        android:layout_below="@+id/textViewMyDonatonJmlUang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp 500.000"
+        android:drawableLeft="@drawable/bullet"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="5dp"
+        android:layout_toRightOf="@+id/textViewMyDonation"
+        tools:layout_editor_absoluteX="283dp"
+        tools:layout_editor_absoluteY="136dp" />
+</RelativeLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_no_corners"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:textAllCaps="true"
+            android:text="@string/alert_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/accountPlus_title"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/shape_no_corners"
+        android:clickable="false"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:text="@string/alert_question"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/relativeQuestion"
+        android:layout_below="@+id/accountPlus_title"
+        android:background="@drawable/shape_no_corners"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/alertDialogQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="20dp"
+            android:clickable="false"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/alert_new"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            />
+
+        <Button
+            android:id="@+id/btnSudah"
+            android:layout_below="@+id/alertDialogQuestion"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_with_border"
+            android:text="Sudah"
+            android:textAllCaps="false"
+            android:layout_alignParentLeft="true"
+            />
+
+        <Button
+            android:id="@+id/btnBelum"
+            android:layout_below="@+id/alertDialogQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_red_color"
+            android:text=" Belum, Daftar Sekarang "
+            android:textAllCaps="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

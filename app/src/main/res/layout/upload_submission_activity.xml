@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundLogin"
+    android:paddingBottom="200dp"
+    android:clipToPadding="false"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/relativeSubmission"
+        android:layout_below="@+id/scrollViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/borderEditTextDonation"
+        tools:context=".activity.UploadSubmissionActivity"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:textAllCaps="true"
+                android:text="@string/upload_submission"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/lRelativeLayout"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/backgroundLogin" >
+
+            <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="3"
+                android:background="@drawable/submission_number"
+                android:textSize="18sp"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_vertical|center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/accountPlus_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/txtNumber"
+                android:clickable="false"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Cerita dan Foto"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeEditText"
+            android:layout_below="@+id/lRelativeLayout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:paddingBottom="30dp"
+            >
+
+            <TextView
+                android:id="@+id/storyDonationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/story_upload_submission"
+                android:textColor="@color/colorAccent"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/edStoryDonation"
+                android:layout_below="@+id/storyDonationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/story_upload"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/tvUploadImageTitle"
+                android:layout_below="@+id/edStoryDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_image_title"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativeBtnInEditext"
+                android:layout_below="@+id/tvUploadImageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundLogin"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageViewUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/edit_text_donation"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    >
+                </ImageView>
+
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="false"
+                    android:background="@drawable/edit_text_donation"
+                    android:text="Take photo"
+                    android:textAllCaps="false"
+                    >
+                </Button>
+
+                <Button
+                    android:id="@+id/btnChooseFile"
+                    android:layout_below="@+id/btnUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="false"
+                    android:background="@drawable/edit_text_donation"
+                    android:text="Choose file"
+                    android:textAllCaps="false"
+                    >
+                </Button>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/infoFormatImage"
+                android:layout_below="@+id/relativeBtnInEditext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="format foto : JPEG/JPG/PNG"
+                android:layout_marginLeft="10dp"
+                android:textColor="#778B84"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <Button
+                android:id="@+id/btnBackUpload"
+                android:layout_below="@+id/infoFormatImage"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_left"
+                android:text="Kembali"
+                android:textAllCaps="true"
+                android:layout_alignParentLeft="true"
+                />
+
+            <Button
+                android:id="@+id/btnFinishUpload"
+                android:layout_below="@+id/infoFormatImage"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_right"
+                android:text="Selesai"
+                android:textAllCaps="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

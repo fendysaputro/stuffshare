@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#000000</color>
+    <color name="backgroundLogin">#DBFFF3</color>
+    <color name="buttonLogin">#BEFCFF</color>
+    <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorToolbar">#8EB6D9</color>
+    <color name="donationRounded">#EBFBFF</color>
+    <color name="addDonationRounded">#FEEBEB</color>
+    <color name="stockDonationRounded">#FAF7C6</color>
+    <color name="scheduleDonationRounded">#F2FCE0</color>
+    <color name="informationDonationRounded">#E9C4FF</color>
+    <color name="statusDonationRounded">#B7FFCA</color>
+    <color name="backgroundDonation">#D6CFC7</color>
+    <color name="littleBack">#F8F8F8</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorThankyou">#F6F6F6</color>
+    <color name="buttonDonationNow">#329cf9</color>
+    <color name="donaturProfile">#D3BBBB</color>
+    <color name="editTextDonation">#F2F2F2</color>
+    <color name="borderEditTextDonation">#DEDEDE</color>
+    <color name="buttonUpload">#DCDCFE</color>
+    <color name="colorOpacity">#1AFFFFFF</color>
+    <color name="redColor">#FD7575</color>
+</resources>

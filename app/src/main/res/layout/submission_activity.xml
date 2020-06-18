@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundLogin"
+    android:paddingBottom="200dp"
+    android:clipToPadding="false"
+    android:scrollbarStyle="outsideOverlay"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/relativeSubmission"
+        android:layout_below="@+id/scrollViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/borderEditTextDonation"
+        tools:context=".activity.SubmissionActivity"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:gravity="left"
+                android:textAllCaps="true"
+                android:text="@string/toolbar_submission"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/lRelativeLayout"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/backgroundLogin" >
+
+            <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="1"
+                android:background="@drawable/submission_number"
+                android:textSize="18sp"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_vertical|center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/accountPlus_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/txtNumber"
+                android:clickable="false"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Penerima"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeEditText"
+            android:layout_below="@+id/lRelativeLayout"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:paddingBottom="30dp"
+            >
+
+            <TextView
+                android:id="@+id/receiveDonationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Penggalangan ditujukan kepada?"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="30dp"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/edNamereceive"
+                android:layout_below="@+id/receiveDonationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/nameReceiveDonationTitle"
+                android:layout_below="@+id/edNamereceive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Penerima Bantuan"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edNameReceiveDonation"
+                android:layout_below="@+id/nameReceiveDonationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/phoneReceiveTitle"
+                android:layout_below="@+id/edNameReceiveDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor HP Penerima Bantuan"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edPhoneReceiveDonation"
+                android:layout_below="@+id/phoneReceiveTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/AccidentTitle"
+                android:layout_below="@+id/edPhoneReceiveDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kejadian / Penyakit"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edAccident"
+                android:layout_below="@+id/AccidentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/addressReceiveTitle"
+                android:layout_below="@+id/edAccident"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat Penerima Bantuan"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edAddressReceiveDonation"
+                android:layout_below="@+id/addressReceiveTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/dateAccidentTitle"
+                android:layout_below="@+id/edAddressReceiveDonation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Kejadian"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/edDateAccident"
+                android:layout_below="@+id/dateAccidentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:hint="dd-MM-yyyy"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="5dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeSubmissionButton"
+            android:layout_below="@+id/relativeEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundLogin"
+            android:paddingBottom="20dp"
+            >
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/shape_left"
+                android:text="Batal"
+                android:textAllCaps="true"
+                android:layout_alignParentLeft="true"
+                />
+
+            <Button
+                android:id="@+id/btnContinue"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_right"
+                android:text="Lanjut"
+                android:textAllCaps="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
