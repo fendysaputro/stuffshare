@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -77,16 +79,20 @@ public class HomeAdapter extends ArrayAdapter {
         if (v == null){
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.grid_view_items, null);
-            TextView textView = (TextView) v.findViewById(R.id.textView);
-            textView.setText(homeItems.get(position).getHomeName());
-            textView.setGravity(Gravity.CENTER);
-            textView.getLayoutParams().height = 300;
+//            TextView textView = (TextView) v.findViewById(R.id.textView);
+            ImageView imageView = (ImageView) v.findViewById(R.id.iVHome);
+            imageView.setImageResource(homeItems.get(position).getImage());
+//            imageView.setForegroundGravity(Gravity.CENTER);
+//            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//            imageView.getAdjustViewBounds();
+//            imageView.getLayoutParams().width = 800;
+            imageView.getLayoutParams().height = 400;
 
         }
         int type = position/1;
         switch (type){
             case 0:
-                v.setBackgroundResource(R.drawable.donation_rounded);
+//                v.setBackgroundResource(R.drawable.ikon_donasi);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -98,18 +104,13 @@ public class HomeAdapter extends ArrayAdapter {
                 });
                 break;
             case 1:
-                v.setBackgroundResource(R.drawable.add_donation_rounded);
+//                v.setBackgroundResource(R.drawable.add_donation_rounded);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.i(stuffShareApp.TAG, "idUser " + stuffShareApp.getData().getIduser());
-                        Log.i(stuffShareApp.TAG, "idUser " + sharedPrefManager.getSPUserid());
-                        Log.i(stuffShareApp.TAG, "masaDonasi " + stuffShareApp.getData().getMasaDonasi());
                         if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
-//                            if (stuffShareApp.getData().getMasaDonasi() > 0){
-                                Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
-                                context.startActivity(goAlertHaveCampaignActivity);
-//                            }
+                            Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
+                            context.startActivity(goAlertHaveCampaignActivity);
                         } else {
                             Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
                             context.startActivity(goAlertQuestionActivity);
@@ -121,7 +122,7 @@ public class HomeAdapter extends ArrayAdapter {
                 });
                 break;
             case 2:
-                v.setBackgroundResource(R.drawable.account_plus_rounded);
+//                v.setBackgroundResource(R.drawable.account_plus_rounded);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -133,7 +134,7 @@ public class HomeAdapter extends ArrayAdapter {
                 });
                 break;
             case 3:
-                v.setBackgroundResource(R.drawable.schedule_donation_rounded);
+//                v.setBackgroundResource(R.drawable.schedule_donation_rounded);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -145,7 +146,7 @@ public class HomeAdapter extends ArrayAdapter {
                 });
                 break;
             case 4:
-                v.setBackgroundResource(R.drawable.information_donation_rounded);
+//                v.setBackgroundResource(R.drawable.information_donation_rounded);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -157,7 +158,7 @@ public class HomeAdapter extends ArrayAdapter {
                 });
                 break;
             case 5:
-                v.setBackgroundResource(R.drawable.status_donation_rounded);
+//                v.setBackgroundResource(R.drawable.status_donation_rounded);
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

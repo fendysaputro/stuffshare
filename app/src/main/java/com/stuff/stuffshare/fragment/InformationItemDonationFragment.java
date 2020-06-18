@@ -57,7 +57,7 @@ public class InformationItemDonationFragment extends Fragment {
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
         toolbar_title.setText("Informasi Barang Donasi");
-        toolbar_title.setTextColor(R.color.textColorToolbar);
+        toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
         infoItemDonationList = new ArrayList<InfoItemDonation>();

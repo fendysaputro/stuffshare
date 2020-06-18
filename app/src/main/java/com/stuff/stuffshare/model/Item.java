@@ -4,18 +4,17 @@ import java.util.ArrayList;
 
 public class Item {
 
-    String homeName;
+    int image;
 
-    public Item(String homeName) {
-        this.homeName = homeName;
+    public Item(int image) {
+        this.image = image;
     }
 
-    public String getHomeName() {
-        return homeName;
+    public int getImage() {
+        return image;
     }
 
-    public void setHomeName(String homeName) {
-        this.homeName = homeName;
+    public void setImage(int image) {
+        this.image = image;
     }
-
 }

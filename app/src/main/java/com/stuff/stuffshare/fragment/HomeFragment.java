@@ -37,12 +37,18 @@ public class HomeFragment extends Fragment {
         itemHomeList.clear();
 
         itemList = (GridView) view.findViewById(R.id.itemHomeGrid);
-        itemHomeList.add(new Item("Donasi"));
-        itemHomeList.add(new Item("Pengajuan Donasi"));
-        itemHomeList.add(new Item("Akun Plus"));
-        itemHomeList.add(new Item("Jadwal Donasi"));
-        itemHomeList.add(new Item("Informasi Barang Donasi"));
-        itemHomeList.add(new Item("Status Donasi"));
+        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+        itemHomeList.add(new Item(R.drawable.pengajuan_donasi));
+        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+        itemHomeList.add(new Item(R.drawable.jadwal_donasi));
+        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+//        itemHomeList.add(new Item("Donasi"));
+//        itemHomeList.add(new Item("Pengajuan Donasi"));
+//        itemHomeList.add(new Item("Akun Plus"));
+//        itemHomeList.add(new Item("Jadwal Donasi"));
+//        itemHomeList.add(new Item("Informasi Barang Donasi"));
+//        itemHomeList.add(new Item("Status Donasi"));
 
         adapter = new HomeAdapter(getContext(), R.layout.grid_view_items, itemHomeList);
         itemList.setAdapter(adapter);

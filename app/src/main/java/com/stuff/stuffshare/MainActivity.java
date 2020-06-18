@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.stuff.stuffshare.activity.AlertHaveCampaignActivity;
 import com.stuff.stuffshare.activity.AlertQuestionActivity;
 import com.stuff.stuffshare.activity.NotificationActivity;
 import com.stuff.stuffshare.fragment.HomeFragment;
@@ -149,8 +150,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.navigation_add_donation:
 //                fragment = new AddDonationFragment();
-                Intent intent = new Intent(getApplication(), AlertQuestionActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplication(), AlertQuestionActivity.class);
+//                startActivity(intent);
+                if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
+                    Intent goAlertHaveCampaignActivity = new Intent(getApplication(), AlertHaveCampaignActivity.class);
+                    startActivity(goAlertHaveCampaignActivity);
+                } else {
+                    Intent goAlertQuestionActivity = new Intent(getApplication(), AlertQuestionActivity.class);
+                    startActivity(goAlertQuestionActivity);
+                }
                 break;
             case R.id.navigation_account:
                 fragment = new ProfileFragment();
