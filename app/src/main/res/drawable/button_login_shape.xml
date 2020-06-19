@@ -7,7 +7,7 @@
     <gradient
         android:type="linear"
         android:angle="45"
-        android:background="@color/buttonLogin"
-        android:startColor="@color/buttonLogin"
-        android:endColor="@color/buttonLogin"/>
+        android:background="#00f7ff"
+        android:startColor="#00f7ff"
+        android:endColor="#00f7ff"/>
 </shape>

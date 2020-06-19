@@ -3,10 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#000000</color>
-    <color name="backgroundLogin">#DBFFF3</color>
+    <color name="backgroundLogin">#73ffd0</color>
     <color name="buttonLogin">#BEFCFF</color>
     <color name="textColorWhite">#FFFFFF</color>
-    <color name="textColorToolbar">#8EB6D9</color>
+    <color name="textColorToolbar">#FFFFFF</color>
     <color name="donationRounded">#EBFBFF</color>
     <color name="addDonationRounded">#FEEBEB</color>
     <color name="stockDonationRounded">#FAF7C6</color>

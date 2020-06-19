@@ -1,5 +1,6 @@
 package com.stuff.stuffshare.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("StuffShare");
-        toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
-        toolbar_title.setTextSize(30);
 
         itemHomeList.clear();
 
