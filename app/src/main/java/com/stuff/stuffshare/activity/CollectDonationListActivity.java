@@ -175,7 +175,18 @@ public class CollectDonationListActivity extends AppCompatActivity {
                 Toast.makeText(this, "click..!!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuShare:
-                Toast.makeText(getApplicationContext(), "Testing Share", Toast.LENGTH_LONG).show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "jangan lupa untuk saling berbagi install stuffshare di playstore");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, stuffShareApp.TAG);
+
+                try {
+                    startActivity(shareIntent);
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toasty.warning(getApplication(), "Your Apps have not been installed", Toasty.LENGTH_SHORT, true).show();
+                }
                 return true;
             case R.id.menuAbout:
                 Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();

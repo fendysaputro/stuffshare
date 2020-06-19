@@ -39,10 +39,10 @@ public class HomeFragment extends Fragment {
         itemList = (GridView) view.findViewById(R.id.itemHomeGrid);
         itemHomeList.add(new Item(R.drawable.ikon_donasi));
         itemHomeList.add(new Item(R.drawable.pengajuan_donasi));
-        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+        itemHomeList.add(new Item(R.drawable.akun_plus));
         itemHomeList.add(new Item(R.drawable.jadwal_donasi));
-        itemHomeList.add(new Item(R.drawable.ikon_donasi));
-        itemHomeList.add(new Item(R.drawable.ikon_donasi));
+        itemHomeList.add(new Item(R.drawable.daftar_donasi));
+        itemHomeList.add(new Item(R.drawable.status_donasi));
 //        itemHomeList.add(new Item("Donasi"));
 //        itemHomeList.add(new Item("Pengajuan Donasi"));
 //        itemHomeList.add(new Item("Akun Plus"));
