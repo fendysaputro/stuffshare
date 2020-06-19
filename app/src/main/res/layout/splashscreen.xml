@@ -10,7 +10,7 @@
         android:id="@+id/iconMms"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo_title"
         android:layout_centerInParent="true"/>
 
     <TextView
