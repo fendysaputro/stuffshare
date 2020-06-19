@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnRegister;
     StuffShareApp stuffShareApp;
     SharedPrefManager sharedPrefManager;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,68 +77,72 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onBtnLogin() {
-        if (!TextUtils.isEmpty(edEmail.getText()) && !TextUtils.isEmpty(edPassword.getText())){
-            AsyncHttpTask mLoginTask = new AsyncHttpTask("email="+edEmail.getText()+"&password="+edPassword.getText());
-            mLoginTask.execute(stuffShareApp.HOST + stuffShareApp.LOGIN_PATH, "POST");
-            mLoginTask.setHttpResponseListener(new OnHttpResponseListener() {
-                @Override
-                public void OnHttpResponse(String response) {
-                    Log.i(stuffShareApp.TAG, "response " + response);
-                    try {
-                        JSONObject resObj = new JSONObject(response);
-                        if (resObj.getBoolean("r")){
-                            JSONObject dataObj = resObj.getJSONObject("d");
-                            stuffShareApp.setLogin(true);
-                            User user = new User(dataObj.getString("id"),
-                                    dataObj.getString("name"),
-                                    dataObj.getString("phone"),
-                                    dataObj.getString("email"),
-                                    dataObj.getInt("akunplus"),
-                                    dataObj.getString("token"),
-                                    dataObj.getString("image"));
-                            stuffShareApp.setUser(user);
-                            btnLogin.setEnabled(true);
-
-                            String nama = dataObj.getString("name");
-                            String phone = dataObj.getString("phone");
-                            String email = dataObj.getString("email");
-                            String userid = dataObj.getString("id");
-                            int akunplus = dataObj.getInt("akunplus");
-                            String image = dataObj.getString("image");
-                            sharedPrefManager.saveSPString(SharedPrefManager.name, nama);
-                            sharedPrefManager.saveSPString(SharedPrefManager.phone, phone);
-                            sharedPrefManager.saveSPString(SharedPrefManager.email, email);
-                            sharedPrefManager.saveSPString(SharedPrefManager.userid, userid);
-                            sharedPrefManager.saveSPInt("akunplus", akunplus);
-                            sharedPrefManager.saveSPString(SharedPrefManager.image, image);
-                            sharedPrefManager.saveSPBoolean(SharedPrefManager.login, true);
-                            if (dataObj.getInt("akunplus") == 1){
-                                String imageCom = dataObj.getString("foto_penyelenggara");
-                                Log.i(stuffShareApp.TAG, "img_penyelenggara " + imageCom);
-                                sharedPrefManager.saveSPString(SharedPrefManager.image_community, imageCom);
-//                            stuffShareApp.setImage_community(imageCom);
-                            }
-                            startActivity(new Intent(getApplication(), MainActivity.class)
-                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                            Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                            finish();
-                        } else {
-                            Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
-                            btnLogin.setEnabled(true);
-                        }
-                    }catch (JSONException e){
-                        e.printStackTrace();
-                        Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
-                    }
-                }
-            });
-            mLoginTask.setOnHttpCancel(new OnHttpCancel() {
-                @Override
-                public void OnHttpCancel() {
-                }
-            });
-        } else {
+        if (TextUtils.isEmpty(edEmail.getText()) && !TextUtils.isEmpty(edPassword.getText())){
             Toasty.warning(getApplication(), "both field can't be empty ", Toasty.LENGTH_SHORT, true).show();
+        } else {
+            if (edEmail.getText().toString().trim().matches(emailPattern)){
+                AsyncHttpTask mLoginTask = new AsyncHttpTask("email="+edEmail.getText()+"&password="+edPassword.getText());
+                mLoginTask.execute(stuffShareApp.HOST + stuffShareApp.LOGIN_PATH, "POST");
+                mLoginTask.setHttpResponseListener(new OnHttpResponseListener() {
+                    @Override
+                    public void OnHttpResponse(String response) {
+                        Log.i(stuffShareApp.TAG, "response " + response);
+                        try {
+                            JSONObject resObj = new JSONObject(response);
+                            if (resObj.getBoolean("r")){
+                                JSONObject dataObj = resObj.getJSONObject("d");
+                                stuffShareApp.setLogin(true);
+                                User user = new User(dataObj.getString("id"),
+                                        dataObj.getString("name"),
+                                        dataObj.getString("phone"),
+                                        dataObj.getString("email"),
+                                        dataObj.getInt("akunplus"),
+                                        dataObj.getString("token"),
+                                        dataObj.getString("image"));
+                                stuffShareApp.setUser(user);
+                                btnLogin.setEnabled(true);
+
+                                String nama = dataObj.getString("name");
+                                String phone = dataObj.getString("phone");
+                                String email = dataObj.getString("email");
+                                String userid = dataObj.getString("id");
+                                int akunplus = dataObj.getInt("akunplus");
+                                String image = dataObj.getString("image");
+                                sharedPrefManager.saveSPString(SharedPrefManager.name, nama);
+                                sharedPrefManager.saveSPString(SharedPrefManager.phone, phone);
+                                sharedPrefManager.saveSPString(SharedPrefManager.email, email);
+                                sharedPrefManager.saveSPString(SharedPrefManager.userid, userid);
+                                sharedPrefManager.saveSPInt("akunplus", akunplus);
+                                sharedPrefManager.saveSPString(SharedPrefManager.image, image);
+                                sharedPrefManager.saveSPBoolean(SharedPrefManager.login, true);
+                                if (dataObj.getInt("akunplus") == 1){
+                                    String imageCom = dataObj.getString("foto_penyelenggara");
+                                    Log.i(stuffShareApp.TAG, "img_penyelenggara " + imageCom);
+                                    sharedPrefManager.saveSPString(SharedPrefManager.image_community, imageCom);
+//                            stuffShareApp.setImage_community(imageCom);
+                                }
+                                startActivity(new Intent(getApplication(), MainActivity.class)
+                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                finish();
+                            } else {
+                                Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
+                                btnLogin.setEnabled(true);
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                            Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                mLoginTask.setOnHttpCancel(new OnHttpCancel() {
+                    @Override
+                    public void OnHttpCancel() {
+                    }
+                });
+            } else {
+                Toasty.warning(getApplication(), "email invalid", Toasty.LENGTH_SHORT, true).show();
+            }
         }
     }
 }

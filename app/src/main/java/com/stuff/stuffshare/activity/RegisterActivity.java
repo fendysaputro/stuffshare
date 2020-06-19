@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText nameTxt, phoneTxt, emailTxt, passwordTxt;
     Button btnRegister;
     StuffShareApp stuffShareApp;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,36 +56,40 @@ public class RegisterActivity extends AppCompatActivity {
                 TextUtils.isEmpty(emailTxt.getText()) && TextUtils.isEmpty(passwordTxt.getText())){
             Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
         } else {
-            AsyncHttpTask mRegisterTask = new AsyncHttpTask("name="+nameTxt.getText()
-                    +"&phone="+phoneTxt.getText()
-                    +"&email="+emailTxt.getText()
-                    +"&password="+passwordTxt.getText());
-            Log.i(stuffShareApp.TAG, "Link " + stuffShareApp.HOST + stuffShareApp.REGISTER_PATH);
-            mRegisterTask.execute(stuffShareApp.HOST + stuffShareApp.REGISTER_PATH, "POST");
-            mRegisterTask.setHttpResponseListener(new OnHttpResponseListener() {
-                @Override
-                public void OnHttpResponse(String response) {
-                    Log.i(stuffShareApp.TAG, "response " + response);
-                    try {
-                        JSONObject resObj = new JSONObject(response);
-                        if (resObj.getBoolean("r")){
-                            Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                            Intent goLoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(goLoginActivity);
-                        } else {
-                            Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+            if (emailTxt.getText().toString().trim().matches(emailPattern)){
+                AsyncHttpTask mRegisterTask = new AsyncHttpTask("name="+nameTxt.getText()
+                        +"&phone="+phoneTxt.getText()
+                        +"&email="+emailTxt.getText()
+                        +"&password="+passwordTxt.getText());
+                Log.i(stuffShareApp.TAG, "Link " + stuffShareApp.HOST + stuffShareApp.REGISTER_PATH);
+                mRegisterTask.execute(stuffShareApp.HOST + stuffShareApp.REGISTER_PATH, "POST");
+                mRegisterTask.setHttpResponseListener(new OnHttpResponseListener() {
+                    @Override
+                    public void OnHttpResponse(String response) {
+                        Log.i(stuffShareApp.TAG, "response " + response);
+                        try {
+                            JSONObject resObj = new JSONObject(response);
+                            if (resObj.getBoolean("r")){
+                                Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                Intent goLoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(goLoginActivity);
+                            } else {
+                                Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            }
+                        } catch (JSONException e){
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e){
-                        e.printStackTrace();
                     }
-                }
-            });
-            mRegisterTask.setOnHttpCancel(new OnHttpCancel() {
-                @Override
-                public void OnHttpCancel() {
+                });
+                mRegisterTask.setOnHttpCancel(new OnHttpCancel() {
+                    @Override
+                    public void OnHttpCancel() {
 
-                }
-            });
+                    }
+                });
+            } else {
+                Toasty.warning(getApplication(), "email invalid", Toasty.LENGTH_SHORT, true).show();
+            }
         }
     }
 }
