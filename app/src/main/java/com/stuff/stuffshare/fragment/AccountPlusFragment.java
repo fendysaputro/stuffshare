@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -558,30 +559,35 @@ public class AccountPlusFragment extends Fragment {
     }
 
     public void onFinishButton() {
-        UploadFilesTask uploadFilesTask = new UploadFilesTask();
-        uploadFilesTask.execute(stuffShareApp.HOST+stuffShareApp.AKUN_PLUS_REGISTER_PATH,
-                sharedPrefManager.getSPUserid(), stuffShareApp.getNameCommunity(),stuffShareApp.getAddressCommunity(),
-                stuffShareApp.getNumberAktaCommunity(), stuffShareApp.getNameKetuaCommunity(), stuffShareApp.getNpwpKetua(),
-                stuffShareApp.getAkta(), stuffShareApp.getNpwp(), stuffShareApp.getImageOrg());
-        uploadFilesTask.setOnHttpResponseListener(new OnHttpResponseListener() {
-            @Override
-            public void OnHttpResponse(String response) {
-                Log.i(stuffShareApp.TAG, "response " + response);
-                try {
-                    JSONObject resObj = new JSONObject(response);
-                    if (resObj.getBoolean("r")){
-                        sharedPrefManager.saveSPBoolean(SharedPrefManager.accountPlus, true);
+        if (TextUtils.isEmpty(nameCommunity.getText()) && TextUtils.isEmpty(addressCommunity.getText()) && TextUtils.isEmpty(numberAktaCommunity.getText()) &&
+            TextUtils.isEmpty(nameKetuaCommunity.getText()) && TextUtils.isEmpty(nameKetuaCommunity.getText())){
+            Toasty.warning(getActivity(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+        } else {
+            UploadFilesTask uploadFilesTask = new UploadFilesTask();
+            uploadFilesTask.execute(stuffShareApp.HOST+stuffShareApp.AKUN_PLUS_REGISTER_PATH,
+                    sharedPrefManager.getSPUserid(), stuffShareApp.getNameCommunity(),stuffShareApp.getAddressCommunity(),
+                    stuffShareApp.getNumberAktaCommunity(), stuffShareApp.getNameKetuaCommunity(), stuffShareApp.getNpwpKetua(),
+                    stuffShareApp.getAkta(), stuffShareApp.getNpwp(), stuffShareApp.getImageOrg());
+            uploadFilesTask.setOnHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    Log.i(stuffShareApp.TAG, "response " + response);
+                    try {
+                        JSONObject resObj = new JSONObject(response);
+                        if (resObj.getBoolean("r")){
+                            sharedPrefManager.saveSPBoolean(SharedPrefManager.accountPlus, true);
 //                        stuffShareApp.setAkunPlus(true);
-                        Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                        ThankyouFragment thankyouFragment = new ThankyouFragment();
-                        FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-                        ShowFragment(R.id.fl_container, thankyouFragment, fragmentManager);
+                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            ThankyouFragment thankyouFragment = new ThankyouFragment();
+                            FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
+                            ShowFragment(R.id.fl_container, thankyouFragment, fragmentManager);
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
                     }
-                } catch (JSONException e){
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
+        }
 
 //        AsyncHttpTask mAccountPlusTask = new AsyncHttpTask("userid="+sharedPrefManager.getSPUserid()
 //                                        +"&organization="+stuffShareApp.getNameCommunity()

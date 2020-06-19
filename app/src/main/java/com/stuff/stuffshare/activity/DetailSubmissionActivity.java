@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -40,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 public class DetailSubmissionActivity extends AppCompatActivity {
 
@@ -174,32 +177,22 @@ public class DetailSubmissionActivity extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Campaigner campaigner = new Campaigner();
+                if (TextUtils.isEmpty(titleCampaign.getText()) && TextUtils.isEmpty(needDonation.getText()) && TextUtils.isEmpty(forWhat.getText())){
+                    Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+                } else {
+                    Campaigner campaigner = new Campaigner();
 //                sharedPrefManager.saveSPString(SharedPrefManager.periode, periode);
-                stuffShareApp.setPeriode(periode);
-                stuffShareApp.setTitleCampaign(titleCamp);
-                stuffShareApp.setNeedDonation(needDon);
-                stuffShareApp.setForWhat(forWh);
+                    stuffShareApp.setPeriode(periode);
+                    stuffShareApp.setTitleCampaign(titleCamp);
+                    stuffShareApp.setNeedDonation(needDon);
+                    stuffShareApp.setForWhat(forWh);
 //                sharedPrefManager.saveSPString(SharedPrefManager.judul, titleCampaign.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.kebutuhan_dana, needDonation.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.digunakanuntuk, forWhat.getText().toString());
 
-//                for (int i = 0; i < donasiBarang.length(); i++) {
-//                    try {
-//                        donIdOne = donasiBarang.getJSONObject(i).getString("id");
-//                        donIdTwo = donasiBarang.getJSONObject(i+1).getString("id");
-//                        donIdThree = donasiBarang.getJSONObject(i+2).getString("id");
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                    donQtyOne = categoryBarangArrayList.get(i).getCount();
-//                    donQtyTwo = categoryBarangArrayList.get(i+1).getCount();
-//                    donQtyThree = categoryBarangArrayList.get(i+2).getCount();
-//                    Log.i(stuffShareApp.TAG, "qty -x" + donQtyThree);
-//                }
-
-                Intent goUploadSubmission = new Intent(getApplication(), UploadSubmissionActivity.class);
-                startActivity(goUploadSubmission);
+                    Intent goUploadSubmission = new Intent(getApplication(), UploadSubmissionActivity.class);
+                    startActivity(goUploadSubmission);
+                }
             }
         });
     }

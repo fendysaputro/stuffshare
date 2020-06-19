@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -294,45 +295,49 @@ public class UploadSubmissionActivity extends AppCompatActivity {
 
 
     public void onUploadButton () {
-        ArrayList<Object> varArgsList = new ArrayList<Object>();
-        varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_CAMPAIGN);
-        varArgsList.add(sharedPrefManager.getSPUserid());
-        varArgsList.add(stuffShareApp.getKategori());
-        Log.i(stuffShareApp.TAG, "data " + varArgsList.get(2).toString());
-        varArgsList.add(stuffShareApp.getPenerima());
-        varArgsList.add(stuffShareApp.getPhoneReceiver());
-        varArgsList.add(stuffShareApp.getAddressReceiver());
-        varArgsList.add(stuffShareApp.getAccident());
-        varArgsList.add(stuffShareApp.getDateAccident());
-        varArgsList.add(stuffShareApp.getTitleCampaign());
-        varArgsList.add(stuffShareApp.getNeedDonation());
-        varArgsList.add(stuffShareApp.getForWhat());
-        varArgsList.add(stuffShareApp.getPeriode());
-        varArgsList.add(stuffShareApp.getCerita());
-        varArgsList.add(stuffShareApp.getImageUpload());
-        for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
-            varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getCount());
-        }
-        UploadSubmissionTask uploadSubmissionTask = new UploadSubmissionTask();
-        uploadSubmissionTask.execute(varArgsList.toArray());
-        uploadSubmissionTask.setOnHttpResponseListener(new OnHttpResponseListener() {
-            @Override
-            public void OnHttpResponse(String response) {
-                try {
-                    JSONObject resObj = new JSONObject(response);
-                    if (resObj.getBoolean("r")){
-                        Log.i(stuffShareApp.TAG, "response " + resObj);
-                        Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                        Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
-                        startActivity(goThankyou);
-                    } else {
-                        Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                    }
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+        if (TextUtils.isEmpty(story.getText())){
+            Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+        } else {
+            ArrayList<Object> varArgsList = new ArrayList<Object>();
+            varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_CAMPAIGN);
+            varArgsList.add(sharedPrefManager.getSPUserid());
+            varArgsList.add(stuffShareApp.getKategori());
+            Log.i(stuffShareApp.TAG, "data " + varArgsList.get(2).toString());
+            varArgsList.add(stuffShareApp.getPenerima());
+            varArgsList.add(stuffShareApp.getPhoneReceiver());
+            varArgsList.add(stuffShareApp.getAddressReceiver());
+            varArgsList.add(stuffShareApp.getAccident());
+            varArgsList.add(stuffShareApp.getDateAccident());
+            varArgsList.add(stuffShareApp.getTitleCampaign());
+            varArgsList.add(stuffShareApp.getNeedDonation());
+            varArgsList.add(stuffShareApp.getForWhat());
+            varArgsList.add(stuffShareApp.getPeriode());
+            varArgsList.add(stuffShareApp.getCerita());
+            varArgsList.add(stuffShareApp.getImageUpload());
+            for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
+                varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getCount());
             }
-        });
+            UploadSubmissionTask uploadSubmissionTask = new UploadSubmissionTask();
+            uploadSubmissionTask.execute(varArgsList.toArray());
+            uploadSubmissionTask.setOnHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    try {
+                        JSONObject resObj = new JSONObject(response);
+                        if (resObj.getBoolean("r")){
+                            Log.i(stuffShareApp.TAG, "response " + resObj);
+                            Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
+                            startActivity(goThankyou);
+                        } else {
+                            Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
 //        AsyncHttpTask mAccountPlusTask = new AsyncHttpTask("userid="+sharedPrefManager.getSPUserid()
 //                                       +"&kategori="+sharedPrefManager.getSPKategori()

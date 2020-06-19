@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -209,20 +210,24 @@ public class SubmissionActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                sharedPrefManager.saveSPString(SharedPrefManager.kategori, penerima);
-                stuffShareApp.setKategori(kategori);
-                stuffShareApp.setPenerima(penerima);
-                stuffShareApp.setPhoneReceiver(phoneRec);
-                stuffShareApp.setAccident(kejadian);
-                stuffShareApp.setAddressReceiver(addressRec);
-                stuffShareApp.setDateAccident(dateAct);
+                if (TextUtils.isEmpty(kategori) && TextUtils.isEmpty(receiverDonation.getText()) && TextUtils.isEmpty(addressReceiver.getText())){
+                    Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+                } else {
+                    //                sharedPrefManager.saveSPString(SharedPrefManager.kategori, penerima);
+                    stuffShareApp.setKategori(kategori);
+                    stuffShareApp.setPenerima(penerima);
+                    stuffShareApp.setPhoneReceiver(phoneRec);
+                    stuffShareApp.setAccident(kejadian);
+                    stuffShareApp.setAddressReceiver(addressRec);
+                    stuffShareApp.setDateAccident(dateAct);
 //                sharedPrefManager.saveSPString(SharedPrefManager.penerima, receiverDonation.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.nohp, phoneReceiver.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.kejadian, accident.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.alamat_penerima, addressReceiver.getText().toString());
 //                sharedPrefManager.saveSPString(SharedPrefManager.tglkejadian, dateAccident.getText().toString());
-                Intent goDetailActivity = new Intent(getApplication(), DetailSubmissionActivity.class);
-                startActivity(goDetailActivity);
+                    Intent goDetailActivity = new Intent(getApplication(), DetailSubmissionActivity.class);
+                    startActivity(goDetailActivity);
+                }
             }
         });
     }

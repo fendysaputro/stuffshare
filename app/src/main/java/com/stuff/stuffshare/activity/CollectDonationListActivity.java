@@ -3,6 +3,7 @@ package com.stuff.stuffshare.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -60,6 +61,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
     TextView addressTo;
     ArrayList<Bank> bankArrayList = null;
     JSONArray donasiBarang;
+    EditText nomUang;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,7 +131,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
         TextView mtdTransfer = (TextView) findViewById(R.id.txtMetodeTransfer);
         mtdTransfer.setText("Transfer ATM");
 
-        EditText nomUang = (EditText) findViewById(R.id.edNominal);
+        nomUang = (EditText) findViewById(R.id.edNominal);
         nomUang.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -240,38 +242,42 @@ public class CollectDonationListActivity extends AppCompatActivity {
     }
 
     public void onProsesDonation () {
-        ArrayList<Object> varArgsList = new ArrayList<Object>();
-        varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_DONATION);
-        varArgsList.add(sharedPrefManager.getSPUserid());
-        varArgsList.add(stuffShareApp.getSelectedCampaigner().getId());
-        varArgsList.add(stuffShareApp.getBank().getId());
-        varArgsList.add(stuffShareApp.getNominalDonation());
-        varArgsList.add(sharedPrefManager.getSPAlamatPenyelenggara());
-        varArgsList.add(stuffShareApp.getSelectedCampaigner().getPhoneReceiver());
-        varArgsList.add("Kirim Paket");
-        varArgsList.add("Transfer ATM");
-        for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
-            varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getId() + "," + stuffShareApp.getCategoryBarangs().get(i).getCount());
-        }
-        UploadDonationTask uploadDonationTask = new UploadDonationTask();
-        uploadDonationTask.execute(varArgsList.toArray());
-        uploadDonationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
-            @Override
-            public void OnHttpResponse(String response) {
-                try {
-                    JSONObject resUpload = new JSONObject(response);
-                    if (resUpload.getBoolean("r")){
-                        Toasty.success(getApplication(), "Upload Success " + resUpload.getString("m")).show();
-                        Log.i(stuffShareApp.TAG, "dataToUpload " + resUpload.getString("d"));
-                        Intent goThankActivity = new Intent(CollectDonationListActivity.this, ThankyouActivity.class);
-                        startActivity(goThankActivity);
-                    } else {
-                        Toasty.warning(getApplication(), resUpload.getString("m"), Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+        if (TextUtils.isEmpty(nomUang.getText())){
+            Toasty.warning(getApplication(), "Field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+        } else {
+            ArrayList<Object> varArgsList = new ArrayList<Object>();
+            varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_DONATION);
+            varArgsList.add(sharedPrefManager.getSPUserid());
+            varArgsList.add(stuffShareApp.getSelectedCampaigner().getId());
+            varArgsList.add(stuffShareApp.getBank().getId());
+            varArgsList.add(stuffShareApp.getNominalDonation());
+            varArgsList.add(sharedPrefManager.getSPAlamatPenyelenggara());
+            varArgsList.add(stuffShareApp.getSelectedCampaigner().getPhoneReceiver());
+            varArgsList.add("Kirim Paket");
+            varArgsList.add("Transfer ATM");
+            for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
+                varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getId() + "," + stuffShareApp.getCategoryBarangs().get(i).getCount());
             }
-        });
+            UploadDonationTask uploadDonationTask = new UploadDonationTask();
+            uploadDonationTask.execute(varArgsList.toArray());
+            uploadDonationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    try {
+                        JSONObject resUpload = new JSONObject(response);
+                        if (resUpload.getBoolean("r")){
+                            Toasty.success(getApplication(), "Upload Success " + resUpload.getString("m")).show();
+                            Log.i(stuffShareApp.TAG, "dataToUpload " + resUpload.getString("d"));
+                            Intent goThankActivity = new Intent(CollectDonationListActivity.this, ThankyouActivity.class);
+                            startActivity(goThankActivity);
+                        } else {
+                            Toasty.warning(getApplication(), resUpload.getString("m"), Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }
