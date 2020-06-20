@@ -121,6 +121,7 @@ public class MyDonationFragment extends Fragment {
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
                             donation.setMetodeBayar(jObj.getString("metodebayar"));
                             donation.setMetodeKirim(jObj.getString("metodekirim"));
+                            donation.setStatus(jObj.getString("status"));
                             donations.add(donation);
                         }
                     }

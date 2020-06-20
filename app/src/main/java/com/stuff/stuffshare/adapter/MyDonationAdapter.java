@@ -27,6 +27,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.stuff.stuffshare.MainActivity.ShowFragment;
 
 public class MyDonationAdapter extends ArrayAdapter<Donation> {
@@ -70,23 +72,38 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    stuffShareApp.setSelectedDonation(donation);
-                    ConfirmationFragment confirmationFragment = new ConfirmationFragment();
-                    Activity activity = (Activity) context;
-                    FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-                    ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
-                }
-            });
+//            convertView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    stuffShareApp.setSelectedDonation(donation);
+//                    ConfirmationFragment confirmationFragment = new ConfirmationFragment();
+//                    Activity activity = (Activity) context;
+//                    FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
+//                    ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
+//                }
+//            });
 
             Picasso.with(context)
                     .load(donation.getGambar())
                     .fit()
                     .into(holder.imageView);
             holder.txtDesc.setText(donation.getPenggalangan());
-            holder.statusBtn.setText("Done");
+            holder.statusBtn.setText(donation.getStatus());
+        ViewHolder finalHolder = holder;
+        holder.statusBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (finalHolder.statusBtn.getText().equals("belum bayar")){
+                        stuffShareApp.setSelectedDonation(donation);
+                        ConfirmationFragment confirmationFragment = new ConfirmationFragment();
+                        Activity activity = (Activity) context;
+                        FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
+                        ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
+                    } else {
+                        Toasty.info(getContext(), "donasi sudah terkonfirmasi", Toasty.LENGTH_SHORT, true).show();
+                    }
+                }
+            });
             holder.txtDate.setText(donation.getDate());
             holder.jmlBarang.setText(donation.getDonasiBarang().length() + " Barang");
             String jmlUang = appUtils.formatRupiah(Double.parseDouble(donation.getDonasiUang()));

@@ -46,6 +46,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.stuff.stuffshare.MainActivity.ShowFragment;
 
 public class HomeAdapter extends ArrayAdapter {
@@ -115,9 +117,6 @@ public class HomeAdapter extends ArrayAdapter {
                             Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
                             context.startActivity(goAlertQuestionActivity);
                         }
-//                        getData();
-
-//                        ;
                     }
                 });
                 break;
@@ -126,10 +125,15 @@ public class HomeAdapter extends ArrayAdapter {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AccountPlusFragment accountPlusFragment = new AccountPlusFragment();
-                        Activity activity = (Activity) context;
-                        FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-                        ShowFragment(R.id.fl_container, accountPlusFragment, fragmentManager);
+                        if (sharedPrefManager.getSPAkunplus() == 1){
+                            Toasty.info(getContext(), "anda sudah terdaftar sebagai akun plus tidak perlu daftar lagi",
+                                    Toasty.LENGTH_SHORT, true).show();
+                        } else {
+                            AccountPlusFragment accountPlusFragment = new AccountPlusFragment();
+                            Activity activity = (Activity) context;
+                            FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
+                            ShowFragment(R.id.fl_container, accountPlusFragment, fragmentManager);
+                        }
                     }
                 });
                 break;
