@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     StuffShareApp stuffShareApp;
     SharedPrefManager sharedPrefManager;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    TextView forgetPassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +67,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent goRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(goRegister);
+            }
+        });
+
+        forgetPassword = (TextView) findViewById(R.id.tVForgetPassword);
+        forgetPassword.setText("Lupa Password?");
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toForgetPassword = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+                startActivity(toForgetPassword);
             }
         });
 

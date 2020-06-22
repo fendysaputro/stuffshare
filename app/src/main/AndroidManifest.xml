@@ -51,6 +51,7 @@
         <activity android:name=".activity.UploadSubmissionActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <activity android:name=".activity.ThankyouCampaignerActivity"></activity>
         <activity android:name=".activity.AlertHaveCampaignActivity"></activity>
+        <activity android:name=".activity.ForgetPasswordActivity"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:windowSoftInputMode="adjustPan"

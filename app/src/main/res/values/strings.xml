@@ -38,6 +38,7 @@
     <string name="upload_image_title">Pilih salah satu foto aksi penggalangan kamu</string>
     <string name="list_donation_title">History Donasi</string>
     <string name="change_password">Ubah Password</string>
+    <string name="reset_password">Reset Password</string>
     <string name="remember_donation">Pilih Hari Pengingat Donasi</string>
     <string name="senin">Senin</string>
     <string name="selasa">Selasa</string>
