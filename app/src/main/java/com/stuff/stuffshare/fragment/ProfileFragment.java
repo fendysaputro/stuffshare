@@ -86,9 +86,9 @@ public class ProfileFragment extends Fragment {
                     .into(profileImage);
         }
 
-        profileImage.setOnClickListener(new View.OnClickListener() {
+        profileImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 String[] PERMISSIONS = {
                         android.Manifest.permission.READ_EXTERNAL_STORAGE,
                         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -151,6 +151,7 @@ public class ProfileFragment extends Fragment {
                 }else{
                     ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
                 }
+                return false;
             }
         });
 
