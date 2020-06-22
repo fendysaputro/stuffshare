@@ -45,12 +45,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import org.threeten.bp.DayOfWeek;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.temporal.ChronoUnit;
+import org.threeten.bp.temporal.TemporalAdjusters;
 
 import static com.stuff.stuffshare.MainActivity.ShowFragment;
 

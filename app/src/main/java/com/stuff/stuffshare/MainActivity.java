@@ -1,6 +1,7 @@
 package com.stuff.stuffshare;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -19,6 +20,12 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.view.View;
+
+import org.threeten.bp.DayOfWeek;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.temporal.ChronoUnit;
+import org.threeten.bp.temporal.TemporalAdjusters;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stuff.stuffshare.activity.AlertHaveCampaignActivity;
@@ -40,8 +47,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+//import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -110,12 +116,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             String dateAfterString = jObj.getString("tglselesai");
                             LocalDate dateBefore = LocalDate.parse(dateBeforeString);
                             LocalDate dateAfter = LocalDate.parse(dateAfterString);
-                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
+//                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
+                            long noOfDaysBetween = dateAfter.until(dateBefore, org.threeten.bp.temporal.ChronoUnit.DAYS);
+//                            long result = l2.until(l1, ChronoUnit.DAYS);
                             String dateString = DateFormat.format("yyyy-MM-dd", new Date(noOfDaysBetween)).toString();
                             String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                             LocalDate dayNow = LocalDate.parse(timeStamp);
                             LocalDate dateMass = LocalDate.parse(dateString);
-                            long massDonation = ChronoUnit.DAYS.between(dayNow, dateAfter);
+                            long massDonation = dayNow.until(dateAfter, ChronoUnit.DAYS);
                             int ms = (int)massDonation;
                             data.setMasaDonasi(ms);
                             stuffShareApp.setData(data);

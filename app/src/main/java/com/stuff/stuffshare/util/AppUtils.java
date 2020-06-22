@@ -27,11 +27,15 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
+import org.threeten.bp.DayOfWeek;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+import org.threeten.bp.temporal.ChronoUnit;
+import org.threeten.bp.temporal.TemporalAdjusters;
 
 import es.dmoral.toasty.Toasty;
 
@@ -115,12 +119,14 @@ public class AppUtils {
                             String dateAfterString = campaigner.getTglSelesai();
                             LocalDate dateBefore = LocalDate.parse(dateBeforeString);
                             LocalDate dateAfter = LocalDate.parse(dateAfterString);
-                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
+//                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
+                            long noOfDaysBetween = dateAfter.until(dateBefore, org.threeten.bp.temporal.ChronoUnit.DAYS);
                             String dateString = DateFormat.format("yyyy-MM-dd", new Date(noOfDaysBetween)).toString();
                             String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                             LocalDate dayNow = LocalDate.parse(timeStamp);
                             LocalDate dateMass = LocalDate.parse(dateString);
-                            long massDonation = ChronoUnit.DAYS.between(dayNow, dateAfter);
+//                            long massDonation = ChronoUnit.DAYS.between(dayNow, dateAfter);
+                            long massDonation = dayNow.until(dateAfter, org.threeten.bp.temporal.ChronoUnit.DAYS);
                             campaigner.setMasaDonasi(String.valueOf(massDonation));
                             campaigner.setDonasiBarang(jObj.getJSONArray("donasibarang"));
                             for (int j = 0; j < campaigner.getDonasiBarang().length(); j++) {
