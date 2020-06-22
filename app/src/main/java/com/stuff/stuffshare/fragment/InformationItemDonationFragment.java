@@ -74,7 +74,7 @@ public class InformationItemDonationFragment extends Fragment {
 
     public void getDataCategoryBarang (String data, final ListInfoItemDonationAdapter adapter) {
         final AppUtils appUtils = new AppUtils();
-        appUtils.getDataInfoBarangDonation(getContext(), stuffShareApp,infoItemDonationList, adapter);
+        appUtils.getDataInfoBarangDonation(getContext(), stuffShareApp, infoItemDonationList, adapter);
         appUtils.setOnGetDataFinish(new OnGetDataFinish() {
             @Override
             public void OnGetDataComplete() {

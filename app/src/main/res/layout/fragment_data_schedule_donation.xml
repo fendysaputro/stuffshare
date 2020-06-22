@@ -361,45 +361,63 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/relativeDocumentation"
-            android:layout_below="@+id/relativeStory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/textColorWhite"
-            >
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/relativeDocumentation"-->
+<!--            android:layout_below="@+id/relativeStory"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="@color/textColorWhite"-->
+<!--            >-->
 
-            <TextView
-                android:id="@+id/documentationTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp"
-                android:textAllCaps="false"
-                android:text="@string/documentation_title"
-                android:gravity="left"
-                android:layout_marginLeft="10dp">
-            </TextView>
+<!--            <TextView-->
+<!--                android:id="@+id/documentationTitle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/colorAccent"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:text="@string/documentation_title"-->
+<!--                android:gravity="left"-->
+<!--                android:layout_marginLeft="10dp">-->
+<!--            </TextView>-->
 
-            <GridView
-                android:id="@+id/itemGridViewDocumentation"
-                android:layout_below="@+id/documentationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numColumns="2"
-                android:layout_marginLeft="0dp"
-                android:horizontalSpacing="5dp"
-                android:verticalSpacing="5dp"
-                android:paddingBottom="50dp"
-                />
+<!--            <LinearLayout-->
+<!--                android:id="@+id/lLinearLayoutDocumentation"-->
+<!--                android:layout_below="@+id/documentationTitle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
 
-        </RelativeLayout>
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivDocumentationOne"-->
+<!--                    android:layout_below="@+id/documentationTitle"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:src="@drawable/logo"-->
+<!--                    android:paddingBottom="50dp"-->
+<!--                    />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivDocumentationTwo"-->
+<!--                    android:layout_below="@+id/documentationTitle"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:layout_toRightOf="@+id/ivDocumentationOne"-->
+<!--                    android:layout_marginStart="0dp"-->
+<!--                    android:src="@drawable/logo"-->
+<!--                    android:paddingBottom="50dp"-->
+<!--                    />-->
+
+<!--            </LinearLayout>-->
+
+<!--        </RelativeLayout>-->
 
         <RelativeLayout
             android:id="@+id/relativeMaps"
-            android:layout_below="@+id/relativeDocumentation"
+            android:layout_below="@+id/relativeStory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

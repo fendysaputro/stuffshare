@@ -325,10 +325,11 @@ public class UploadSubmissionActivity extends AppCompatActivity {
                     try {
                         JSONObject resObj = new JSONObject(response);
                         if (resObj.getBoolean("r")){
-                            Log.i(stuffShareApp.TAG, "response " + resObj);
+                            Log.i(stuffShareApp.TAG, "response " + resObj.getString("d"));
                             Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                             Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
                             startActivity(goThankyou);
+                            finish();
                         } else {
                             Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                         }

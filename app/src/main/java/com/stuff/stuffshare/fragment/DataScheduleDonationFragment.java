@@ -37,7 +37,10 @@ import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.adapter.CollectDonationListAdapter;
 import com.stuff.stuffshare.adapter.DataScheduleAdapter;
+import com.stuff.stuffshare.adapter.ListInfoItemDonationAdapter;
+import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.CollectDonation;
+import com.stuff.stuffshare.model.InfoItemDonation;
 import com.stuff.stuffshare.util.GeoLocation;
 
 import java.io.IOException;
@@ -58,11 +61,13 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
             R.drawable.dok1
     };
     GridView gridView;
-    ArrayList<CollectDonation> collectDonationList;
-    CollectDonationListAdapter collectDonationListAdapter = null;
+    DataScheduleAdapter dataScheduleAdapter = null;
+    ArrayList<Campaigner> campaigners;
     MapView mapView;
     GoogleMap googleMap;
     TextView penggalangName, masaDonation, jadwalDonation, countDonation, sisaHari, statusCampaign, story;
+    ImageView ivDocumentationOne;
+    ImageView ivDocumentationTwo;
     String locationAddress;;
     double lat = 0;
     double lng = 0;
@@ -102,6 +107,16 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
         sisaHari = (TextView) view.findViewById(R.id.tVjangkaDonasi);
         statusCampaign = (TextView) view.findViewById(R.id.tVStatusDonation);
         story = (TextView) view.findViewById(R.id.storyBody);
+//        ivDocumentationOne = (ImageView) view.findViewById(R.id.ivDocumentationOne);
+//        Picasso.with(getActivity())
+//                .load(stuffShareApp.getSelectedCampaigner().getImageCampaign())
+//                .fit()
+//                .into(ivDocumentationOne);
+//        ivDocumentationTwo = (ImageView) view.findViewById(R.id.ivDocumentationTwo);
+//        Picasso.with(getActivity())
+//                .load(stuffShareApp.getSelectedCampaigner().getImageCampaign())
+//                .fit()
+//                .into(ivDocumentationTwo);
         penggalangName.setText(stuffShareApp.getSelectedCampaigner().getOrganization());
         masaDonation.setText(stuffShareApp.getSelectedCampaigner().getSisaHari());
         jadwalDonation.setText(stuffShareApp.getSelectedCampaigner().getTglBuat());
@@ -110,8 +125,10 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
         statusCampaign.setText(stuffShareApp.getSelectedCampaigner().getStatusCampaign());
         story.setText(stuffShareApp.getSelectedCampaigner().getStory());
 
-        gridView = (GridView) view.findViewById(R.id.itemGridViewDocumentation);
-        gridView.setAdapter(new DataScheduleAdapter(getContext()));
+//        gridView = (GridView) view.findViewById(R.id.itemGridViewDocumentation);
+//        gridView.setAdapter(new DataScheduleAdapter(getContext()));
+//        dataScheduleAdapter = new DataScheduleAdapter(getActivity(), R.layout.grid_view_documentation, campaigners);
+//        gridView.setAdapter(dataScheduleAdapter);
 
         String address = stuffShareApp.getSelectedCampaigner().getAlamatPenyelenggara();
         Log.i(stuffShareApp.TAG, "alamat penyelenggara " + address);
