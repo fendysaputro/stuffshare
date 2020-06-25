@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                                 Intent goLoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(goLoginActivity);
+                                finish();
                             } else {
                                 Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                                 mProgressBar.setVisibility(View.GONE);

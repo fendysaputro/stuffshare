@@ -349,6 +349,19 @@
 
             </RelativeLayout>
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_below="@+id/relativeButton"
+                android:layout_marginTop="10dp"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorPrimary" />
+
         </RelativeLayout>
 
     </RelativeLayout>

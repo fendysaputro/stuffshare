@@ -34,6 +34,7 @@ public class SharedPrefManager {
     public static final String login = "login";
     public static final String accountPlus ="accountPlus";
     public static final String notif = "notif";
+    public static final String statusAccountPlus = "status_akunplus";
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -160,5 +161,9 @@ public class SharedPrefManager {
 
     public String getSPAlamatPenyelenggara() {
         return sharedPreferences.getString(alamat_penyelenggara, "");
+    }
+
+    public String getSPStatusAkunPlus() {
+        return sharedPreferences.getString(statusAccountPlus, "");
     }
 }

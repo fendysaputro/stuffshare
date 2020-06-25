@@ -47,9 +47,14 @@ public class AlertQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int checkAkunPlus = sharedPrefManager.getSPAkunplus();
+                String statusAkunPlus = sharedPrefManager.getSPStatusAkunPlus();
                 if (checkAkunPlus == 1){
-                    Intent goSubmissionActivity = new Intent(getApplication(), SubmissionActivity.class);
-                    startActivity(goSubmissionActivity);
+                    if (statusAkunPlus.equals("1")){
+                        Intent goSubmissionActivity = new Intent(getApplication(), SubmissionActivity.class);
+                        startActivity(goSubmissionActivity);
+                    } else {
+                        Toasty.warning(getApplication(), "akun anda belum di verifikasi oleh admin mohon tunggu sampai terverifikasi", Toasty.LENGTH_SHORT, true).show();
+                    }
                 } else {
                     Toasty.warning(getApplication(), "akun anda belum akun plus silahkan daftar akun plus dahulu", Toasty.LENGTH_SHORT, true).show();
                 }

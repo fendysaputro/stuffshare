@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,6 +100,7 @@ public class AccountPlusFragment extends Fragment {
     String[] mediaColumns = {MediaStore.Video.Media._ID};
     ProgressDialog progressDialog;
     public static final int FILEPICKER_PERMISSIONS = 1;
+    ProgressBar progressBar;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -162,6 +164,7 @@ public class AccountPlusFragment extends Fragment {
         selectImage = (Button) view.findViewById(R.id.btnUploadImage);
         cancelBtn = (Button) view.findViewById(R.id.btnCancel);
         finishBtn = (Button) view.findViewById(R.id.btnContinue);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         nameCommunity.addTextChangedListener(new TextWatcher() {
             @Override
@@ -559,6 +562,7 @@ public class AccountPlusFragment extends Fragment {
     }
 
     public void onFinishButton() {
+        progressBar.setVisibility(View.VISIBLE);
         if (TextUtils.isEmpty(nameCommunity.getText()) && TextUtils.isEmpty(addressCommunity.getText()) && TextUtils.isEmpty(numberAktaCommunity.getText()) &&
             TextUtils.isEmpty(nameKetuaCommunity.getText()) && TextUtils.isEmpty(nameKetuaCommunity.getText())){
             Toasty.warning(getActivity(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
@@ -575,15 +579,21 @@ public class AccountPlusFragment extends Fragment {
                     try {
                         JSONObject resObj = new JSONObject(response);
                         if (resObj.getBoolean("r")){
-                            sharedPrefManager.saveSPBoolean(SharedPrefManager.accountPlus, true);
+                            JSONObject dataObj = resObj.getJSONObject("d");
+                            int akunplus = 1;
+                            Log.i(stuffShareApp.TAG, "akunplus " + akunplus);
+//                            sharedPrefManager.saveSPBoolean(SharedPrefManager.accountPlus, true);
 //                        stuffShareApp.setAkunPlus(true);
+                            sharedPrefManager.saveSPInt("akunplus", akunplus);
                             Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                             ThankyouFragment thankyouFragment = new ThankyouFragment();
                             FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
                             ShowFragment(R.id.fl_container, thankyouFragment, fragmentManager);
                         }
                     } catch (JSONException e){
+                        progressBar.setVisibility(View.GONE);
                         e.printStackTrace();
+                        Toasty.error(getContext(), e.getMessage(), Toasty.LENGTH_SHORT, true).show();
                     }
                 }
             });
