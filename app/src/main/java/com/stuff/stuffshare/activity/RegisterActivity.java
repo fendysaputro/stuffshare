@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
     StuffShareApp stuffShareApp;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         phoneTxt = (EditText) findViewById(R.id.edPhone);
         emailTxt = (EditText) findViewById(R.id.edEmail);
         passwordTxt = (EditText) findViewById(R.id.edPassword);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         btnRegister = (Button) findViewById(R.id.registerBtn);
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onBtnRegister () {
+        mProgressBar.setVisibility(View.VISIBLE);
         if (TextUtils.isEmpty(nameTxt.getText()) && TextUtils.isEmpty(phoneTxt.getText()) &&
                 TextUtils.isEmpty(emailTxt.getText()) && TextUtils.isEmpty(passwordTxt.getText())){
             Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
@@ -75,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 startActivity(goLoginActivity);
                             } else {
                                 Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                mProgressBar.setVisibility(View.GONE);
                             }
                         } catch (JSONException e){
                             e.printStackTrace();

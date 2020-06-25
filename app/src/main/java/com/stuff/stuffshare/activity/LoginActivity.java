@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     TextView forgetPassword;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
         edEmail = (EditText) findViewById(R.id.emailTxt);
         edPassword = (EditText) findViewById(R.id.passwordTxt);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         btnLogin = (Button) findViewById(R.id.loginBtn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onBtnLogin() {
+        mProgressBar.setVisibility(View.VISIBLE);
         if (TextUtils.isEmpty(edPassword.getText())){
             edPassword.setError("Password is must");
         }
@@ -141,12 +146,14 @@ public class LoginActivity extends AppCompatActivity {
                                 Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                                 finish();
                             } else {
+                                mProgressBar.setVisibility(View.GONE);
                                 Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
                                 btnLogin.setEnabled(true);
                             }
                         }catch (JSONException e){
                             e.printStackTrace();
                             Toasty.info(getApplication(), "Invalid User ID or Password", Toasty.LENGTH_LONG).show();
+                            mProgressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -157,6 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
             } else {
                 edEmail.setError("email is invalid");
+                mProgressBar.setVisibility(View.GONE);
             }
         }
     }
