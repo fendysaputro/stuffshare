@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -73,13 +74,14 @@ public class MyDonationFragment extends Fragment {
         toolbar_title.setText("Donasi Saya");
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
-
+        
         donations = new ArrayList<Donation>();
         androidListView = (ListView) view.findViewById(R.id.itemListViewHistory);
         myDonationAdapter = new MyDonationAdapter(getActivity(), R.layout.list_view_my_donation, donations);
         androidListView.setAdapter(myDonationAdapter);
 
         getDataDonation("", donations, myDonationAdapter);
+
 
         androidListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

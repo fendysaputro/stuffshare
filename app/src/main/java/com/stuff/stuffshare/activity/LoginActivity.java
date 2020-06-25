@@ -88,8 +88,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onBtnLogin() {
-        if (TextUtils.isEmpty(edEmail.getText()) && !TextUtils.isEmpty(edPassword.getText())){
-            Toasty.warning(getApplication(), "both field can't be empty ", Toasty.LENGTH_SHORT, true).show();
+        if (TextUtils.isEmpty(edPassword.getText())){
+            edPassword.setError("Password is must");
+        }
+
+        if (TextUtils.isEmpty(edEmail.getText())){
+            edEmail.setError("Email is required");
         } else {
             if (edEmail.getText().toString().trim().matches(emailPattern)){
                 AsyncHttpTask mLoginTask = new AsyncHttpTask("email="+edEmail.getText()+"&password="+edPassword.getText());
@@ -152,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                Toasty.warning(getApplication(), "email invalid", Toasty.LENGTH_SHORT, true).show();
+                edEmail.setError("email is invalid");
             }
         }
     }

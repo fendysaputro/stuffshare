@@ -1,9 +1,11 @@
 package com.stuff.stuffshare.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
+import com.stuff.stuffshare.network.AsyncHttpTask;
+import com.stuff.stuffshare.network.OnHttpResponseListener;
 import com.stuff.stuffshare.util.SharedPrefManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 
@@ -24,6 +31,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     Button btnReset;
     StuffShareApp stuffShareApp;
     SharedPrefManager sharedPrefManager;
+    String email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +61,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                email = editable.toString();
             }
         });
 
@@ -68,9 +76,27 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public void onResetPasswordButton () {
         if (TextUtils.isEmpty(editTextEmail.getText())){
-            Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+            editTextEmail.setError("Email is required");
         } else {
-
+            AsyncHttpTask mForgetPasswordTask = new AsyncHttpTask("email="+email);
+            mForgetPasswordTask.execute(stuffShareApp.HOST + stuffShareApp.FORGET_PASSWORD, "POST");
+            mForgetPasswordTask.setHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    Log.i(stuffShareApp.TAG, "response " + response);
+                    try {
+                        JSONObject resObj = new JSONObject(response);
+                        if (resObj.getBoolean("r")){
+                            Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            Intent goLoginActivity = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
+                            startActivity(goLoginActivity);
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                        Toasty.info(getApplication(), "Email not found", Toasty.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
 }
