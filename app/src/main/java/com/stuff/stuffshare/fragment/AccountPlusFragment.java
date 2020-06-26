@@ -581,7 +581,7 @@ public class AccountPlusFragment extends Fragment {
                         if (resObj.getBoolean("r")){
                             JSONObject dataObj = resObj.getJSONObject("d");
                             int akunplus = 1;
-                            Log.i(stuffShareApp.TAG, "akunplus " + akunplus);
+                            Log.i(stuffShareApp.TAG, "akunplus " + dataObj);
 //                            sharedPrefManager.saveSPBoolean(SharedPrefManager.accountPlus, true);
 //                        stuffShareApp.setAkunPlus(true);
                             sharedPrefManager.saveSPInt("akunplus", akunplus);

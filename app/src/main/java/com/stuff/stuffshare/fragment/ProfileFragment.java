@@ -175,7 +175,7 @@ public class ProfileFragment extends Fragment {
 
         statusAccountDonatur = (TextView) view.findViewById(R.id.txtstatusAccountDonatur);
         statusAccountCampaigner = (TextView) view.findViewById(R.id.txtstatusAccountCampaign);
-        if (sharedPrefManager.getSPAkunplus() == 1){
+        if (sharedPrefManager.getSPAkunplus() == 1 && sharedPrefManager.getSPStatusAkunPlus().equals("1")){
             statusAccountDonatur.setText("Donatur");
             statusAccountDonatur.setTextColor(getResources().getColor(R.color.colorAccent));
             statusAccountCampaigner.setText("Penggalang");

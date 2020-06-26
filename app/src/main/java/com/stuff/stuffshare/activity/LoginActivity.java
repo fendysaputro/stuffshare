@@ -118,7 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                                         dataObj.getString("email"),
                                         dataObj.getInt("akunplus"),
                                         dataObj.getString("token"),
-                                        dataObj.getString("image"));
+                                        dataObj.getString("image"),
+                                        dataObj.getString("status_akunplus"));
                                 stuffShareApp.setUser(user);
                                 btnLogin.setEnabled(true);
 
@@ -128,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String userid = dataObj.getString("id");
                                 int akunplus = dataObj.getInt("akunplus");
                                 String image = dataObj.getString("image");
+                                String status_ap = dataObj.getString("status_akunplus");
                                 sharedPrefManager.saveSPString(SharedPrefManager.name, nama);
                                 sharedPrefManager.saveSPString(SharedPrefManager.phone, phone);
                                 sharedPrefManager.saveSPString(SharedPrefManager.email, email);
@@ -135,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                                 sharedPrefManager.saveSPInt("akunplus", akunplus);
                                 sharedPrefManager.saveSPString(SharedPrefManager.image, image);
                                 sharedPrefManager.saveSPBoolean(SharedPrefManager.login, true);
+                                sharedPrefManager.saveSPString(SharedPrefManager.statusAccountPlus, status_ap);
                                 if (dataObj.getInt("akunplus") == 1){
                                     String imageCom = dataObj.getString("foto_penyelenggara");
                                     Log.i(stuffShareApp.TAG, "img_penyelenggara " + imageCom);

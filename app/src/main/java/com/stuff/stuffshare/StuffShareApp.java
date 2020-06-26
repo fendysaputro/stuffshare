@@ -37,6 +37,7 @@ public class StuffShareApp extends Application {
     public static String EDIT_PHOTO = "api/user/edit-photo";
     public static String CONFIRMATION_DONATION = "api/donasi/konfirmasi";
     public static String FORGET_PASSWORD = "api/lupapassword";
+    public static String GET_USER = "api/user/";
     public int imgId;
     public String imgCampaign;
     boolean login;
@@ -100,7 +101,8 @@ public class StuffShareApp extends Application {
                 user = new User(userObj.getString("id"),
                         userObj.getString("name"), userObj.getString("phone"),
                         userObj.getString("email"), userObj.getInt("akunplus"),
-                        userObj.getString("token"), userObj.getString("image"));
+                        userObj.getString("token"), userObj.getString("image"),
+                        userObj.getString("status_akunplus"));
             } catch (JSONException e){
                 e.printStackTrace();
             }

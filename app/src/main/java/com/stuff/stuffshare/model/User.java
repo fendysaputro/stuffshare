@@ -8,8 +8,9 @@ public class User {
     int akunplus;
     String token;
     String image;
+    String status_akunplus;
 
-    public User(String id, String name, String phone, String email, int akunplus, String token, String image){
+    public User(String id, String name, String phone, String email, int akunplus, String token, String image, String status_akunplus){
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -17,6 +18,7 @@ public class User {
         this.akunplus = akunplus;
         this.token = token;
         this.image = image;
+        this.status_akunplus = status_akunplus;
     }
 
     public String getId() {
@@ -73,5 +75,13 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getStatus_akunplus() {
+        return status_akunplus;
+    }
+
+    public void setStatus_akunplus(String status_akunplus) {
+        this.status_akunplus = status_akunplus;
     }
 }
