@@ -55,10 +55,10 @@ public class AlertQuestionActivity extends AppCompatActivity {
         btnSdh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int checkAkunPlus = sharedPrefManager.getSPAkunplus();
-//                String statusAkunPlus = sharedPrefManager.getSPStatusAkunPlus();
-                if (akunPlus == 1){
-                    if (status.equals("1")){
+                int checkAkunPlus = sharedPrefManager.getSPAkunplus();
+                String statusAkunPlus = sharedPrefManager.getSPStatusAkunPlus();
+                if (akunPlus == 1 || checkAkunPlus == 1){
+                    if (status.equals("1") || statusAkunPlus.equals("1")){
                         Intent goSubmissionActivity = new Intent(getApplication(), SubmissionActivity.class);
                         startActivity(goSubmissionActivity);
                     } else {
