@@ -30,6 +30,7 @@ import com.stuff.stuffshare.MainActivity;
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.activity.LoginActivity;
+import com.stuff.stuffshare.network.AsyncHttpTask;
 import com.stuff.stuffshare.network.OnHttpResponseListener;
 import com.stuff.stuffshare.network.UploadPhotoProfileTask;
 import com.stuff.stuffshare.util.SharedPrefManager;
@@ -53,6 +54,8 @@ public class ProfileFragment extends Fragment {
     SharedPrefManager sharedPrefManager;
     List<String> formats;
     Context context;
+    int akunPlus;
+    String status;
 
     @Nullable
     @Override
@@ -175,7 +178,7 @@ public class ProfileFragment extends Fragment {
 
         statusAccountDonatur = (TextView) view.findViewById(R.id.txtstatusAccountDonatur);
         statusAccountCampaigner = (TextView) view.findViewById(R.id.txtstatusAccountCampaign);
-        if (sharedPrefManager.getSPAkunplus() == 1 && sharedPrefManager.getSPStatusAkunPlus().equals("1")){
+        if (sharedPrefManager.getSPAkunplus() == 1 || akunPlus == 1 && status.equals("1")){
             statusAccountDonatur.setText("Donatur");
             statusAccountDonatur.setTextColor(getResources().getColor(R.color.colorAccent));
             statusAccountCampaigner.setText("Penggalang");
@@ -349,5 +352,27 @@ public class ProfileFragment extends Fragment {
 //                }
 //            }
 //        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        AsyncHttpTask getUserTask = new AsyncHttpTask("");
+        getUserTask.execute(stuffShareApp.HOST + stuffShareApp.GET_USER + sharedPrefManager.getSPUserid(), "GET");
+        getUserTask.setHttpResponseListener(new OnHttpResponseListener() {
+            @Override
+            public void OnHttpResponse(String response) {
+                try {
+                    JSONObject resObj = new JSONObject(response);
+                    if (resObj.getBoolean("r")){
+                        JSONObject dataObj = resObj.getJSONObject("d");
+                        akunPlus = dataObj.getInt("akunplus");
+                        status = dataObj.getString("status_akunplus");
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
