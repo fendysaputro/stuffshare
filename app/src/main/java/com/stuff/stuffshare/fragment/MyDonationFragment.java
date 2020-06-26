@@ -2,10 +2,12 @@ package com.stuff.stuffshare.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 import static com.stuff.stuffshare.MainActivity.ShowFragment;
@@ -103,6 +106,7 @@ public class MyDonationFragment extends Fragment {
         AsyncHttpTask mDonationTask = new AsyncHttpTask("");
         mDonationTask.execute(stuffShareApp.HOST + stuffShareApp.DONATION + sharedPrefManager.getSPUserid(), "GET");
         mDonationTask.setHttpResponseListener(new OnHttpResponseListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void OnHttpResponse(String response) {
                 Log.i(stuffShareApp.TAG, "response donation" + response);
@@ -122,6 +126,13 @@ public class MyDonationFragment extends Fragment {
                             donation.setDate(jObj.getString("date"));
                             donation.setDonasiUang(jObj.getString("donasi"));
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
+//                            JSONArray arrDonasiBarang = new JSONArray(donation.getDonasiBarang());
+//                            String[] arr=new String[arrDonasiBarang.length()];
+//                            for (int j = 0; j < arr.length; j++) {
+//                                arr[j]=arrDonasiBarang.optString(j);
+//                                int sum = IntStream.of(Integer.parseInt(arr[j])).sum();
+//                                System.out.println("The sum is " + sum);
+//                            }
                             donation.setTotalDonation(jObj.getInt("totaldonasibarang"));
                             donation.setMetodeBayar(jObj.getString("metodebayar"));
                             donation.setMetodeKirim(jObj.getString("metodekirim"));
