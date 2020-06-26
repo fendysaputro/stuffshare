@@ -20,10 +20,12 @@ import com.squareup.picasso.Picasso;
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.fragment.ConfirmationFragment;
+import com.stuff.stuffshare.model.CategoryBarang;
 import com.stuff.stuffshare.model.Donation;
 import com.stuff.stuffshare.util.AppUtils;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,10 +37,12 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
     Context context;
     StuffShareApp stuffShareApp;
     AppUtils appUtils;
+    private ArrayList<Donation> donations = null;
 
-    public MyDonationAdapter(Context context, int resourceId, List<Donation> donations){
+    public MyDonationAdapter(Context context, int resourceId, ArrayList<Donation> donations){
         super(context, resourceId, donations);
         this.context = context;
+        this.donations = donations;
         stuffShareApp = (StuffShareApp) this.context.getApplicationContext();
         appUtils = new AppUtils();
     }
@@ -52,11 +56,27 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
         TextView jmlBarang;
     }
 
+    @Override
+    public int getCount() {
+        return super.getCount();
+    }
+
+    @Override
+    public Donation getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder = null;
-        Donation donation = getItem(position);
+//        Donation donation = getItem(position);
+        Donation donation = (Donation) donations.get(position);
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
             convertView = inflater.inflate(R.layout.list_view_my_donation, null);
@@ -105,7 +125,7 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
                 }
             });
             holder.txtDate.setText(donation.getDate());
-            holder.jmlBarang.setText(donation.getDonasiBarang().length() + " Barang");
+            holder.jmlBarang.setText(donation.getTotalDonation() + " Barang");
             String jmlUang = appUtils.formatRupiah(Double.parseDouble(donation.getDonasiUang()));
             holder.jmlUang.setText(jmlUang);
 

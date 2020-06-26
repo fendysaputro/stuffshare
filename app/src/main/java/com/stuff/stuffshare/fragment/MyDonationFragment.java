@@ -105,6 +105,7 @@ public class MyDonationFragment extends Fragment {
         mDonationTask.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {
+                Log.i(stuffShareApp.TAG, "response donation" + response);
                 try {
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getBoolean("r")){
@@ -121,6 +122,7 @@ public class MyDonationFragment extends Fragment {
                             donation.setDate(jObj.getString("date"));
                             donation.setDonasiUang(jObj.getString("donasi"));
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
+                            donation.setTotalDonation(jObj.getInt("totaldonasibarang"));
                             donation.setMetodeBayar(jObj.getString("metodebayar"));
                             donation.setMetodeKirim(jObj.getString("metodekirim"));
                             donation.setStatus(jObj.getString("status"));

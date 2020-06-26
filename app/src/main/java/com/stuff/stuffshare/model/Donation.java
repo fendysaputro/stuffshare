@@ -16,6 +16,7 @@ public class Donation {
     JSONArray donasiBarang;
     String alamatPenyelenggara;
     String status;
+    int totalDonation;
 
     public String getId() {
         return id;
@@ -119,5 +120,13 @@ public class Donation {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getTotalDonation() {
+        return totalDonation;
+    }
+
+    public void setTotalDonation(int totalDonation) {
+        this.totalDonation = totalDonation;
     }
 }
