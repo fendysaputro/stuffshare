@@ -62,7 +62,6 @@ public class StuffShareApp extends Application {
     Data data;
     boolean notification;
 
-    // ++ code by herux
     private ArrayList<CategoryBarang> CategoryBarangs = new ArrayList<CategoryBarang>();
 
     public ArrayList<CategoryBarang> getCategoryBarangs() {

@@ -32,7 +32,6 @@ public class UploadSubmissionTask extends AsyncTask<Object, Void, String> {
         String periode = (String) params[11];
         String cerita = (String) params[12];
         Bitmap gambar = (Bitmap) params[13];
-        // ++ code by herux
 //        String buku = (String) params[14];
 //        String sepatu = (String) params[15];
 //        String elektronik = (String) params[16];
@@ -66,7 +65,6 @@ public class UploadSubmissionTask extends AsyncTask<Object, Void, String> {
 //            client.addFormPart("donasibarang[]", buku);
 //            client.addFormPart("donasibarang[]", sepatu);
 //            client.addFormPart("donasibarang[]", elektronik);
-            // ++ code by herux
             for (int i = 0; i < donasiBarangs.size(); i++) {
                 client.addFormPart("donasibarang[]", donasiBarangs.get(i));
             }
