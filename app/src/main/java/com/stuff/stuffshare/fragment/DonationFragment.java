@@ -125,4 +125,10 @@ public class DonationFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getDataCampaign("", listDonationAdapter);
+    }
 }

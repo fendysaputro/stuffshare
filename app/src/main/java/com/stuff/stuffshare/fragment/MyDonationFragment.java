@@ -147,4 +147,10 @@ public class MyDonationFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getDataDonation("", donations, myDonationAdapter);
+    }
 }

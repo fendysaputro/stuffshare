@@ -94,7 +94,7 @@
 
         <TextView
             android:id="@+id/txtEmail"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/buttonDonationNow"
             android:layout_width="match_parent"
