@@ -296,102 +296,129 @@ public class AccountPlusFragment extends Fragment {
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
-
+//
         if(hasPermissions(getActivity(), PERMISSIONS)){
-            formats = new ArrayList<>();
-            formats.add("jpg");
-            formats.add("png");
-            formats.add("jpeg");
-            final StorageChooser chooser = new StorageChooser.Builder()
-                    .withActivity(getActivity())
-                    .withFragmentManager(getActivity().getFragmentManager())
-                    .withMemoryBar(false)
-                    .allowCustomPath(true)
-                    .showFoldersInGrid(true)
-                    .customFilter(formats)
-                    .setType(StorageChooser.FILE_PICKER)
-                    .build();
-
-            // 2. Retrieve the selected path by the user and show in a toast !
-            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-                @Override
-                public void onSelect(String path) {
-                    Toast.makeText(getActivity(), "The selected path is : " + path, Toast.LENGTH_SHORT).show();
-                    uploadAkta.setText(path);
-                    Bitmap aktaBmp = BitmapFactory.decodeFile(path);
-                    stuffShareApp.setAkta(aktaBmp);
-                    Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getAkta());
-                }
-            });
-
-            // 3. Display File Picker !
-            chooser.show();
-        }else{
-            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
+            Intent intent=new Intent(Intent.ACTION_PICK);
+            // Sets the type as image/*. This ensures only components of type image are selected
+            intent.setType("image/*");
+            //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+            String[] mimeTypes = {"image/jpeg", "image/png"};
+            intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+            // Launching the Intent
+            startActivityForResult(intent,REQUEST_CODE_AKTA);
+//            formats = new ArrayList<>();
+//            formats.add("jpg");
+//            formats.add("png");
+//            formats.add("jpeg");
+//            final StorageChooser chooser = new StorageChooser.Builder()
+//                    .withActivity(getActivity())
+//                    .withFragmentManager(getActivity().getFragmentManager())
+//                    .withMemoryBar(false)
+//                    .allowCustomPath(true)
+//                    .showFoldersInGrid(true)
+//                    .customFilter(formats)
+//                    .setType(StorageChooser.FILE_PICKER)
+//                    .build();
+//
+//            // 2. Retrieve the selected path by the user and show in a toast !
+//            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+//                @Override
+//                public void onSelect(String path) {
+//                    Toast.makeText(getActivity(), "The selected path is : " + path, Toast.LENGTH_SHORT).show();
+//                    uploadAkta.setText(path);
+//                    Bitmap aktaBmp = BitmapFactory.decodeFile(path);
+//                    stuffShareApp.setAkta(aktaBmp);
+//                    Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getAkta());
+//                }
+//            });
+//
+////             3. Display File Picker !
+//            chooser.show();
+//        }else{
+//            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
         }
     }
 
     public void startChooseFileNPWP(){
 
-        formats = new ArrayList<>();
-        formats.add("jpg");
-        formats.add("png");
-        formats.add("jpeg");
-        final StorageChooser chooser = new StorageChooser.Builder()
-                .withActivity(getActivity())
-                .withFragmentManager(getActivity().getFragmentManager())
-                .withMemoryBar(false)
-                .allowCustomPath(true)
-                .showFoldersInGrid(true)
-                .customFilter(formats)
-                .setType(StorageChooser.FILE_PICKER)
-                .build();
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        // Sets the type as image/*. This ensures only components of type image are selected
+        intent.setType("image/*");
+        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        // Launching the Intent
+        startActivityForResult(intent,REQUEST_CODE_NPWP);
 
-        // 2. Retrieve the selected path by the user and show in a toast !
-        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-            @Override
-            public void onSelect(String npwpPath) {
-                Toast.makeText(getActivity(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
-                uploadNpwp.setText(npwpPath);
-                Bitmap npwpBmp = BitmapFactory.decodeFile(npwpPath);
-                stuffShareApp.setNpwp(npwpBmp);
-                Log.i(stuffShareApp.TAG, "file npwp " + stuffShareApp.getNpwp());
-            }
-        });
-
-        // 3. Display File Picker !
-        chooser.show();
+//        formats = new ArrayList<>();
+//        formats.add("jpg");
+//        formats.add("png");
+//        formats.add("jpeg");
+//        final StorageChooser chooser = new StorageChooser.Builder()
+//                .withActivity(getActivity())
+//                .withFragmentManager(getActivity().getFragmentManager())
+//                .withMemoryBar(false)
+//                .allowCustomPath(true)
+//                .showFoldersInGrid(true)
+//                .customFilter(formats)
+//                .setType(StorageChooser.FILE_PICKER)
+//                .build();
+//
+////         2. Retrieve the selected path by the user and show in a toast !
+//        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+//            @Override
+//            public void onSelect(String npwpPath) {
+//                Toast.makeText(getActivity(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
+//                uploadNpwp.setText(npwpPath);
+//                Bitmap npwpBmp = BitmapFactory.decodeFile(npwpPath);
+//                stuffShareApp.setNpwp(npwpBmp);
+//                Log.i(stuffShareApp.TAG, "file npwp " + stuffShareApp.getNpwp());
+//            }
+//        });
+//
+////         3. Display File Picker !
+//        chooser.show();
     }
 
     public void startChooseFileImageCommunity(){
-        formats = new ArrayList<>();
-        formats.add("jpg");
-        formats.add("png");
-        formats.add("jpeg");
-        final StorageChooser chooser = new StorageChooser.Builder()
-                .withActivity(getActivity())
-                .withFragmentManager(getActivity().getFragmentManager())
-                .withMemoryBar(false)
-                .allowCustomPath(true)
-                .showFoldersInGrid(true)
-                .customFilter(formats)
-                .setType(StorageChooser.FILE_PICKER)
-                .build();
 
-        // 2. Retrieve the selected path by the user and show in a toast !
-        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-            @Override
-            public void onSelect(String imagePath) {
-                Toast.makeText(getActivity(), "The selected path is : " + imagePath, Toast.LENGTH_SHORT).show();
-                uploadImage.setText(imagePath);
-                Bitmap imageBmp = BitmapFactory.decodeFile(imagePath);
-                stuffShareApp.setImageOrg(imageBmp);
-                Log.i(stuffShareApp.TAG, "file image " + stuffShareApp.getImageOrg());
-            }
-        });
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        // Sets the type as image/*. This ensures only components of type image are selected
+        intent.setType("image/*");
+        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        // Launching the Intent
+        startActivityForResult(intent,REQUEST_CODE_IMAGE);
 
-        // 3. Display File Picker !
-        chooser.show();
+//        formats = new ArrayList<>();
+//        formats.add("jpg");
+//        formats.add("png");
+//        formats.add("jpeg");
+//        final StorageChooser chooser = new StorageChooser.Builder()
+//                .withActivity(getActivity())
+//                .withFragmentManager(getActivity().getFragmentManager())
+//                .withMemoryBar(false)
+//                .allowCustomPath(true)
+//                .showFoldersInGrid(true)
+//                .customFilter(formats)
+//                .setType(StorageChooser.FILE_PICKER)
+//                .build();
+//
+//        // 2. Retrieve the selected path by the user and show in a toast !
+//        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+//            @Override
+//            public void onSelect(String imagePath) {
+//                Toast.makeText(getActivity(), "The selected path is : " + imagePath, Toast.LENGTH_SHORT).show();
+//                uploadImage.setText(imagePath);
+//                Bitmap imageBmp = BitmapFactory.decodeFile(imagePath);
+//                stuffShareApp.setImageOrg(imageBmp);
+//                Log.i(stuffShareApp.TAG, "file image " + stuffShareApp.getImageOrg());
+//            }
+//        });
+//
+//        // 3. Display File Picker !
+//        chooser.show();
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {
@@ -436,23 +463,52 @@ public class AccountPlusFragment extends Fragment {
             case REQUEST_CODE_AKTA:
                 if (resultCode == Activity.RESULT_OK) {
                     if (data != null){
-                        Uri uriAkta = data.getData();
+//                        Uri uriAkta = data.getData();
+                        Uri selectedImageAkta = data.getData();
+                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        // Get the cursor
+                        Cursor cursor = getActivity().getContentResolver().query(selectedImageAkta, filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor.moveToFirst();
+                        //Get the column index of MediaStore.Images.Media.DATA
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        //Gets the String value in the column
+                        String imgDecodableString = cursor.getString(columnIndex);
+                        cursor.close();
+                        // Set the Image in ImageView after decoding the String
+                        uploadAkta.setText(imgDecodableString);
+                            Bitmap aktaBmp = BitmapFactory.decodeFile(imgDecodableString);
+                            stuffShareApp.setAkta(aktaBmp);
+                        Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getAkta());
+
 //                        try {
 //                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriAkta);
 //                            uploadAkta.setText(uriAkta.getPath());
 //                            stuffShareApp.setAkta(bitmap);
 //                            Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getAkta());
-                            String[] filePath = {MediaStore.Images.Media.DATA};
-                            Cursor cursor = getActivity().getContentResolver().query(uriAkta, filePath, null, null, null);
-                            cursor.moveToFirst();
-
-                            int columnIndex = cursor.getColumnIndex(filePath[0]);
-                            String myPath = cursor.getString(columnIndex);
-                            cursor.close();
-
-                            uploadAkta.setText(myPath);
-                            Bitmap aktaBmp = BitmapFactory.decodeFile(myPath);
-                            stuffShareApp.setAkta(aktaBmp);
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                        String selectedPath = uriAkta.getPath();
+//                        try {
+//                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriAkta);
+//                            uploadAkta.setText(uriAkta.getPath());
+//                            stuffShareApp.setAkta(bitmap);
+//                            Log.i(stuffShareApp.TAG, "file akta " + selectedPath);
+//                            String[] filePath = {MediaStore.Images.Media.DATA};
+//                            Cursor cursor = getActivity().getContentResolver().query(uriAkta, filePath, null, null, null);
+//                            cursor.moveToFirst();
+//
+//                            int columnIndex = cursor.getColumnIndex(filePath[0]);
+//                            String myPath = cursor.getString(columnIndex);
+//                            cursor.close();
+//
+//                            uploadAkta.setText(myPath);
+//                            Bitmap aktaBmp = BitmapFactory.decodeFile(myPath);
+//                            stuffShareApp.setAkta(aktaBmp);
+//                        Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getAkta());
 
 //                        }
 //                        catch (FileNotFoundException e) {
@@ -481,17 +537,22 @@ public class AccountPlusFragment extends Fragment {
             case REQUEST_CODE_NPWP:
                 if (resultCode == Activity.RESULT_OK){
                     if (data != null){
-                        Uri uriNpwp = data.getData();
-                        try {
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriNpwp);
-                            uploadNpwp.setText(uriNpwp.getPath());
-                            stuffShareApp.setNpwp(bitmap);
-                            Log.i(stuffShareApp.TAG, "file npwp " + stuffShareApp.getNpwp());
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Uri selectedImageNpwp = data.getData();
+                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        // Get the cursor
+                        Cursor cursor = getActivity().getContentResolver().query(selectedImageNpwp, filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor.moveToFirst();
+                        //Get the column index of MediaStore.Images.Media.DATA
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        //Gets the String value in the column
+                        String imgDecodableString = cursor.getString(columnIndex);
+                        cursor.close();
+                        // Set the Image in ImageView after decoding the String
+                        uploadNpwp.setText(imgDecodableString);
+                        Bitmap npwpBmp = BitmapFactory.decodeFile(imgDecodableString);
+                        stuffShareApp.setNpwp(npwpBmp);
+                        Log.i(stuffShareApp.TAG, "file npwp " + stuffShareApp.getNpwp());
 //                        String[] filePath = {MediaStore.Images.Media.DATA};
 //                        Cursor cursor = getActivity().getContentResolver().query(uriNpwp, filePath, null, null, null);
 //                        cursor.moveToFirst();
@@ -512,17 +573,22 @@ public class AccountPlusFragment extends Fragment {
             case REQUEST_CODE_IMAGE:
                 if (resultCode == Activity.RESULT_OK){
                     if (data != null){
-                        Uri uriImage = data.getData();
-                        try {
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriImage);
-                            uploadImage.setText(uriImage.getPath());
-                            stuffShareApp.setImageOrg(bitmap);
-                            Log.i(stuffShareApp.TAG, "file Image " + stuffShareApp.getImageOrg());
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Uri selectedImageOrg = data.getData();
+                        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                        // Get the cursor
+                        Cursor cursor = getActivity().getContentResolver().query(selectedImageOrg, filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor.moveToFirst();
+                        //Get the column index of MediaStore.Images.Media.DATA
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        //Gets the String value in the column
+                        String imgDecodableString = cursor.getString(columnIndex);
+                        cursor.close();
+                        // Set the Image in ImageView after decoding the String
+                        uploadImage.setText(imgDecodableString);
+                        Bitmap imageOrgBmp = BitmapFactory.decodeFile(imgDecodableString);
+                        stuffShareApp.setImageOrg(imageOrgBmp);
+                        Log.i(stuffShareApp.TAG, "file image org " + stuffShareApp.getImageOrg());
 //                        String[] filePath = {MediaStore.Images.Media.DATA};
 //                        Cursor cursor = getActivity().getContentResolver().query(uriImage, filePath, null, null, null);
 //                        cursor.moveToFirst();
