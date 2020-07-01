@@ -70,6 +70,7 @@ public class ConfirmationFragment extends Fragment {
     Button chooseFile, uploadConfirmation;
     ImageView ivConfirmation;
     List<String> formats;
+    static final int REQUEST_GALLERY_PHOTO = 2;
 
     @Nullable
     @Override
@@ -179,38 +180,82 @@ public class ConfirmationFragment extends Fragment {
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
         if(hasPermissions(getActivity(), PERMISSIONS)){
-            formats = new ArrayList<>();
-            formats.add("jpg");
-            formats.add("png");
-            formats.add("jpeg");
-            final StorageChooser chooser = new StorageChooser.Builder()
-                    .withActivity(getActivity())
-                    .withFragmentManager(getActivity().getFragmentManager())
-                    .withMemoryBar(false)
-                    .allowCustomPath(true)
-                    .showFoldersInGrid(true)
-                    .customFilter(formats)
-                    .setType(StorageChooser.FILE_PICKER)
-                    .build();
+            Intent intent=new Intent(Intent.ACTION_PICK);
+            // Sets the type as image/*. This ensures only components of type image are selected
+            intent.setType("image/*");
+            //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+            String[] mimeTypes = {"image/jpeg", "image/png"};
+            intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+            // Launching the Intent
+            startActivityForResult(intent,REQUEST_GALLERY_PHOTO);
+//            formats = new ArrayList<>();
+//            formats.add("jpg");
+//            formats.add("png");
+//            formats.add("jpeg");
+//            final StorageChooser chooser = new StorageChooser.Builder()
+//                    .withActivity(getActivity())
+//                    .withFragmentManager(getActivity().getFragmentManager())
+//                    .withMemoryBar(false)
+//                    .allowCustomPath(true)
+//                    .showFoldersInGrid(true)
+//                    .customFilter(formats)
+//                    .setType(StorageChooser.FILE_PICKER)
+//                    .build();
+//
+//            // 2. Retrieve the selected path by the user and show in a toast !
+//            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+//                @Override
+//                public void onSelect(String npwpPath) {
+//                    Toast.makeText(getActivity(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
+//                    Bitmap imageUpload = BitmapFactory.decodeFile(npwpPath);
+//                    stuffShareApp.setImgConfirmation(imageUpload);
+//                    stuffShareApp.setPicture(true);
+//                    ivConfirmation.setImageBitmap(imageUpload);
+//                    chooseFile.setVisibility(View.INVISIBLE);
+//                    Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
+//                }
+//            });
+//
+//            // 3. Display File Picker !
+//            chooser.show();
+//        }else{
+//            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
+        }
+    }
 
-            // 2. Retrieve the selected path by the user and show in a toast !
-            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-                @Override
-                public void onSelect(String npwpPath) {
-                    Toast.makeText(getActivity(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
-                    Bitmap imageUpload = BitmapFactory.decodeFile(npwpPath);
-                    stuffShareApp.setImgConfirmation(imageUpload);
-                    stuffShareApp.setPicture(true);
-                    ivConfirmation.setImageBitmap(imageUpload);
-                    chooseFile.setVisibility(View.INVISIBLE);
-                    Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
-                }
-            });
-
-            // 3. Display File Picker !
-            chooser.show();
-        }else{
-            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_GALLERY_PHOTO && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+//                Uri uriAkta = data.getData();
+//                Uri selectedImage = data.getData();
+//                imageView.setImageURI(selectedImage);
+//                String[] filePath = {MediaStore.Images.Media.DATA};
+//                Cursor cursor = getContentResolver().query(uriAkta, filePath, null, null, null);
+//                cursor.moveToFirst();
+//                int columnIndex = cursor.getColumnIndex(filePath[0]);
+//                String myPath = cursor.getString(columnIndex);
+//                Bitmap imageUpload = BitmapFactory.decodeFile(myPath);
+                Uri selectedImageUpload = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                // Get the cursor
+                Cursor cursor = getActivity().getContentResolver().query(selectedImageUpload, filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+                //Get the column index of MediaStore.Images.Media.DATA
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                //Gets the String value in the column
+                String imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+                // Set the Image in ImageView after decoding the String
+                Bitmap imageUpload = BitmapFactory.decodeFile(imgDecodableString);
+                stuffShareApp.setImgConfirmation(imageUpload);
+                stuffShareApp.setPicture(true);
+                ivConfirmation.setImageBitmap(imageUpload);
+                chooseFile.setVisibility(View.INVISIBLE);
+                Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
+            }
         }
     }
 
