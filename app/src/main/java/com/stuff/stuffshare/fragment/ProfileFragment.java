@@ -1,11 +1,14 @@
 package com.stuff.stuffshare.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +60,7 @@ public class ProfileFragment extends Fragment {
     Context context;
     int akunPlus;
     String status;
+    static final int REQUEST_GALLERY_IMAGE = 4545;
 
     @Nullable
     @Override
@@ -98,34 +103,14 @@ public class ProfileFragment extends Fragment {
                 };
 
                 if(hasPermissions(getActivity(), PERMISSIONS)){
-                    formats = new ArrayList<>();
-                    formats.add("jpg");
-                    formats.add("png");
-                    formats.add("jpeg");
-                    final StorageChooser chooser = new StorageChooser.Builder()
-                            .withActivity(getActivity())
-                            .withFragmentManager(getActivity().getFragmentManager())
-                            .withMemoryBar(false)
-                            .allowCustomPath(true)
-                            .showFoldersInGrid(true)
-                            .customFilter(formats)
-                            .setType(StorageChooser.FILE_PICKER)
-                            .build();
-
-                    // 2. Retrieve the selected path by the user and show in a toast !
-                    chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-                        @Override
-                        public void onSelect(String path) {
-                            Toast.makeText(getActivity(), "The selected path is : " + path, Toast.LENGTH_SHORT).show();
-                            Bitmap profileBmp = BitmapFactory.decodeFile(path);
-                            stuffShareApp.setImgProfile(profileBmp);
-                            profileImage.setImageBitmap(stuffShareApp.getImgProfile());
-                            Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getImgProfile());
-                        }
-                    });
-
-                    // 3. Display File Picker !
-                    chooser.show();
+                    Intent intent=new Intent(Intent.ACTION_PICK);
+                    // Sets the type as image/*. This ensures only components of type image are selected
+                    intent.setType("image/*");
+                    //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+                    String[] mimeTypes = {"image/jpeg", "image/png"};
+                    intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+                    // Launching the Intent
+                    startActivityForResult(intent,REQUEST_GALLERY_IMAGE);
                     if (profileImage != null){
                         profileImage.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -273,6 +258,31 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_GALLERY_IMAGE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Uri selectedImageUpload = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//                // Get the cursor
+                Cursor cursor = getActivity().getContentResolver().query(selectedImageUpload, filePathColumn, null, null, null);
+//                // Move to first row
+                cursor.moveToFirst();
+//                //Get the column index of MediaStore.Images.Media.DATA
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                //Gets the String value in the column
+                String imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+////                // Set the Image in ImageView after decoding the String
+                Bitmap profileBmp = BitmapFactory.decodeFile(imgDecodableString);
+                stuffShareApp.setImgProfile(profileBmp);
+                profileImage.setImageBitmap(stuffShareApp.getImgProfile());
+                Log.i(stuffShareApp.TAG, "file image " + stuffShareApp.getImgProfile());
+            }
+        }
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,10 +27,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codekidlabs.storagechooser.StorageChooser;
+import com.aminography.choosephotohelper.ChoosePhotoHelper;
+import com.aminography.choosephotohelper.callback.ChoosePhotoCallback;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.stuff.stuffshare.MainActivity;
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
@@ -45,6 +50,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -71,6 +78,8 @@ public class ConfirmationFragment extends Fragment {
     ImageView ivConfirmation;
     List<String> formats;
     static final int REQUEST_GALLERY_PHOTO = 2;
+    private ChoosePhotoHelper choosePhotoHelper;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -101,6 +110,7 @@ public class ConfirmationFragment extends Fragment {
         bankName = (TextView) view.findViewById(R.id.txtBankName);
         bankRekTitle = (TextView) view.findViewById(R.id.txtBankRekTitle);
         bankRek = (TextView) view.findViewById(R.id.txtBankRek);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         nomTitle.setText("Jumlah Transfer");
         String jmlUang = appUtils.formatRupiah(Double.parseDouble(stuffShareApp.getSelectedDonation().getDonasiUang()));
@@ -114,11 +124,27 @@ public class ConfirmationFragment extends Fragment {
 
         ivConfirmation = (ImageView) view.findViewById(R.id.imageViewUpload);
 
+        choosePhotoHelper = ChoosePhotoHelper.with(this)
+                .asFilePath()
+                .build(new ChoosePhotoCallback<String>() {
+                    @Override
+                    public void onChoose(String photo) {
+                        Toast.makeText(getActivity(), "The selected path is : " + photo, Toast.LENGTH_SHORT).show();
+                        Bitmap imageUpload = BitmapFactory.decodeFile(photo);
+                        stuffShareApp.setImgConfirmation(imageUpload);
+                        stuffShareApp.setPicture(true);
+                        ivConfirmation.setImageBitmap(imageUpload);
+                        chooseFile.setVisibility(View.INVISIBLE);
+                        Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
+                    }
+                });
+
         chooseFile = (Button) view.findViewById(R.id.btnChooseFileConfirm);
         chooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setChooseFile();
+//                choosePhotoHelper.chooseFromGallery();
                 uploadConfirmation.setEnabled(true);
             }
         });
@@ -188,38 +214,6 @@ public class ConfirmationFragment extends Fragment {
             intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
             // Launching the Intent
             startActivityForResult(intent,REQUEST_GALLERY_PHOTO);
-//            formats = new ArrayList<>();
-//            formats.add("jpg");
-//            formats.add("png");
-//            formats.add("jpeg");
-//            final StorageChooser chooser = new StorageChooser.Builder()
-//                    .withActivity(getActivity())
-//                    .withFragmentManager(getActivity().getFragmentManager())
-//                    .withMemoryBar(false)
-//                    .allowCustomPath(true)
-//                    .showFoldersInGrid(true)
-//                    .customFilter(formats)
-//                    .setType(StorageChooser.FILE_PICKER)
-//                    .build();
-//
-//            // 2. Retrieve the selected path by the user and show in a toast !
-//            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-//                @Override
-//                public void onSelect(String npwpPath) {
-//                    Toast.makeText(getActivity(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
-//                    Bitmap imageUpload = BitmapFactory.decodeFile(npwpPath);
-//                    stuffShareApp.setImgConfirmation(imageUpload);
-//                    stuffShareApp.setPicture(true);
-//                    ivConfirmation.setImageBitmap(imageUpload);
-//                    chooseFile.setVisibility(View.INVISIBLE);
-//                    Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
-//                }
-//            });
-//
-//            // 3. Display File Picker !
-//            chooser.show();
-//        }else{
-//            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, FILEPICKER_PERMISSIONS);
         }
     }
 
@@ -228,27 +222,18 @@ public class ConfirmationFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_GALLERY_PHOTO && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-//                Uri uriAkta = data.getData();
-//                Uri selectedImage = data.getData();
-//                imageView.setImageURI(selectedImage);
-//                String[] filePath = {MediaStore.Images.Media.DATA};
-//                Cursor cursor = getContentResolver().query(uriAkta, filePath, null, null, null);
-//                cursor.moveToFirst();
-//                int columnIndex = cursor.getColumnIndex(filePath[0]);
-//                String myPath = cursor.getString(columnIndex);
-//                Bitmap imageUpload = BitmapFactory.decodeFile(myPath);
                 Uri selectedImageUpload = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                // Get the cursor
+//                // Get the cursor
                 Cursor cursor = getActivity().getContentResolver().query(selectedImageUpload, filePathColumn, null, null, null);
-                // Move to first row
+//                // Move to first row
                 cursor.moveToFirst();
-                //Get the column index of MediaStore.Images.Media.DATA
+//                //Get the column index of MediaStore.Images.Media.DATA
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                //Gets the String value in the column
+//                //Gets the String value in the column
                 String imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
-                // Set the Image in ImageView after decoding the String
+////                // Set the Image in ImageView after decoding the String
                 Bitmap imageUpload = BitmapFactory.decodeFile(imgDecodableString);
                 stuffShareApp.setImgConfirmation(imageUpload);
                 stuffShareApp.setPicture(true);
@@ -259,7 +244,18 @@ public class ConfirmationFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        choosePhotoHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public static ConfirmationFragment newInstance() {
+        return new ConfirmationFragment();
+    }
+
     public void OnUploadConfirmation() {
+        progressBar.setVisibility(View.VISIBLE);
         UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
         uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
                 sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
