@@ -72,10 +72,11 @@ public class ConfirmationFragment extends Fragment {
     SharedPrefManager sharedPrefManager;
     TextView nomTitle, nominal, senderTitle, sender, metodeTitle, metode, bankNameTitle,
             bankName, bankRekTitle, bankRek, addressTitle, addressSent;
-    String dateBayar, idBank, nameBank, rekBank;
+    String dateBayar, idBank, nameBank, rekBank, noResi;
     ArrayList<Bank> bankArrayList = null;
     Button chooseFile, uploadConfirmation;
     ImageView ivConfirmation;
+    EditText eDResi;
     List<String> formats;
     static final int REQUEST_GALLERY_PHOTO = 2;
     private ChoosePhotoHelper choosePhotoHelper;
@@ -113,6 +114,7 @@ public class ConfirmationFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         addressTitle = (TextView) view.findViewById(R.id.txtAlamatTitle);
         addressSent = (TextView) view.findViewById(R.id.txtAddressKirim);
+        eDResi = (EditText) view.findViewById(R.id.edResiPengiriman);
 
         nomTitle.setText("Jumlah Transfer");
         String jmlUang = appUtils.formatRupiah(Double.parseDouble(stuffShareApp.getSelectedDonation().getDonasiUang()));
@@ -128,20 +130,22 @@ public class ConfirmationFragment extends Fragment {
 
         ivConfirmation = (ImageView) view.findViewById(R.id.imageViewUpload);
 
-        choosePhotoHelper = ChoosePhotoHelper.with(this)
-                .asFilePath()
-                .build(new ChoosePhotoCallback<String>() {
-                    @Override
-                    public void onChoose(String photo) {
-                        Toast.makeText(getActivity(), "The selected path is : " + photo, Toast.LENGTH_SHORT).show();
-                        Bitmap imageUpload = BitmapFactory.decodeFile(photo);
-                        stuffShareApp.setImgConfirmation(imageUpload);
-                        stuffShareApp.setPicture(true);
-                        ivConfirmation.setImageBitmap(imageUpload);
-                        chooseFile.setVisibility(View.INVISIBLE);
-                        Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
-                    }
-                });
+        eDResi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                noResi = editable.toString();
+            }
+        });
 
         chooseFile = (Button) view.findViewById(R.id.btnChooseFileConfirm);
         chooseFile.setOnClickListener(new View.OnClickListener() {
