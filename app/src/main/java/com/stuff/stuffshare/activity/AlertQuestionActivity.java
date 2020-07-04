@@ -59,7 +59,7 @@ public class AlertQuestionActivity extends AppCompatActivity {
                 String statusAkunPlus = sharedPrefManager.getSPStatusAkunPlus();
                 if (akunPlus == 1 || checkAkunPlus == 1){
                     if (status.equals("1") || statusAkunPlus.equals("1")){
-                        Intent goSubmissionActivity = new Intent(getApplication(), UploadSubmissionActivity.class);
+                        Intent goSubmissionActivity = new Intent(getApplication(), SubmissionActivity.class);
                         startActivity(goSubmissionActivity);
                     } else {
                         Toasty.warning(getApplication(), "akun anda belum di verifikasi oleh admin mohon tunggu sampai terverifikasi", Toasty.LENGTH_SHORT, true).show();

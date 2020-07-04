@@ -113,6 +113,9 @@ public class HomeAdapter extends ArrayAdapter {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.i(stuffShareApp.TAG, "user 1 " + stuffShareApp.getData().getIduser());
+                        Log.i(stuffShareApp.TAG, "user 2 " + sharedPrefManager.getSPUserid());
+                        Log.i(stuffShareApp.TAG, "masa donasi " + stuffShareApp.getData().getMasaDonasi());
                         if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
                             Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
                             context.startActivity(goAlertHaveCampaignActivity);

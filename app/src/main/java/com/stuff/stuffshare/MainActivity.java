@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public void getData () {
         AsyncHttpTask getCampaign = new AsyncHttpTask("");
-        getCampaign.execute(stuffShareApp.HOST + stuffShareApp.CAMPAIGN, "GET");
+        getCampaign.execute(stuffShareApp.HOST + stuffShareApp.ALL_CAMPAIGN + sharedPrefManager.getSPUserid(), "GET");
         getCampaign.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {
@@ -115,17 +116,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             String dateAfterString = jObj.getString("tglselesai");
                             LocalDate dateBefore = LocalDate.parse(dateBeforeString);
                             LocalDate dateAfter = LocalDate.parse(dateAfterString);
-//                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
                             long noOfDaysBetween = dateAfter.until(dateBefore, org.threeten.bp.temporal.ChronoUnit.DAYS);
-//                            long result = l2.until(l1, ChronoUnit.DAYS);
                             String dateString = DateFormat.format("yyyy-MM-dd", new Date(noOfDaysBetween)).toString();
                             String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                             LocalDate dayNow = LocalDate.parse(timeStamp);
                             LocalDate dateMass = LocalDate.parse(dateString);
-                            long massDonation = dayNow.until(dateAfter, ChronoUnit.DAYS);
+                            long massDonation = dayNow.until(dateAfter, org.threeten.bp.temporal.ChronoUnit.DAYS);
+                            Log.i(stuffShareApp.TAG, "masa donasi main " + massDonation);
                             int ms = (int)massDonation;
                             data.setMasaDonasi(ms);
                             stuffShareApp.setData(data);
+                            Log.i(stuffShareApp.TAG, "user 3 " + stuffShareApp.getData().getIduser());
                         }
                     }
                 } catch (JSONException e) {

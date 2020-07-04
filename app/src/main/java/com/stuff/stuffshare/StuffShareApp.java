@@ -38,6 +38,7 @@ public class StuffShareApp extends Application {
     public static String CONFIRMATION_DONATION = "api/donasi/konfirmasi";
     public static String FORGET_PASSWORD = "api/lupapassword";
     public static String GET_USER = "api/user/";
+    public static String ALL_CAMPAIGN = "api/penggalangan/user/";
     public int imgId;
     public String imgCampaign;
     boolean login;
