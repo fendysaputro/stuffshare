@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public void getData () {
         AsyncHttpTask getCampaign = new AsyncHttpTask("");
-        getCampaign.execute(stuffShareApp.HOST + stuffShareApp.ALL_CAMPAIGN + sharedPrefManager.getSPUserid(), "GET");
+        Log.i(stuffShareApp.TAG, "url " + stuffShareApp.HOST + stuffShareApp.ALL_CAMPAIGN + sharedPrefManager.getSPUserid() + "/status" + "/1");
+        getCampaign.execute(stuffShareApp.HOST + stuffShareApp.ALL_CAMPAIGN + sharedPrefManager.getSPUserid() + "/status" + "/1", "GET");
         getCampaign.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {
