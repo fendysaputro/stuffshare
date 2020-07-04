@@ -220,6 +220,21 @@
                         android:textColor="@color/colorAccent"
                         android:layout_marginTop="0dp" />
 
+                    <EditText
+                        android:id="@+id/edMessageDonation"
+                        android:layout_below="@+id/edNominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@drawable/edit_text_donation"
+                        android:inputType="number"
+                        android:gravity="left"
+                        android:hint=" Tulis Pesanmu Disini"
+                        android:ems="10"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="10dp" />
+
                 </RelativeLayout>
 
                 <Button

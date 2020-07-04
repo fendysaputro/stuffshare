@@ -71,7 +71,7 @@ public class ConfirmationFragment extends Fragment {
     AppUtils appUtils;
     SharedPrefManager sharedPrefManager;
     TextView nomTitle, nominal, senderTitle, sender, metodeTitle, metode, bankNameTitle,
-            bankName, bankRekTitle, bankRek;
+            bankName, bankRekTitle, bankRek, addressTitle, addressSent;
     String dateBayar, idBank, nameBank, rekBank;
     ArrayList<Bank> bankArrayList = null;
     Button chooseFile, uploadConfirmation;
@@ -111,6 +111,8 @@ public class ConfirmationFragment extends Fragment {
         bankRekTitle = (TextView) view.findViewById(R.id.txtBankRekTitle);
         bankRek = (TextView) view.findViewById(R.id.txtBankRek);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        addressTitle = (TextView) view.findViewById(R.id.txtAlamatTitle);
+        addressSent = (TextView) view.findViewById(R.id.txtAddressKirim);
 
         nomTitle.setText("Jumlah Transfer");
         String jmlUang = appUtils.formatRupiah(Double.parseDouble(stuffShareApp.getSelectedDonation().getDonasiUang()));
@@ -121,6 +123,8 @@ public class ConfirmationFragment extends Fragment {
         metode.setText(stuffShareApp.getSelectedDonation().getMetodeBayar());
         bankNameTitle.setText("Nama Bank");
         bankRekTitle.setText("Nomor Rekening");
+        addressTitle.setText("Alamat Pengiriman");
+        addressSent.setText(stuffShareApp.getSelectedDonation().getAlamatPenyelenggara());
 
         ivConfirmation = (ImageView) view.findViewById(R.id.imageViewUpload);
 

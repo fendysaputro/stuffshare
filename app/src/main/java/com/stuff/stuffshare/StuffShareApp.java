@@ -44,7 +44,7 @@ public class StuffShareApp extends Application {
     boolean login;
     User user;
     public static final String TAG = "StuffShare";
-    public String countDonation, nominalDonation;
+    public String countDonation, nominalDonation, messageDonation;
     public int imageSchedule;
     public String nameCommunity, addressCommunity, numberAktaCommunity, nameKetuaCommunity, npwpKetua;
     private Bitmap akta, npwp, imageOrg, imageUpload, imgProfile, imgConfirmation;
@@ -432,5 +432,13 @@ public class StuffShareApp extends Application {
 
     public void setNotification(boolean notification) {
         this.notification = notification;
+    }
+
+    public String getMessageDonation() {
+        return messageDonation;
+    }
+
+    public void setMessageDonation(String messageDonation) {
+        this.messageDonation = messageDonation;
     }
 }

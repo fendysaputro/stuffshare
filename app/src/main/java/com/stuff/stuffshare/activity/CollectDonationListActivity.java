@@ -61,7 +61,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
     TextView addressTo;
     ArrayList<Bank> bankArrayList = null;
     JSONArray donasiBarang;
-    EditText nomUang;
+    EditText nomUang, messageDonation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,6 +147,24 @@ public class CollectDonationListActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 stuffShareApp.setNominalDonation(editable.toString());
                 Log.i(stuffShareApp.TAG, "nominal " + stuffShareApp.getNominalDonation());
+            }
+        });
+
+        messageDonation = (EditText) findViewById(R.id.edMessageDonation);
+        messageDonation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                stuffShareApp.setMessageDonation(editable.toString());
             }
         });
 

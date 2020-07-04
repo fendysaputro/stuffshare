@@ -144,7 +144,7 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
 //        dataScheduleAdapter = new DataScheduleAdapter(getActivity(), R.layout.grid_view_documentation, campaigners);
 //        gridView.setAdapter(dataScheduleAdapter);
 
-        String address = stuffShareApp.getSelectedCampaigner().getAlamatPenyelenggara();
+        String address = stuffShareApp.getSelectedCampaigner().getAddressReceiver();
         Log.i(stuffShareApp.TAG, "alamat penyelenggara " + address);
 
         GeoLocation location = new GeoLocation();

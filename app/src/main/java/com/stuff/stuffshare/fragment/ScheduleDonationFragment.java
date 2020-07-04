@@ -117,6 +117,7 @@ public class ScheduleDonationFragment extends Fragment {
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getBoolean("r")){
                         JSONArray resArray = resObj.getJSONArray("d");
+                        Log.i(stuffShareApp.TAG, "data schecdule " + resArray);
                         for (int i = 0; i < resArray.length(); i++) {
                             JSONObject jObj = resArray.getJSONObject(i);
                             Log.i(stuffShareApp.TAG, "response collect " + jObj);
@@ -128,6 +129,7 @@ public class ScheduleDonationFragment extends Fragment {
                             campaigner.setTglSelesai(jObj.getString("tglselesai"));
                             campaigner.setOrganization(jObj.getString("organisasi"));
                             campaigner.setCountDonation(jObj.getString("banyakdonasi"));
+                            campaigner.setAddressReceiver(jObj.getString("alamat_penerima"));
                             Log.i(stuffShareApp.TAG, "countDonation " + campaigner.getCountDonation());
                             campaigner.setImageCom(jObj.getString("foto_penyelenggara"));
                             campaigner.setAlamatPenyelenggara(jObj.getString("alamat_penyelenggara"));
