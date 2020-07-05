@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,6 +77,7 @@ public class ConfirmationFragment extends Fragment {
     ArrayList<Bank> bankArrayList = null;
     Button chooseFile, uploadConfirmation, chooseFileBarang;
     ImageView ivConfirmation, ivConfirmationBarang;
+    RelativeLayout relativeNomimal, relativeSender, relativeMetode, relativeBank, relativeRek, relativeBtnImageTransfer;
     EditText eDResi;
     List<String> formats;
     static final int REQUEST_GALLERY_PHOTO = 2;
@@ -101,6 +103,13 @@ public class ConfirmationFragment extends Fragment {
         bankArrayList = new ArrayList<Bank>();
 
         getDataBank("", stuffShareApp, bankArrayList);
+
+        relativeNomimal = (RelativeLayout) view.findViewById(R.id.relativeLayoutNominal);
+        relativeSender = (RelativeLayout) view.findViewById(R.id.relativeLayoutSender);
+        relativeMetode = (RelativeLayout) view.findViewById(R.id.relativeLayoutMetode);
+        relativeBank = (RelativeLayout) view.findViewById(R.id.relativeLayoutBankName);
+        relativeRek = (RelativeLayout) view.findViewById(R.id.relativeLayoutBankRek);
+        relativeBtnImageTransfer = (RelativeLayout) view.findViewById(R.id.relativeBtn);
 
         nomTitle = (TextView) view.findViewById(R.id.txtNominalTitle);
         nominal = (TextView) view.findViewById(R.id.txtNominal);
@@ -182,6 +191,25 @@ public class ConfirmationFragment extends Fragment {
                 }
             }
         });
+
+        if (stuffShareApp.getSelectedDonation().getTotalDonation() == 0) {
+            addressTitle.setVisibility(View.INVISIBLE);
+            addressSent.setVisibility(View.INVISIBLE);
+            jmlBarangTitle.setVisibility(View.INVISIBLE);
+            jmlBarang.setVisibility(View.INVISIBLE);
+            eDResi.setVisibility(View.INVISIBLE);
+            ivConfirmationBarang.setVisibility(View.INVISIBLE);
+            chooseFileBarang.setVisibility(View.INVISIBLE);
+        }
+
+        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
+            relativeNomimal.setVisibility(View.INVISIBLE);
+            relativeSender.setVisibility(View.INVISIBLE);
+            relativeMetode.setVisibility(View.INVISIBLE);
+            relativeBank.setVisibility(View.INVISIBLE);
+            relativeRek.setVisibility(View.INVISIBLE);
+            relativeBtnImageTransfer.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }

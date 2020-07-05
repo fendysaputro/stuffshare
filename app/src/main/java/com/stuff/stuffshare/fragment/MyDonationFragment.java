@@ -125,6 +125,7 @@ public class MyDonationFragment extends Fragment {
                             donation.setBankName(jObj.getString("bank"));
                             donation.setDate(jObj.getString("date"));
                             donation.setDonasiUang(jObj.getString("donasi"));
+//                            donation.setDonasiUang("0");
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
 //                            JSONArray arrDonasiBarang = new JSONArray(donation.getDonasiBarang());
 //                            String[] arr=new String[arrDonasiBarang.length()];
@@ -134,6 +135,7 @@ public class MyDonationFragment extends Fragment {
 //                                System.out.println("The sum is " + sum);
 //                            }
                             donation.setTotalDonation(jObj.getInt("totaldonasibarang"));
+//                            donation.setTotalDonation(0);
                             donation.setMetodeBayar(jObj.getString("metodebayar"));
                             donation.setMetodeKirim(jObj.getString("metodekirim"));
                             donation.setStatus(jObj.getString("status"));
