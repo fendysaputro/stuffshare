@@ -1,6 +1,7 @@
 package com.stuff.stuffshare.model;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Donation {
     String id;
@@ -17,6 +18,7 @@ public class Donation {
     String alamatPenyelenggara;
     String status;
     int totalDonation;
+    JSONArray konfirmasi;
 
     public String getId() {
         return id;
@@ -128,5 +130,13 @@ public class Donation {
 
     public void setTotalDonation(int totalDonation) {
         this.totalDonation = totalDonation;
+    }
+
+    public JSONArray getKonfirmasi() {
+        return konfirmasi;
+    }
+
+    public void setKonfirmasi(JSONArray konfirmasi) {
+        this.konfirmasi = konfirmasi;
     }
 }

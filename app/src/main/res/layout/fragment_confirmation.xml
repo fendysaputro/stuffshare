@@ -290,6 +290,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
+            android:inputType="number"
             android:hint="Tulis nomor resi disini"
             android:background="@drawable/edit_text_donation"
             >
@@ -302,12 +303,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorTransparent"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="20dp">
 
             <ImageView
                 android:id="@+id/imageViewUpload"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:background="@drawable/edit_text_donation"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp">
@@ -334,12 +335,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorTransparent"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/imageViewUploadBarang"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:background="@drawable/edit_text_donation"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp">
@@ -363,7 +364,7 @@
         <Button
             android:id="@+id/btnSentConfirmation"
             android:layout_below="@+id/relativeImageViewBarang"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/donation_now"

@@ -113,15 +113,15 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
         holder.statusBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    if (finalHolder.statusBtn.getText().equals("belum bayar")){
+                    if (finalHolder.statusBtn.getText().equals("belum bayar")){
                         stuffShareApp.setSelectedDonation(donation);
                         ConfirmationFragment confirmationFragment = new ConfirmationFragment();
                         Activity activity = (Activity) context;
                         FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
                         ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
-//                    } else {
-//                        Toasty.info(getContext(), "donasi sudah terkonfirmasi", Toasty.LENGTH_SHORT, true).show();
-//                    }
+                    } else {
+                        Toasty.info(getContext(), "donasi sudah terkonfirmasi", Toasty.LENGTH_SHORT, true).show();
+                    }
                 }
             });
             holder.txtDate.setText(donation.getDate());

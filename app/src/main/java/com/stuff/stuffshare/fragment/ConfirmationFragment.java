@@ -73,7 +73,7 @@ public class ConfirmationFragment extends Fragment {
     SharedPrefManager sharedPrefManager;
     TextView nomTitle, nominal, senderTitle, sender, metodeTitle, metode, bankNameTitle,
             bankName, bankRekTitle, bankRek, addressTitle, addressSent, jmlBarangTitle, jmlBarang;
-    String dateBayar, idBank, nameBank, rekBank, noResi;
+    String dateBayar, idBank, nameBank, rekBank, noResi, metodeBayar;
     ArrayList<Bank> bankArrayList = null;
     Button chooseFile, uploadConfirmation, chooseFileBarang;
     ImageView ivConfirmation, ivConfirmationBarang;
@@ -134,10 +134,11 @@ public class ConfirmationFragment extends Fragment {
         senderTitle.setText("Pengirim");
         sender.setText(sharedPrefManager.getSPName());
         metodeTitle.setText("Metode Kirim");
-        metode.setText(stuffShareApp.getSelectedDonation().getMetodeBayar());
+        metodeBayar = "Transfer ATM";
+        metode.setText(metodeBayar);
         bankNameTitle.setText("Nama Bank");
         bankRekTitle.setText("Nomor Rekening");
-        addressTitle.setText("Alamat Pengiriman");
+        addressTitle.setText("Alamat");
         addressSent.setText(stuffShareApp.getSelectedDonation().getAlamatPenyelenggara());
         jmlBarangTitle.setText("Jumlah Barang");
         jmlBarang.setText(stuffShareApp.getSelectedDonation().getTotalDonation() + " Barang");
@@ -176,6 +177,7 @@ public class ConfirmationFragment extends Fragment {
         chooseFileBarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setChooseFileBarang();
                 uploadConfirmation.setEnabled(true);
             }
         });
@@ -192,24 +194,24 @@ public class ConfirmationFragment extends Fragment {
             }
         });
 
-        if (stuffShareApp.getSelectedDonation().getTotalDonation() == 0) {
-            addressTitle.setVisibility(View.INVISIBLE);
-            addressSent.setVisibility(View.INVISIBLE);
-            jmlBarangTitle.setVisibility(View.INVISIBLE);
-            jmlBarang.setVisibility(View.INVISIBLE);
-            eDResi.setVisibility(View.INVISIBLE);
-            ivConfirmationBarang.setVisibility(View.INVISIBLE);
-            chooseFileBarang.setVisibility(View.INVISIBLE);
-        }
-
-        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
-            relativeNomimal.setVisibility(View.INVISIBLE);
-            relativeSender.setVisibility(View.INVISIBLE);
-            relativeMetode.setVisibility(View.INVISIBLE);
-            relativeBank.setVisibility(View.INVISIBLE);
-            relativeRek.setVisibility(View.INVISIBLE);
-            relativeBtnImageTransfer.setVisibility(View.INVISIBLE);
-        }
+//        if (stuffShareApp.getSelectedDonation().getTotalDonation() == 0) {
+//            addressTitle.setVisibility(View.INVISIBLE);
+//            addressSent.setVisibility(View.INVISIBLE);
+//            jmlBarangTitle.setVisibility(View.INVISIBLE);
+//            jmlBarang.setVisibility(View.INVISIBLE);
+//            eDResi.setVisibility(View.INVISIBLE);
+//            ivConfirmationBarang.setVisibility(View.INVISIBLE);
+//            chooseFileBarang.setVisibility(View.INVISIBLE);
+//        }
+//
+//        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
+//            relativeNomimal.setVisibility(View.INVISIBLE);
+//            relativeSender.setVisibility(View.INVISIBLE);
+//            relativeMetode.setVisibility(View.INVISIBLE);
+//            relativeBank.setVisibility(View.INVISIBLE);
+//            relativeRek.setVisibility(View.INVISIBLE);
+//            relativeBtnImageTransfer.setVisibility(View.INVISIBLE);
+//        }
 
         return view;
     }
@@ -326,11 +328,14 @@ public class ConfirmationFragment extends Fragment {
 
     public void OnUploadConfirmation() {
         progressBar.setVisibility(View.VISIBLE);
+        String totalDonation = String.valueOf(stuffShareApp.getSelectedDonation().getTotalDonation());
         UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
         uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
                 sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
-                stuffShareApp.getSelectedDonation().getMetodeBayar(), sharedPrefManager.getSPName(),
-                nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(), stuffShareApp.getImgConfirmation());
+                metodeBayar, sharedPrefManager.getSPName(),
+                nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
+                stuffShareApp.getImgConfirmation(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
+                totalDonation, stuffShareApp.getResiConfirmation());
         uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {

@@ -109,13 +109,13 @@ public class MyDonationFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void OnHttpResponse(String response) {
-                Log.i(stuffShareApp.TAG, "response donation" + response);
                 try {
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getBoolean("r")){
                         JSONArray resArray = resObj.getJSONArray("d");
                         for (int i = 0; i < resArray.length(); i++) {
                             JSONObject jObj = resArray.getJSONObject(i);
+//                            Log.i(stuffShareApp.TAG, "response donation" + jObj);
                             Donation donation = new Donation();
                             donation.setId(jObj.getString("id"));
                             donation.setUserId(jObj.getString("userid"));
@@ -125,8 +125,17 @@ public class MyDonationFragment extends Fragment {
                             donation.setBankName(jObj.getString("bank"));
                             donation.setDate(jObj.getString("date"));
                             donation.setDonasiUang(jObj.getString("donasi"));
-//                            donation.setDonasiUang("0");
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
+//                            donation.setKonfirmasi(jObj.getJSONArray("konfirmasi"));
+//                            JSONArray Confirmation = task.getChannels().getJSONObject(j).getJSONArray("players");
+//                            JSONObject Confirmation = donation.getKonfirmasi();
+//                            if (donation.getKonfirmasi() != null){
+//                                for (int j = 0; j < donation.getKonfirmasi().length(); j++) {
+//                                    JSONObject jsonObject = donation.getKonfirmasi().getJSONObject(j);
+//                                    String metodeBayar = jsonObject.getString("metode_pembayaran");
+//                                    Log.i(stuffShareApp.TAG, "konfirmasi " + metodeBayar);
+//                                }
+//                            }
 //                            JSONArray arrDonasiBarang = new JSONArray(donation.getDonasiBarang());
 //                            String[] arr=new String[arrDonasiBarang.length()];
 //                            for (int j = 0; j < arr.length; j++) {
@@ -135,9 +144,8 @@ public class MyDonationFragment extends Fragment {
 //                                System.out.println("The sum is " + sum);
 //                            }
                             donation.setTotalDonation(jObj.getInt("totaldonasibarang"));
-//                            donation.setTotalDonation(0);
-                            donation.setMetodeBayar(jObj.getString("metodebayar"));
-                            donation.setMetodeKirim(jObj.getString("metodekirim"));
+//                            donation.setMetodeBayar(jObj.getString("metode_pembayaran"));
+//                            donation.setMetodeKirim(jObj.getString("metodekirim"));
                             donation.setStatus(jObj.getString("status"));
                             donations.add(donation);
                         }

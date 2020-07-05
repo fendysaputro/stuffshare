@@ -52,7 +52,7 @@ public class UploadConfirmationTask extends AsyncTask<Object, Void, String> {
             client.addFilePart("gambar", "png", gambarBoas.toByteArray());
             client.addFormPart("noresi", noresi);
             client.addFormPart("alamat_pengiriman", alamat_pengiriman);
-            client.addFormPart("total_barang", total_barang);
+            client.addFormPart("jumlah_yangdikirim", total_barang);
             client.addFilePart("gambar_resi", "png", gambarResiBoas.toByteArray());
 
             client.finishMultipart();
