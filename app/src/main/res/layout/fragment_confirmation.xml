@@ -250,9 +250,41 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/relativeLayoutJumlahBarang"
+            android:layout_below="@+id/relativeLayoutAlamatKirim"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:background="@color/textColorWhite">
+
+            <TextView
+                android:id="@+id/txtJmlBarangTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/txtJmlBarang"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/buttonDonationNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="15dp" />
+
+        </RelativeLayout>
+
         <EditText
             android:id="@+id/edResiPengiriman"
-            android:layout_below="@+id/relativeLayoutAlamatKirim"
+            android:layout_below="@+id/relativeLayoutJumlahBarang"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
@@ -263,8 +295,6 @@
             >
 
         </EditText>
-
-
 
         <RelativeLayout
             android:id="@+id/relativeBtn"
@@ -292,7 +322,39 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/edit_text_donation"
-                android:text=" Upload Bukti "
+                android:text=" Bukti Transfer "
+                android:textAllCaps="false">
+            </Button>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeImageViewBarang"
+            android:layout_below="@+id/relativeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparent"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/imageViewUploadBarang"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/edit_text_donation"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp">
+            </ImageView>
+
+            <Button
+                android:id="@+id/btnChooseFileConfirmBarang"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/edit_text_donation"
+                android:text=" Bukti Resi "
                 android:textAllCaps="false">
             </Button>
 
@@ -300,7 +362,7 @@
 
         <Button
             android:id="@+id/btnSentConfirmation"
-            android:layout_below="@+id/relativeBtn"
+            android:layout_below="@+id/relativeImageViewBarang"
             android:layout_marginTop="30dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"

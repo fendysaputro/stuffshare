@@ -226,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:background="@drawable/edit_text_donation"
-                        android:inputType="number"
+                        android:inputType="textPersonName"
                         android:gravity="left"
                         android:hint=" Tulis Pesanmu Disini"
                         android:ems="10"

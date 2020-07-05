@@ -71,14 +71,15 @@ public class ConfirmationFragment extends Fragment {
     AppUtils appUtils;
     SharedPrefManager sharedPrefManager;
     TextView nomTitle, nominal, senderTitle, sender, metodeTitle, metode, bankNameTitle,
-            bankName, bankRekTitle, bankRek, addressTitle, addressSent;
+            bankName, bankRekTitle, bankRek, addressTitle, addressSent, jmlBarangTitle, jmlBarang;
     String dateBayar, idBank, nameBank, rekBank, noResi;
     ArrayList<Bank> bankArrayList = null;
-    Button chooseFile, uploadConfirmation;
-    ImageView ivConfirmation;
+    Button chooseFile, uploadConfirmation, chooseFileBarang;
+    ImageView ivConfirmation, ivConfirmationBarang;
     EditText eDResi;
     List<String> formats;
     static final int REQUEST_GALLERY_PHOTO = 2;
+    static final int REQUEST_GALLERY_PHOTO_RESI = 3;
     private ChoosePhotoHelper choosePhotoHelper;
     ProgressBar progressBar;
 
@@ -114,6 +115,8 @@ public class ConfirmationFragment extends Fragment {
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         addressTitle = (TextView) view.findViewById(R.id.txtAlamatTitle);
         addressSent = (TextView) view.findViewById(R.id.txtAddressKirim);
+        jmlBarangTitle = (TextView) view.findViewById(R.id.txtJmlBarangTitle);
+        jmlBarang = (TextView) view.findViewById(R.id.txtJmlBarang);
         eDResi = (EditText) view.findViewById(R.id.edResiPengiriman);
 
         nomTitle.setText("Jumlah Transfer");
@@ -127,8 +130,11 @@ public class ConfirmationFragment extends Fragment {
         bankRekTitle.setText("Nomor Rekening");
         addressTitle.setText("Alamat Pengiriman");
         addressSent.setText(stuffShareApp.getSelectedDonation().getAlamatPenyelenggara());
+        jmlBarangTitle.setText("Jumlah Barang");
+        jmlBarang.setText(stuffShareApp.getSelectedDonation().getTotalDonation() + " Barang");
 
         ivConfirmation = (ImageView) view.findViewById(R.id.imageViewUpload);
+        ivConfirmationBarang = (ImageView) view.findViewById(R.id.imageViewUploadBarang);
 
         eDResi.addTextChangedListener(new TextWatcher() {
             @Override
@@ -153,6 +159,14 @@ public class ConfirmationFragment extends Fragment {
             public void onClick(View view) {
                 setChooseFile();
 //                choosePhotoHelper.chooseFromGallery();
+                uploadConfirmation.setEnabled(true);
+            }
+        });
+
+        chooseFileBarang = (Button) view.findViewById(R.id.btnChooseFileConfirmBarang);
+        chooseFileBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 uploadConfirmation.setEnabled(true);
             }
         });
@@ -215,13 +229,24 @@ public class ConfirmationFragment extends Fragment {
         };
         if(hasPermissions(getActivity(), PERMISSIONS)){
             Intent intent=new Intent(Intent.ACTION_PICK);
-            // Sets the type as image/*. This ensures only components of type image are selected
             intent.setType("image/*");
-            //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
             String[] mimeTypes = {"image/jpeg", "image/png"};
             intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
-            // Launching the Intent
-            startActivityForResult(intent,REQUEST_GALLERY_PHOTO);
+            startActivityForResult(intent, REQUEST_GALLERY_PHOTO);
+        }
+    }
+
+    public void setChooseFileBarang(){
+        String[] PERMISSIONS = {
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+        if(hasPermissions(getActivity(), PERMISSIONS)){
+            Intent intent=new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            String[] mimeTypes = {"image/jpeg", "image/png"};
+            intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+            startActivityForResult(intent, REQUEST_GALLERY_PHOTO_RESI);
         }
     }
 
@@ -232,22 +257,31 @@ public class ConfirmationFragment extends Fragment {
             if (data != null) {
                 Uri selectedImageUpload = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//                // Get the cursor
                 Cursor cursor = getActivity().getContentResolver().query(selectedImageUpload, filePathColumn, null, null, null);
-//                // Move to first row
                 cursor.moveToFirst();
-//                //Get the column index of MediaStore.Images.Media.DATA
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                //Gets the String value in the column
                 String imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
-////                // Set the Image in ImageView after decoding the String
                 Bitmap imageUpload = BitmapFactory.decodeFile(imgDecodableString);
                 stuffShareApp.setImgConfirmation(imageUpload);
                 stuffShareApp.setPicture(true);
                 ivConfirmation.setImageBitmap(imageUpload);
                 chooseFile.setVisibility(View.INVISIBLE);
-                Log.i(stuffShareApp.TAG, "file confirmation " + stuffShareApp.getImgConfirmation());
+            }
+        } else if (requestCode == REQUEST_GALLERY_PHOTO_RESI && resultCode == Activity.RESULT_OK){
+            if (data != null){
+                Uri selectedImageUploadResi = data.getData();
+                String[] filePath = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getActivity().getContentResolver().query(selectedImageUploadResi, filePath, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePath[0]);
+                String imgDecode = cursor.getString(columnIndex);
+                cursor.close();
+                Bitmap resiUpload = BitmapFactory.decodeFile(imgDecode);
+                stuffShareApp.setResiConfirmation(resiUpload);
+                stuffShareApp.setPicture(true);
+                ivConfirmationBarang.setImageBitmap(resiUpload);
+                chooseFileBarang.setVisibility(View.INVISIBLE);
             }
         }
     }

@@ -27,9 +27,15 @@ public class UploadConfirmationTask extends AsyncTask<Object, Void, String> {
         String norek = (String) params[7];
         String jumlahbayar = (String) params[8];
         Bitmap gambar = (Bitmap) params[9];
+        String noresi = (String) params[10];
+        String alamat_pengiriman = (String) params[11];
+        String total_barang = (String) params[12];
+        Bitmap gambarResi = (Bitmap) params[13];
 
         ByteArrayOutputStream gambarBoas = new ByteArrayOutputStream();
         gambar.compress(Bitmap.CompressFormat.PNG, 1, gambarBoas);
+        ByteArrayOutputStream gambarResiBoas = new ByteArrayOutputStream();
+        gambarResi.compress(Bitmap.CompressFormat.PNG, 1, gambarResiBoas);
         String data = "";
 
         try {
@@ -44,6 +50,10 @@ public class UploadConfirmationTask extends AsyncTask<Object, Void, String> {
             client.addFormPart("norek", norek);
             client.addFormPart("jumlahbayar", jumlahbayar);
             client.addFilePart("gambar", "png", gambarBoas.toByteArray());
+            client.addFormPart("noresi", noresi);
+            client.addFormPart("alamat_pengiriman", alamat_pengiriman);
+            client.addFormPart("total_barang", total_barang);
+            client.addFilePart("gambar_resi", "png", gambarResiBoas.toByteArray());
 
             client.finishMultipart();
             data = client.getResponse();
