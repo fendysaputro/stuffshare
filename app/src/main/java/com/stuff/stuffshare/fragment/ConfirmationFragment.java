@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -39,7 +41,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.stuff.stuffshare.MainActivity;
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
+import com.stuff.stuffshare.activity.ThankyouActivity;
 import com.stuff.stuffshare.activity.ThankyouCampaignerActivity;
+import com.stuff.stuffshare.activity.ThankyouConfirmationActivity;
 import com.stuff.stuffshare.model.Bank;
 import com.stuff.stuffshare.network.AsyncHttpTask;
 import com.stuff.stuffshare.network.OnHttpResponseListener;
@@ -84,6 +88,7 @@ public class ConfirmationFragment extends Fragment {
     static final int REQUEST_GALLERY_PHOTO_RESI = 3;
     private ChoosePhotoHelper choosePhotoHelper;
     ProgressBar progressBar;
+    Bitmap myLogo = null;
 
     @Nullable
     @Override
@@ -194,24 +199,16 @@ public class ConfirmationFragment extends Fragment {
             }
         });
 
-//        if (stuffShareApp.getSelectedDonation().getTotalDonation() == 0) {
-//            addressTitle.setVisibility(View.INVISIBLE);
-//            addressSent.setVisibility(View.INVISIBLE);
-//            jmlBarangTitle.setVisibility(View.INVISIBLE);
-//            jmlBarang.setVisibility(View.INVISIBLE);
-//            eDResi.setVisibility(View.INVISIBLE);
-//            ivConfirmationBarang.setVisibility(View.INVISIBLE);
-//            chooseFileBarang.setVisibility(View.INVISIBLE);
-//        }
-//
-//        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
-//            relativeNomimal.setVisibility(View.INVISIBLE);
-//            relativeSender.setVisibility(View.INVISIBLE);
-//            relativeMetode.setVisibility(View.INVISIBLE);
-//            relativeBank.setVisibility(View.INVISIBLE);
-//            relativeRek.setVisibility(View.INVISIBLE);
-//            relativeBtnImageTransfer.setVisibility(View.INVISIBLE);
-//        }
+        if (stuffShareApp.getSelectedDonation().getTotalDonation() == 0) {
+            eDResi.setEnabled(false);
+            ivConfirmationBarang.setEnabled(false);
+            chooseFileBarang.setEnabled(false);
+        }
+
+        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
+            ivConfirmation.setEnabled(false);
+            chooseFile.setEnabled(false);
+        }
 
         return view;
     }
@@ -327,8 +324,66 @@ public class ConfirmationFragment extends Fragment {
     }
 
     public void OnUploadConfirmation() {
+        Log.i(stuffShareApp.TAG, "pesan " + stuffShareApp.getMessageDonation());
+        String message = stuffShareApp.getMessageDonation();
+//        Bitmap myLogo = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.logo_title);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.logo_title);
+        myLogo      = ((BitmapDrawable) myDrawable).getBitmap();
+
         progressBar.setVisibility(View.VISIBLE);
         String totalDonation = String.valueOf(stuffShareApp.getSelectedDonation().getTotalDonation());
+        if (totalDonation.equals("0")){
+            UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
+            uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
+                    sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
+                    metodeBayar, sharedPrefManager.getSPName(),
+                    nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
+                    stuffShareApp.getImgConfirmation(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
+                    totalDonation, myLogo);
+            uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    Log.i(stuffShareApp.TAG, "response " + response);
+                    try {
+                        JSONObject resObj = new JSONObject(response);
+                        if (resObj.getBoolean("r")){
+                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            Intent goMain = new Intent(getActivity(), MainActivity.class);
+                            startActivity(goMain);
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
+            UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
+            uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
+                    sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
+                    metodeBayar, sharedPrefManager.getSPName(),
+                    nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
+                    myLogo, noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
+                    totalDonation, stuffShareApp.getResiConfirmation());
+            uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
+                @Override
+                public void OnHttpResponse(String response) {
+                    Log.i(stuffShareApp.TAG, "response " + response);
+                    try {
+                        JSONObject resObj = new JSONObject(response);
+                        if (resObj.getBoolean("r")){
+                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                            Intent goMain = new Intent(getActivity(), MainActivity.class);
+                            startActivity(goMain);
+                        }
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
         UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
         uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
                 sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,

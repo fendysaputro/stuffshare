@@ -62,6 +62,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
     ArrayList<Bank> bankArrayList = null;
     JSONArray donasiBarang;
     EditText nomUang, messageDonation;
+    String message;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -164,7 +165,8 @@ public class CollectDonationListActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                stuffShareApp.setMessageDonation(editable.toString());
+                message = editable.toString();
+                stuffShareApp.setMessageDonation(message);
             }
         });
 
@@ -284,6 +286,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
             varArgsList.add(stuffShareApp.getSelectedCampaigner().getPhoneReceiver());
             varArgsList.add("Kirim Paket");
             varArgsList.add("Transfer ATM");
+            varArgsList.add(stuffShareApp.getMessageDonation());
             for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
                 varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getId() + "," + stuffShareApp.getCategoryBarangs().get(i).getCount());
             }

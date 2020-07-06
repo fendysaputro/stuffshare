@@ -26,8 +26,9 @@ public class UploadDonationTask extends AsyncTask<Object, Void, String> {
         String nohp = (String) params[6];
         String metodekirim = (String) params[7];
         String metodebayar = (String) params[8];
+        String pesan = (String) params[9];
         ArrayList<String> donasiBarangs = new ArrayList<String>();
-        for (int i = 9; i < params.length; i++) {
+        for (int i = 10; i < params.length; i++) {
             Log.i("stuffshare", "params " + params[i].toString());
             donasiBarangs.add((String) params[i]);
         }
@@ -45,6 +46,7 @@ public class UploadDonationTask extends AsyncTask<Object, Void, String> {
             client.addFormPart("nohp", nohp);
             client.addFormPart("metodekirim", metodekirim);
             client.addFormPart("metodebayar", metodebayar);
+            client.addFormPart("pesan", pesan);
             for (int i = 0; i < donasiBarangs.size(); i++) {
                 client.addFormPart("donasibarang[]", donasiBarangs.get(i));
             }
