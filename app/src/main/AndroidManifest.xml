@@ -71,7 +71,6 @@
         <activity android:name=".activity.ThankyouCampaignerActivity" />
         <activity android:name=".activity.AlertHaveCampaignActivity" />
         <activity android:name=".activity.ForgetPasswordActivity" />
-        <activity android:name=".activity.ThankyouConfirmationActivity"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation"
