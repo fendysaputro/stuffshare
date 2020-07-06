@@ -47,7 +47,7 @@ public class StuffShareApp extends Application {
     public String countDonation, nominalDonation, messageDonation;
     public int imageSchedule;
     public String nameCommunity, addressCommunity, numberAktaCommunity, nameKetuaCommunity, npwpKetua;
-    private Bitmap akta, npwp, imageOrg, imageUpload, imgProfile, imgConfirmation, resiConfirmation;
+    private Bitmap akta, npwp, imageOrg, imageUpload, imgProfile, imgConfirmation, resiConfirmation, imgKosong;
     File imageFileDoc;
     Campaigner campaigner;
     boolean akunPlus;
@@ -448,5 +448,13 @@ public class StuffShareApp extends Application {
 
     public void setResiConfirmation(Bitmap resiConfirmation) {
         this.resiConfirmation = resiConfirmation;
+    }
+
+    public Bitmap getImgKosong() {
+        return imgKosong;
+    }
+
+    public void setImgKosong(Bitmap imgKosong) {
+        this.imgKosong = imgKosong;
     }
 }
