@@ -324,66 +324,8 @@ public class ConfirmationFragment extends Fragment {
     }
 
     public void OnUploadConfirmation() {
-//        Log.i(stuffShareApp.TAG, "pesan " + stuffShareApp.getMessageDonation());
-//        String message = stuffShareApp.getMessageDonation();
-//        Bitmap myLogo = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.logo_title);
-//        Drawable myDrawable = getResources().getDrawable(R.drawable.logo_title);
-//        myLogo      = ((BitmapDrawable) myDrawable).getBitmap();
-
         progressBar.setVisibility(View.VISIBLE);
         String totalDonation = String.valueOf(stuffShareApp.getSelectedDonation().getTotalDonation());
-//        if (totalDonation.equals("0")){
-//            UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
-//            uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
-//                    sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
-//                    metodeBayar, sharedPrefManager.getSPName(),
-//                    nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
-//                    stuffShareApp.getImgConfirmation(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
-//                    totalDonation, stuffShareApp.getImgKosong());
-//            uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
-//                @Override
-//                public void OnHttpResponse(String response) {
-//                    Log.i(stuffShareApp.TAG, "response " + response);
-//                    try {
-//                        JSONObject resObj = new JSONObject(response);
-//                        if (resObj.getBoolean("r")){
-//                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-//                            Intent goMain = new Intent(getActivity(), MainActivity.class);
-//                            startActivity(goMain);
-//                        }
-//                    } catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-//
-//        if (stuffShareApp.getSelectedDonation().getDonasiUang().equals("0")){
-//            UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
-//            uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
-//                    sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
-//                    metodeBayar, sharedPrefManager.getSPName(),
-//                    nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
-//                    stuffShareApp.getImgKosong(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
-//                    totalDonation, stuffShareApp.getResiConfirmation());
-//            uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
-//                @Override
-//                public void OnHttpResponse(String response) {
-//                    Log.i(stuffShareApp.TAG, "response " + response);
-//                    try {
-//                        JSONObject resObj = new JSONObject(response);
-//                        if (resObj.getBoolean("r")){
-//                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-//                            Intent goMain = new Intent(getActivity(), MainActivity.class);
-//                            startActivity(goMain);
-//                        }
-//                    } catch (JSONException e){
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-
         UploadConfirmationTask uploadConfirmationTask = new UploadConfirmationTask();
         uploadConfirmationTask.execute(stuffShareApp.HOST + stuffShareApp.CONFIRMATION_DONATION,
                 sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
