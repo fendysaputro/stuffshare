@@ -43,6 +43,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -80,11 +82,18 @@ public class DonationFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Campaigner rowItem = (Campaigner) arrayList.get(position);
-                stuffShareApp.setSelectedCampaigner(rowItem);
-                Intent goIntent = new Intent(getActivity(), CollectDonationActivity.class);
-                goIntent.putExtra("IMAGE_NAME", rowItem.getImageCampaign());
-                stuffShareApp.setImgCampaign(rowItem.getImageCampaign());
-                startActivity(goIntent);
+                String massDonasi = rowItem.getMasaDonasi();
+                int waktuDonasi = Integer.parseInt(massDonasi);
+                if (waktuDonasi <= 0){
+                    view.setEnabled(false);
+                    Toasty.info(getActivity(), "Masa donasi sudah habis", Toasty.LENGTH_SHORT, true).show();
+                } else {
+                    stuffShareApp.setSelectedCampaigner(rowItem);
+                    Intent goIntent = new Intent(getActivity(), CollectDonationActivity.class);
+                    goIntent.putExtra("IMAGE_NAME", rowItem.getImageCampaign());
+                    stuffShareApp.setImgCampaign(rowItem.getImageCampaign());
+                    startActivity(goIntent);
+                }
             }
         });
 

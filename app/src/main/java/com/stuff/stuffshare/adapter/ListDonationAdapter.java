@@ -1,6 +1,7 @@
 package com.stuff.stuffshare.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,13 @@ public class ListDonationAdapter extends ArrayAdapter<Campaigner> {
                         .into(holder.imageView);
             }
             holder.txtDesc.setText(rowItem.getDesc());
-            holder.txtDays.setText(rowItem.getMasaDonasi() + " hari");
+            String massDonasi = rowItem.getMasaDonasi();
+            int waktuDonasi = Integer.parseInt(massDonasi);
+            if (waktuDonasi <= 0){
+                holder.txtDays.setText("Waktu Donasi Habis");
+            } else {
+                holder.txtDays.setText(waktuDonasi + " hari");
+            }
 
         return convertView;
     }
