@@ -131,11 +131,19 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
 //                .load(stuffShareApp.getSelectedCampaigner().getImageCampaign())
 //                .fit()
 //                .into(ivDocumentationTwo);
+
+        String masaDonasi = stuffShareApp.getSelectedCampaigner().getMasaDonasi();
+        int massDonation = Integer.parseInt(masaDonasi);
         penggalangName.setText(stuffShareApp.getSelectedCampaigner().getOrganization());
         masaDonation.setText(stuffShareApp.getSelectedCampaigner().getSisaHari());
         jadwalDonation.setText(stuffShareApp.getSelectedCampaigner().getTglBuat());
         countDonation.setText(stuffShareApp.getSelectedCampaigner().getCountDonation());
-        sisaHari.setText(stuffShareApp.getSelectedCampaigner().getMasaDonasi());
+        if (massDonation <= 0){
+            sisaHari.setText("0");
+        } else {
+            sisaHari.setText(stuffShareApp.getSelectedCampaigner().getMasaDonasi());
+        }
+
         statusCampaign.setText(stuffShareApp.getSelectedCampaigner().getStatusCampaign());
         story.setText(stuffShareApp.getSelectedCampaigner().getStory());
 
