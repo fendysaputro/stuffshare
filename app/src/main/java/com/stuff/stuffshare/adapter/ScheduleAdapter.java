@@ -71,7 +71,14 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
         }
 
         holder.txtPenggalangName.setText(campaigner.getOrganization());
-        holder.txtSisaHari.setText(campaigner.getMasaDonasi());
+        String massDonasi = campaigner.getMasaDonasi();
+        int waktuDonasi = Integer.parseInt(massDonasi);
+        if (waktuDonasi <= 0){
+            holder.txtSisaHari.setText("0");
+        } else {
+            holder.txtSisaHari.setText(campaigner.getMasaDonasi());
+        }
+
         holder.txtStatus.setText(campaigner.getStatusCampaign());
 //        holder.iVCommunity.setImageResource(scheduleDonation.getIconCommunityId());
         Picasso.with(context)
