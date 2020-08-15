@@ -113,20 +113,25 @@ public class HomeAdapter extends ArrayAdapter {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!stuffShareApp.getData().getIduser().isEmpty()){
-                            Log.i(stuffShareApp.TAG, "user 1 " + stuffShareApp.getData().getIduser());
-                            Log.i(stuffShareApp.TAG, "user 2 " + sharedPrefManager.getSPUserid());
-                            Log.i(stuffShareApp.TAG, "masa donasi " + stuffShareApp.getData().getMasaDonasi());
-                            if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
-                                Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
-                                context.startActivity(goAlertHaveCampaignActivity);
+                        if (stuffShareApp.getData() == null){
+                            Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
+                            context.startActivity(goAlertQuestionActivity);
+                        } else {
+                            if (!stuffShareApp.getData().getIduser().isEmpty()){
+                                Log.i(stuffShareApp.TAG, "user 1 " + stuffShareApp.getData().getIduser());
+                                Log.i(stuffShareApp.TAG, "user 2 " + sharedPrefManager.getSPUserid());
+                                Log.i(stuffShareApp.TAG, "masa donasi " + stuffShareApp.getData().getMasaDonasi());
+                                if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
+                                    Intent goAlertHaveCampaignActivity = new Intent(getContext(), AlertHaveCampaignActivity.class);
+                                    context.startActivity(goAlertHaveCampaignActivity);
+                                } else {
+                                    Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
+                                    context.startActivity(goAlertQuestionActivity);
+                                }
                             } else {
                                 Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
                                 context.startActivity(goAlertQuestionActivity);
                             }
-                        } else {
-                            Intent goAlertQuestionActivity = new Intent(getContext(), AlertQuestionActivity.class);
-                            context.startActivity(goAlertQuestionActivity);
                         }
                     }
                 });
