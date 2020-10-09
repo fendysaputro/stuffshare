@@ -159,15 +159,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new MyDonationFragment();
                 break;
             case R.id.navigation_add_donation:
-//                fragment = new AddDonationFragment();
-//                Intent intent = new Intent(getApplication(), AlertQuestionActivity.class);
-//                startActivity(intent);
-                if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
-                    Intent goAlertHaveCampaignActivity = new Intent(getApplication(), AlertHaveCampaignActivity.class);
-                    startActivity(goAlertHaveCampaignActivity);
-                } else {
+                if (stuffShareApp.getData() == null){
                     Intent goAlertQuestionActivity = new Intent(getApplication(), AlertQuestionActivity.class);
                     startActivity(goAlertQuestionActivity);
+                } else {
+                    if (!stuffShareApp.getData().getIduser().isEmpty()){
+                        Log.i(stuffShareApp.TAG, "user 1 " + stuffShareApp.getData().getIduser());
+                        Log.i(stuffShareApp.TAG, "user 2 " + sharedPrefManager.getSPUserid());
+                        Log.i(stuffShareApp.TAG, "masa donasi " + stuffShareApp.getData().getMasaDonasi());
+                        if (stuffShareApp.getData().getIduser().equals(sharedPrefManager.getSPUserid()) && stuffShareApp.getData().getMasaDonasi() > 0){
+                            Intent goAlertHaveCampaignActivity = new Intent(getApplication(), AlertHaveCampaignActivity.class);
+                            startActivity(goAlertHaveCampaignActivity);
+                        } else {
+                            Intent goAlertQuestionActivity = new Intent(getApplication(), AlertQuestionActivity.class);
+                            startActivity(goAlertQuestionActivity);
+                        }
+                    } else {
+                        Intent goAlertQuestionActivity = new Intent(getApplication(), AlertQuestionActivity.class);
+                        startActivity(goAlertQuestionActivity);
+                    }
                 }
                 break;
             case R.id.navigation_account:
