@@ -206,23 +206,42 @@
                     android:orientation="horizontal"
                     android:background="@color/textColorWhite">
 
-                    <EditText
-                        android:id="@+id/edNominal"
+                    <LinearLayout
+                        android:id="@+id/lLBankMethod"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@drawable/edit_text_donation"
-                        android:inputType="number"
-                        android:gravity="left"
-                        android:hint=" Rp"
-                        android:ems="10"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textColor="@color/colorAccent"
-                        android:layout_marginTop="0dp" />
+                        android:weightSum="1">
+
+                        <EditText
+                            android:id="@+id/edNominal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:background="@drawable/edit_text_donation"
+                            android:inputType="number"
+                            android:gravity="left"
+                            android:hint=" Rp"
+                            android:ems="10"
+                            android:textColor="@color/colorAccent"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.6"
+                            android:layout_marginTop="0dp" />
+
+                        <ImageView
+                            android:id="@+id/btnBank"
+                            android:layout_width="120dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/bni"
+                            android:clickable="true"
+                            android:layout_weight="0.4" />
+
+                    </LinearLayout>
 
                     <EditText
                         android:id="@+id/edMessageDonation"
-                        android:layout_below="@+id/edNominal"
+                        android:layout_below="@+id/lLBankMethod"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:background="@drawable/edit_text_donation"

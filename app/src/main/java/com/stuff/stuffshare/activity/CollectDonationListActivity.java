@@ -1,6 +1,7 @@
 package com.stuff.stuffshare.activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +65,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
     JSONArray donasiBarang;
     EditText nomUang, messageDonation;
     String message;
+    ImageView imageBank;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +113,13 @@ public class CollectDonationListActivity extends AppCompatActivity {
 
         getDataBank("", stuffShareApp, bankArrayList);
 
+        imageBank = (ImageView) findViewById(R.id.btnBank);
+        imageBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "cobacoba", Toast.LENGTH_LONG).show();
+            }
+        });
 
         TextView pengiriman = (TextView) findViewById(R.id.txtPengiriman);
         pengiriman.setText("Metode Pengiriman");
@@ -263,6 +273,10 @@ public class CollectDonationListActivity extends AppCompatActivity {
                             bank.setToken(jsonObject.getString("token"));
                             stuffShareApp.setBank(bank);
                             banks.add(bank);
+                            Picasso.with(getApplicationContext())
+                                    .load(banks.get(0).getGambar())
+                                    .fit()
+                                    .into(imageBank);
                         }
                     }
                 } catch (JSONException e){
