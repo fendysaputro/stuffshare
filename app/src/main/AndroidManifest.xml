@@ -41,7 +41,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ThankyouConfirmationActivity"></activity>
+        <activity android:name=".activity.InboxMessageActivity"></activity>
+        <activity android:name=".activity.ThankyouConfirmationActivity" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -53,7 +54,8 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.CollectDonationActivity" />
+        <activity
+            android:name=".activity.CollectDonationActivity" />
         <activity
             android:name=".activity.CollectDonationListActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -61,7 +63,8 @@
         <activity
             android:name=".activity.SubmissionActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.AlertQuestionActivity" />
+        <activity
+            android:name=".activity.AlertQuestionActivity" />
         <activity
             android:name=".activity.DetailSubmissionActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -75,7 +78,7 @@
             android:name=".activity.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:configChanges="orientation"

@@ -287,8 +287,8 @@ public class CollectDonationListActivity extends AppCompatActivity {
     }
 
     public void onProsesDonation () {
-        if (TextUtils.isEmpty(nomUang.getText())){
-            Toasty.warning(getApplication(), "Field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
+        if (TextUtils.isEmpty(messageDonation.getText())){
+            Toasty.warning(getApplication(), "Harap isi pesan kamu", Toasty.LENGTH_SHORT, true).show();
         } else {
             ArrayList<Object> varArgsList = new ArrayList<Object>();
             varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_DONATION);
@@ -316,6 +316,8 @@ public class CollectDonationListActivity extends AppCompatActivity {
                             Log.i(stuffShareApp.TAG, "dataToUpload " + resUpload.getString("d"));
                             Intent goThankActivity = new Intent(CollectDonationListActivity.this, ThankyouActivity.class);
                             startActivity(goThankActivity);
+                            goThankActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            finish();
                         } else {
                             Toasty.warning(getApplication(), resUpload.getString("m"), Toast.LENGTH_LONG).show();
                         }

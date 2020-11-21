@@ -73,6 +73,7 @@
         android:layout_toRightOf="@+id/textViewMyDonation"
         android:drawablePadding="5dp"
         android:text="5 Barang"
+        android:visibility="gone"
         android:drawableLeft="@drawable/bullet"
         tools:layout_editor_absoluteX="283dp"
         tools:layout_editor_absoluteY="103dp" />

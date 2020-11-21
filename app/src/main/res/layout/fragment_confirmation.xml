@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@color/textColorWhite">
 
             <TextView
@@ -128,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@color/textColorWhite">
 
             <TextView
@@ -160,6 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@color/textColorWhite">
 
             <TextView
@@ -192,6 +195,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@color/textColorWhite">
 
             <TextView
@@ -303,6 +307,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorTransparent"
+            android:visibility="gone"
             android:layout_marginTop="20dp">
 
             <ImageView
@@ -310,6 +315,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/edit_text_donation"
+                android:visibility="gone"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp">
             </ImageView>

@@ -18,18 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-<!--        <TextView-->
-<!--            android:id="@+id/toolbar_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="left"-->
-<!--            android:gravity="left"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-<!--            app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"-->
-<!--            app:titleTextAppearance="@style/Toolbar.TitleText" />-->
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -55,6 +43,24 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_toRightOf="@+id/toolbar_button"/>
+
+            <ImageView
+                android:id="@+id/iv_message"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:id="@+id/notsopened"
+                android:layout_alignRight="@+id/iv_message"
+                android:layout_alignTop="@+id/iv_message"
+                android:background="@drawable/icons_mark"
+                android:layout_marginTop="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
 
         </RelativeLayout>
 

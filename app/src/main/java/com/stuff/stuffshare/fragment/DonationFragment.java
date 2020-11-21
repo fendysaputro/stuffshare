@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -59,6 +60,7 @@ public class DonationFragment extends Fragment {
     ArrayList<Campaigner> arrayList = null;
     ListDonationAdapter listDonationAdapter = null;
     SwipeRefreshLayout swipeRefreshLayout = null;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -71,10 +73,17 @@ public class DonationFragment extends Fragment {
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
+        progressBar = view.findViewById(R.id.progressBar);
+        swipeRefreshLayout = view.findViewById(R.id.swiperefresh);
+
         listView = (ListView) view.findViewById(R.id.itemListView);
         arrayList = new ArrayList<Campaigner>();
         listDonationAdapter = new ListDonationAdapter(getContext(), R.layout.list_view_donation, arrayList);
         listView.setAdapter(listDonationAdapter);
+
+        if (listDonationAdapter != null) {
+            progressBar.setVisibility(View.GONE);
+        }
 
         getDataCampaign("", listDonationAdapter);
 
@@ -112,7 +121,6 @@ public class DonationFragment extends Fragment {
             }
         });
 
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -127,11 +135,8 @@ public class DonationFragment extends Fragment {
     public void getDataCampaign (String data, final ListDonationAdapter adapter){
         final AppUtils appUtils = new AppUtils();
         appUtils.getDataCampaign(getContext(), stuffShareApp, arrayList, adapter);
-        appUtils.setOnGetDataFinish(new OnGetDataFinish() {
-            @Override
-            public void OnGetDataComplete() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
+        appUtils.setOnGetDataFinish(() -> {
+            swipeRefreshLayout.setRefreshing(false);
         });
     }
 }

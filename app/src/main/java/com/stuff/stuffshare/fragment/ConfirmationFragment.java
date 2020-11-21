@@ -63,6 +63,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -331,7 +332,7 @@ public class ConfirmationFragment extends Fragment {
                 sharedPrefManager.getSPUserid(), stuffShareApp.getSelectedDonation().getId(), idBank,
                 metodeBayar, sharedPrefManager.getSPName(),
                 nameBank, rekBank, stuffShareApp.getSelectedDonation().getDonasiUang(),
-                stuffShareApp.getImgConfirmation(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
+                stuffShareApp.getResiConfirmation(), noResi, stuffShareApp.getSelectedDonation().getAlamatPenyelenggara(),
                 totalDonation, stuffShareApp.getResiConfirmation());
         uploadConfirmationTask.setOnHttpResponseListener(new OnHttpResponseListener() {
             @Override
@@ -343,6 +344,7 @@ public class ConfirmationFragment extends Fragment {
                         Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                         Intent goMain = new Intent(getActivity(), MainActivity.class);
                         startActivity(goMain);
+                        Objects.requireNonNull(getActivity()).finish();
                     }
                 } catch (JSONException e){
                     e.printStackTrace();

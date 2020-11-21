@@ -47,6 +47,7 @@ import com.stuff.stuffshare.util.GeoLocation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -204,13 +205,7 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
         // Add a marker in Sydney and move the camera
         Log.i(stuffShareApp.TAG, "location " + locationAddress);
         if (locationAddress != null){
-            String[] address = locationAddress.split("\n");
-            lat = Double.parseDouble(address[0]);
-            lng = Double.parseDouble(address[1]);
-            LatLng newAddress = new LatLng(lat, lng);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(newAddress));
-            googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
@@ -220,11 +215,17 @@ public class DataScheduleDonationFragment extends Fragment implements OnMapReady
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
+            String[] address = locationAddress.split("\n");
+            lat = Double.parseDouble(address[0]);
+            lng = Double.parseDouble(address[1]);
+            LatLng newAddress = new LatLng(lat, lng);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(newAddress));
+            googleMap.getUiSettings().setMyLocationButtonEnabled(false);
             googleMap.setMyLocationEnabled(true);
             googleMap.addMarker(new MarkerOptions().position(newAddress).title("Marker new Address"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(newAddress));
         } else {
-            Toasty.warning(getActivity(), "Location " + locationAddress, Toasty.LENGTH_SHORT, true).show();
+            Toasty.warning(Objects.requireNonNull(getActivity()), "Location " + locationAddress, Toasty.LENGTH_SHORT, true).show();
         }
     }
 

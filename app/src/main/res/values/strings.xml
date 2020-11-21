@@ -49,4 +49,5 @@
     <string name="ahad">Minggu</string>
     <string name="confirmation_title">Konfirmasi Pembayaran</string>
     <string name="splashNote">Mari berbagi untuk sesama yang membutuhkan kami siap membantu anda untuk berbagi</string>
+    <string name="txt_inbox">Inbox</string>
 </resources>

@@ -54,9 +54,6 @@ public class ThankyouActivity extends AppCompatActivity {
         thankyouTitle.setText("Terima Kasih Telah Berdonasi");
         sendDonation.setText("Kirimkan Barang Donasi ke alamat berikut");
         addressSent.setText(stuffShareApp.getCampaigner().getAlamatPenyelenggara());
-        String jmlUang = appUtils.formatRupiah(Double.parseDouble(stuffShareApp.getNominalDonation()));
-        transferDonation.setText("Transfer Sejumlah " + jmlUang + " ke nomor rekening berikut");
-        noRekDonation.setText(stuffShareApp.getBank().getNameBank() + " " + stuffShareApp.getBank().getNorek());
         quote.setText("satu kebaikan akan mengundang kebaikan lainnya");
 
 
@@ -66,6 +63,7 @@ public class ThankyouActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent goMainActivity = new Intent(ThankyouActivity.this, MainActivity.class);
                 startActivity(goMainActivity);
+                finish();
             }
         });
     }

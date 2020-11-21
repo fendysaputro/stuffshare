@@ -159,6 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
+                    android:visibility="gone"
                     android:textColor="@color/buttonDonationNow"
                     android:textStyle="bold"
                     />
@@ -170,6 +171,7 @@
                     android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:background="@color/textColorWhite">
 
@@ -213,6 +215,7 @@
                         android:orientation="horizontal"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:visibility="gone"
                         android:weightSum="1">
 
                         <EditText

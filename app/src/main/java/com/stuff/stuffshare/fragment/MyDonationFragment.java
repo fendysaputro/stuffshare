@@ -21,6 +21,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class MyDonationFragment extends Fragment {
     ListView androidListView = null;
     SwipeRefreshLayout swipeRefreshLayout = null;
     Context context;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -80,6 +82,9 @@ public class MyDonationFragment extends Fragment {
         toolbar_title.setText("Donasi Saya");
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         
         donations = new ArrayList<Donation>();
         androidListView = (ListView) view.findViewById(R.id.itemListViewHistory);
@@ -87,8 +92,6 @@ public class MyDonationFragment extends Fragment {
         androidListView.setAdapter(myDonationAdapter);
 
         getDataDonation("", donations, myDonationAdapter);
-
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
 
 
         androidListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -131,6 +134,8 @@ public class MyDonationFragment extends Fragment {
 
     public void getDataDonation (String data, ArrayList<Donation> donations, MyDonationAdapter myDonationAdapter) {
         AsyncHttpTask mDonationTask = new AsyncHttpTask("");
+        donations.clear();
+        progressBar.setVisibility(View.GONE);
         mDonationTask.execute(stuffShareApp.HOST + stuffShareApp.DONATION + sharedPrefManager.getSPUserid(), "GET");
         mDonationTask.setHttpResponseListener(new OnHttpResponseListener() {
 //            @RequiresApi(api = Build.VERSION_CODES.N)
@@ -183,11 +188,5 @@ public class MyDonationFragment extends Fragment {
                 }
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getDataDonation("", donations, myDonationAdapter);
     }
 }

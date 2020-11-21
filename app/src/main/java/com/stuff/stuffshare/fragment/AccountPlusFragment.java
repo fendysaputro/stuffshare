@@ -72,6 +72,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 import okhttp3.Call;
@@ -465,6 +466,7 @@ public class AccountPlusFragment extends Fragment {
                             ThankyouFragment thankyouFragment = new ThankyouFragment();
                             FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
                             ShowFragment(R.id.fl_container, thankyouFragment, fragmentManager);
+                            Objects.requireNonNull(getActivity()).finish();
                         }
                     } catch (JSONException e){
                         progressBar.setVisibility(View.GONE);
