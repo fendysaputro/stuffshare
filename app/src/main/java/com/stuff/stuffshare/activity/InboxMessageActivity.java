@@ -35,15 +35,10 @@ public class InboxMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inbox_message);
         initView();
         setupToolbar();
-        inboxMessageAdapter = new InboxMessageAdapter(this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(inboxMessageAdapter);
     }
 
     private void initView() {
         toolbar_title = findViewById(R.id.toolbar_title);
-        recyclerView = findViewById(R.id.rv_inbox_message);
     }
 
     private void setupToolbar() {

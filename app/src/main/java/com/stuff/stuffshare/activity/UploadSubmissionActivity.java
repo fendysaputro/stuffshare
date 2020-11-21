@@ -217,38 +217,6 @@ public class UploadSubmissionActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
             // Launching the Intent
             startActivityForResult(intent,REQUEST_GALLERY_PHOTO);
-
-//            formats = new ArrayList<>();
-//            formats.add("jpg");
-//            formats.add("png");
-//            formats.add("jpeg");
-//            final StorageChooser chooser = new StorageChooser.Builder()
-//                    .withActivity(this)
-//                    .withFragmentManager(this.getFragmentManager())
-//                    .withMemoryBar(false)
-//                    .allowCustomPath(true)
-//                    .showFoldersInGrid(true)
-//                    .customFilter(formats)
-//                    .setType(StorageChooser.FILE_PICKER)
-//                    .build();
-//
-//            // 2. Retrieve the selected path by the user and show in a toast !
-//            chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-//                @Override
-//                public void onSelect(String npwpPath) {
-//                    Toast.makeText(getApplication(), "The selected path is : " + npwpPath, Toast.LENGTH_SHORT).show();
-//                    Bitmap imageUpload = BitmapFactory.decodeFile(npwpPath);
-//                    stuffShareApp.setImageUpload(imageUpload);
-//                    imageStory.setImageBitmap(imageUpload);
-//                    chooseFile.setVisibility(View.INVISIBLE);
-//                    Log.i(stuffShareApp.TAG, "file npwp " + stuffShareApp.getImageUpload());
-//                }
-//            });
-//
-//            // 3. Display File Picker !
-//            chooser.show();
-//        }else{
-//            ActivityCompat.requestPermissions(this, PERMISSIONS, FILEPICKER_PERMISSIONS);
         }
     }
 
@@ -278,15 +246,6 @@ public class UploadSubmissionActivity extends AppCompatActivity {
         }
         if (requestCode == REQUEST_GALLERY_PHOTO && resultCode == Activity.RESULT_OK) {
             if (data != null){
-//                Uri uriAkta = data.getData();
-//                Uri selectedImage = data.getData();
-//                imageView.setImageURI(selectedImage);
-//                String[] filePath = {MediaStore.Images.Media.DATA};
-//                Cursor cursor = getContentResolver().query(uriAkta, filePath, null, null, null);
-//                cursor.moveToFirst();
-//                int columnIndex = cursor.getColumnIndex(filePath[0]);
-//                String myPath = cursor.getString(columnIndex);
-//                Bitmap imageUpload = BitmapFactory.decodeFile(myPath);
                 Uri selectedImageUpload = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
                 // Get the cursor
@@ -352,7 +311,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
                             Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                             Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
                             startActivity(goThankyou);
-                            finish();
+                            finishAffinity();
                         } else {
                             Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                         }
@@ -362,37 +321,5 @@ public class UploadSubmissionActivity extends AppCompatActivity {
                 }
             });
         }
-
-//        AsyncHttpTask mAccountPlusTask = new AsyncHttpTask("userid="+sharedPrefManager.getSPUserid()
-//                                       +"&kategori="+sharedPrefManager.getSPKategori()
-//                        +"&penerima="+sharedPrefManager.getSPPenerima()
-//                        +"&nohp="+sharedPrefManager.getSPNoHp()+"&alamat_penerima="+sharedPrefManager.getSPAlamatPenerima()
-//                        +"&kejadian="+sharedPrefManager.getSPKejadian()+"&tglkejadian="+sharedPrefManager.getSPTglKejadian()
-//                        +"&judul="+sharedPrefManager.getSPJudul()+"&kebutuhan_dana="+sharedPrefManager.getSPKebutuhanDana()
-//                        +"&digunakanuntuk="+sharedPrefManager.getSPDigunakanuntuk()+"&periode="+sharedPrefManager.getSPPeriode()
-//                        +"&cerita="+sharedPrefManager.getSPCerita()
-//                        +"&donasibarang[]="+donIdOne +","+donQtyOne
-//                        +"&donasibarang[]="+donIdTwo +","+donQtyTwo
-//                        +"&donasibarang[]="+donIdThree +","+donQtyThree
-//                        +"&gambar="+stuffShareApp.getImageUpload());
-////
-//        Log.i(stuffShareApp.TAG, "link " + stuffShareApp.HOST + stuffShareApp.AKUN_PLUS_REGISTER_PATH);
-//        mAccountPlusTask.execute(stuffShareApp.HOST + stuffShareApp.ADD_CAMPAIGN, "POST");
-//        mAccountPlusTask.setHttpResponseListener(new OnHttpResponseListener() {
-//            @Override
-//            public void OnHttpResponse(String response) {
-//                Log.i(stuffShareApp.TAG, "response " + response);
-//                try {
-//                    JSONObject resObj = new JSONObject(response);
-//                    if (resObj.getBoolean("r")){
-//                        Toasty.success(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-//                        Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
-//                        startActivity(goThankyou);
-//                    }
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
     }
 }

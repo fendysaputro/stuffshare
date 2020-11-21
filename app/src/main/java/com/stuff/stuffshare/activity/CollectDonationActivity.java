@@ -84,7 +84,7 @@ public class CollectDonationActivity extends AppCompatActivity {
         }
 
         TextView noteTitle = (TextView) findViewById(R.id.txtNote);
-        noteTitle.setText("Berbagi Barang Bekas Kepada Orang yang Membutuhkan");
+        noteTitle.setText("Berbagi Barang Layak Pakai Kepada Orang yang Membutuhkan");
 
         TextView infoNote = (TextView) findViewById(R.id.txtInfoDonationNote);
         infoNote.setText("Informasi Penggalangan Donasi");

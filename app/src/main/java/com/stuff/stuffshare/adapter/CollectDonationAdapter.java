@@ -61,8 +61,15 @@ public class CollectDonationAdapter extends ArrayAdapter<CategoryBarang> {
             holder = (ViewHolder) convertView.getTag();
         }
         Picasso.with(context).load(campaigner.getImageId()).into(holder.imageView);
-        holder.txtTitleBarang.setText(campaigner.getProductName() + " " +
-                campaigner.getCount());
+        int jmlCampaign = Integer.parseInt(campaigner.getCount());
+        if (jmlCampaign != 0) {
+            holder.txtTitleBarang.setText(campaigner.getProductName() + " " +
+                    jmlCampaign);
+        } else {
+            holder.txtTitleBarang.setVisibility(View.GONE);
+            holder.imageView.setVisibility(View.GONE);
+        }
+
 
         return convertView;
     }

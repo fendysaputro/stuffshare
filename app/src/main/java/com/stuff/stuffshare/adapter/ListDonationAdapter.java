@@ -66,6 +66,9 @@ public class ListDonationAdapter extends ArrayAdapter<Campaigner> {
             int waktuDonasi = Integer.parseInt(massDonasi);
             if (waktuDonasi <= 0){
                 holder.txtDays.setText("Waktu Donasi Habis");
+                holder.imageView.setVisibility(View.GONE);
+                holder.txtDays.setVisibility(View.GONE);
+                holder.txtDesc.setVisibility(View.GONE);
             } else {
                 holder.txtDays.setText(waktuDonasi + " hari");
             }
