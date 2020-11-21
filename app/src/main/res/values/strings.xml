@@ -50,4 +50,6 @@
     <string name="confirmation_title">Konfirmasi Pembayaran</string>
     <string name="splashNote">Mari berbagi untuk sesama yang membutuhkan kami siap membantu anda untuk berbagi</string>
     <string name="txt_inbox">Inbox</string>
+    <string name="txt_hapus">Hapus</string>
+    <string name="txt_belum_dibaca">Belum dibaca</string>
 </resources>
