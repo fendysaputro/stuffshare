@@ -8,13 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * Created by Fendy Saputro on 21/11/2020.
  * vidis194@gmail.com
  */
-public class Message extends RecyclerView.ViewHolder {
+public class Message {
     String message;
     String date;
-
-    public Message(View itemView) {
-        super(itemView);
-    }
 
     public String getMessage() {
         return message;

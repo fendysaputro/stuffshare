@@ -8,16 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.Nullable;
 
 import com.stuff.stuffshare.R;
+import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.Message;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,14 +25,56 @@ import java.util.List;
  */
 public class InboxMessageAdapter extends ArrayAdapter<Message> {
     private Context context;
+    private List<Message> values;
 
 
-    public InboxMessageAdapter(Context context, int resourceId, List<Message> itemsMessage) {
-        super(context, resourceId, itemsMessage);
+    public InboxMessageAdapter(Context context, int resourceId, List<Message> values) {
+        super(context, resourceId, values);
         this.context = context;
+        this.values = values;
     }
 
     private class ViewHolder {
+        TextView tvDescription;
+        TextView tvDate;
+        ImageView ivDelete;
+    }
 
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        ViewHolder holder = null;
+        Message rowItem = getItem(position);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null){
+            convertView = inflater.inflate(R.layout.item_list_inbox_message, parent, false);
+            holder = new ViewHolder();
+            holder.tvDescription = (TextView) convertView.findViewById(R.id.tv_description);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.tv_date);
+            holder.ivDelete = (ImageView) convertView.findViewById(R.id.iv_message_action);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        if (position % 2 == 1) {
+            convertView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else {
+            convertView.setBackgroundColor(Color.parseColor("#e1f0ee"));
+        }
+
+        holder.tvDescription.setText(rowItem.getMessage());
+        holder.tvDate.setText(rowItem.getDate());
+        holder.ivDelete.setImageResource(R.drawable.ic_delete_black_24dp);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "this is message", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return convertView;
     }
 }
