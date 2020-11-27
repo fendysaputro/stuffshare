@@ -4,14 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.stuff.stuffshare.R;
+import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.adapter.InboxMessageAdapter;
 import com.stuff.stuffshare.adapter.ListDonationAdapter;
 import com.stuff.stuffshare.model.Message;
+import com.stuff.stuffshare.network.AsyncHttpTask;
+import com.stuff.stuffshare.network.OnHttpResponseListener;
+import com.stuff.stuffshare.util.SharedPrefManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +30,8 @@ public class InboxMessageActivity extends AppCompatActivity {
     ArrayList<Message> messageArrayList;
     InboxMessageAdapter inboxMessageAdapter = null;
     ListView listView = null;
+    StuffShareApp stuffShareApp;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +39,13 @@ public class InboxMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inbox_message);
         initView();
         setupToolbar();
+        initialize();
         messageArrayList= new ArrayList<Message>();
-
-        Message message, message1;
-
-        message = new Message();
-        message.setMessage("Permintaan akun plus anda di tolak");
-        message.setDate("12 Oktober 2020");
-        messageArrayList.add(message);
-
-        message1 = new Message();
-        message1.setMessage("Donasi anda telah di konfirmasi");
-        message1.setDate("11 November 2020");
-        messageArrayList.add(message1);
 
         inboxMessageAdapter = new InboxMessageAdapter(this, R.layout.item_list_inbox_message, messageArrayList);
         listView.setAdapter(inboxMessageAdapter);
 
+        getData();
     }
 
     private void initView() {
@@ -52,9 +53,49 @@ public class InboxMessageActivity extends AppCompatActivity {
         listView = findViewById(R.id.lv_inbox_message);
     }
 
+    private void initialize() {
+        stuffShareApp = (StuffShareApp) getApplication();
+        sharedPrefManager = new SharedPrefManager(getApplication());
+    }
+
     private void setupToolbar() {
         toolbar_title.setText(R.string.txt_inbox);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
+    }
+
+    public void getData(){
+        getDataMessage("", messageArrayList, inboxMessageAdapter);
+    }
+
+    public void getDataMessage(String data, final ArrayList<Message> messages, InboxMessageAdapter inboxMessageAdapter) {
+        AsyncHttpTask messageTask = new AsyncHttpTask("");
+        messageTask.execute(stuffShareApp.HOST + stuffShareApp.MESSAGE_USER + sharedPrefManager.getSPUserid(), "GET");
+        messageTask.setHttpResponseListener(new OnHttpResponseListener() {
+            @Override
+            public void OnHttpResponse(String response) {
+                try {
+                    JSONObject resObj = new JSONObject(response);
+                    if (resObj.getBoolean("r")){
+                        JSONArray resArray = resObj.getJSONArray("d");
+                        for (int i = 0; i < resArray.length(); i++) {
+                            JSONObject jsonObject = resArray.getJSONObject(i);
+                            Message message = new Message();
+                            message.setUserId(jsonObject.getString("id"));
+                            message.setName(jsonObject.getString("name"));
+                            message.setAlamat(jsonObject.getString("alamat"));
+                            message.setPhone(jsonObject.getString("phone"));
+                            message.setStatus(jsonObject.getString("status"));
+                            message.setTotal_message(jsonObject.getInt("total_message"));
+                            message.setTotal_unread(jsonObject.getInt("total_unread"));
+                            message.setTotal_read(jsonObject.getInt("total_read"));
+                            message.setMessage(jsonObject.getJSONArray("message"));
+                        }
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

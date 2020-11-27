@@ -63,8 +63,8 @@ public class InboxMessageAdapter extends ArrayAdapter<Message> {
             convertView.setBackgroundColor(Color.parseColor("#e1f0ee"));
         }
 
-        holder.tvDescription.setText(rowItem.getMessage());
-        holder.tvDate.setText(rowItem.getDate());
+//        holder.tvDescription.setText(rowItem.getMessage());
+        holder.tvDate.setText(rowItem.getName());
         holder.ivDelete.setImageResource(R.drawable.ic_delete_black_24dp);
 
         convertView.setOnClickListener(new View.OnClickListener() {

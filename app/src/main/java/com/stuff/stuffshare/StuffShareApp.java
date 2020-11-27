@@ -39,6 +39,7 @@ public class StuffShareApp extends Application {
     public static String FORGET_PASSWORD = "api/lupapassword";
     public static String GET_USER = "api/user/";
     public static String ALL_CAMPAIGN = "api/penggalangan/user/";
+    public static String MESSAGE_USER = "api/message/user/";
     public int imgId;
     public String imgCampaign;
     boolean login;

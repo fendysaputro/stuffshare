@@ -17,6 +17,7 @@ import com.stuff.stuffshare.model.CampaignCategory;
 import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.CategoryBarang;
 import com.stuff.stuffshare.model.InfoItemDonation;
+import com.stuff.stuffshare.model.Message;
 import com.stuff.stuffshare.network.AsyncHttpTask;
 import com.stuff.stuffshare.network.OnGetDataFinish;
 import com.stuff.stuffshare.network.OnHttpResponseListener;
