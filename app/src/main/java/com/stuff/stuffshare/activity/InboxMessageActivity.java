@@ -107,7 +107,6 @@ public class InboxMessageActivity extends AppCompatActivity {
                                     messageUser.setDate(mesObj.getString("date"));
                                     messageUser.setText(mesObj.getString("text"));
                                     messageUser.setStatus(mesObj.getString("status"));
-                                    stuffShareApp.setMessageUser(mesArray);
                                     messages.add(messageUser);
                                 }
                             }

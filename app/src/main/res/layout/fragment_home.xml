@@ -59,6 +59,7 @@
                 android:layout_alignTop="@+id/iv_message"
                 android:background="@drawable/icons_mark"
                 android:layout_marginTop="15dp"
+                android:visibility="gone"
                 android:layout_width="25dp"
                 android:layout_height="25dp" />
 
