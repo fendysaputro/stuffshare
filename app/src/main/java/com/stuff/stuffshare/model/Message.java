@@ -19,7 +19,7 @@ public class Message {
     int total_message;
     int total_unread;
     int total_read;
-    JSONArray message;
+    JSONArray messageUser;
     String date;
 
     public String getUserId() {
@@ -86,19 +86,19 @@ public class Message {
         this.total_read = total_read;
     }
 
-    public JSONArray getMessage() {
-        return message;
-    }
-
-    public void setMessage(JSONArray message) {
-        this.message = message;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public JSONArray getMessageUser() {
+        return messageUser;
+    }
+
+    public void setMessageUser(JSONArray messageUser) {
+        this.messageUser = messageUser;
     }
 }

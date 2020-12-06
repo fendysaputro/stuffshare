@@ -14,8 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.stuff.stuffshare.R;
+import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.model.Campaigner;
+import com.stuff.stuffshare.model.CategoryBarang;
 import com.stuff.stuffshare.model.Message;
+import com.stuff.stuffshare.model.MessageUser;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -23,15 +28,17 @@ import java.util.List;
  * Created by Fendy Saputro on 21/11/2020.
  * vidis194@gmail.com
  */
-public class InboxMessageAdapter extends ArrayAdapter<Message> {
+public class InboxMessageAdapter extends ArrayAdapter<MessageUser> {
     private Context context;
-    private List<Message> values;
+    StuffShareApp stuffShareApp;
+    private List<MessageUser> values;
 
 
-    public InboxMessageAdapter(Context context, int resourceId, List<Message> values) {
+    public InboxMessageAdapter(Context context, int resourceId, List<MessageUser> values) {
         super(context, resourceId, values);
         this.context = context;
         this.values = values;
+        stuffShareApp = (StuffShareApp) this.context.getApplicationContext();
     }
 
     private class ViewHolder {
@@ -44,7 +51,7 @@ public class InboxMessageAdapter extends ArrayAdapter<Message> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder = null;
-        Message rowItem = getItem(position);
+        MessageUser rowItem = (MessageUser) values.get(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
             convertView = inflater.inflate(R.layout.item_list_inbox_message, parent, false);
@@ -63,8 +70,9 @@ public class InboxMessageAdapter extends ArrayAdapter<Message> {
             convertView.setBackgroundColor(Color.parseColor("#e1f0ee"));
         }
 
-//        holder.tvDescription.setText(rowItem.getMessage());
-        holder.tvDate.setText(rowItem.getName());
+        holder.tvDescription.setText(rowItem.getText());
+        holder.tvDate.setText(rowItem.getDate());
+
         holder.ivDelete.setImageResource(R.drawable.ic_delete_black_24dp);
 
         convertView.setOnClickListener(new View.OnClickListener() {

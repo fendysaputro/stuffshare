@@ -1,11 +1,14 @@
 package com.stuff.stuffshare.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.adapter.InboxMessageAdapter;
 import com.stuff.stuffshare.adapter.ListDonationAdapter;
 import com.stuff.stuffshare.model.Message;
+import com.stuff.stuffshare.model.MessageUser;
 import com.stuff.stuffshare.network.AsyncHttpTask;
 import com.stuff.stuffshare.network.OnHttpResponseListener;
 import com.stuff.stuffshare.util.SharedPrefManager;
@@ -27,7 +31,7 @@ import java.util.List;
 
 public class InboxMessageActivity extends AppCompatActivity {
     TextView toolbar_title;
-    ArrayList<Message> messageArrayList;
+    ArrayList<MessageUser> messageArrayList;
     InboxMessageAdapter inboxMessageAdapter = null;
     ListView listView = null;
     StuffShareApp stuffShareApp;
@@ -37,10 +41,12 @@ public class InboxMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox_message);
+        stuffShareApp = (StuffShareApp) this.getApplicationContext();
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
         initView();
         setupToolbar();
         initialize();
-        messageArrayList= new ArrayList<Message>();
+        messageArrayList= new ArrayList<MessageUser>();
 
         inboxMessageAdapter = new InboxMessageAdapter(this, R.layout.item_list_inbox_message, messageArrayList);
         listView.setAdapter(inboxMessageAdapter);
@@ -68,7 +74,7 @@ public class InboxMessageActivity extends AppCompatActivity {
         getDataMessage("", messageArrayList, inboxMessageAdapter);
     }
 
-    public void getDataMessage(String data, final ArrayList<Message> messages, InboxMessageAdapter inboxMessageAdapter) {
+    public void getDataMessage(String data, final ArrayList<MessageUser> messages, InboxMessageAdapter inboxMessageAdapter) {
         AsyncHttpTask messageTask = new AsyncHttpTask("");
         messageTask.execute(stuffShareApp.HOST + stuffShareApp.MESSAGE_USER + sharedPrefManager.getSPUserid(), "GET");
         messageTask.setHttpResponseListener(new OnHttpResponseListener() {
@@ -89,8 +95,24 @@ public class InboxMessageActivity extends AppCompatActivity {
                             message.setTotal_message(jsonObject.getInt("total_message"));
                             message.setTotal_unread(jsonObject.getInt("total_unread"));
                             message.setTotal_read(jsonObject.getInt("total_read"));
-                            message.setMessage(jsonObject.getJSONArray("message"));
+                            message.setMessageUser(jsonObject.getJSONArray("message"));
+                            if (message.getMessageUser() != null) {
+                                JSONArray mesArray = message.getMessageUser();
+                                for (int j = 0; j < mesArray.length(); j++) {
+                                    JSONObject mesObj = mesArray.getJSONObject(j);
+                                    MessageUser messageUser = new MessageUser();
+                                    messageUser.setNo(mesObj.getInt("no"));
+                                    messageUser.setId(mesObj.getString("id"));
+                                    messageUser.setCategory(mesObj.getString("category"));
+                                    messageUser.setDate(mesObj.getString("date"));
+                                    messageUser.setText(mesObj.getString("text"));
+                                    messageUser.setStatus(mesObj.getString("status"));
+                                    stuffShareApp.setMessageUser(mesArray);
+                                    messages.add(messageUser);
+                                }
+                            }
                         }
+                        inboxMessageAdapter.notifyDataSetChanged();
                     }
                 } catch (JSONException e){
                     e.printStackTrace();

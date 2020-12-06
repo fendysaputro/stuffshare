@@ -11,6 +11,7 @@ import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.CategoryBarang;
 import com.stuff.stuffshare.model.Data;
 import com.stuff.stuffshare.model.Donation;
+import com.stuff.stuffshare.model.MessageUser;
 import com.stuff.stuffshare.model.User;
 
 import org.json.JSONArray;
@@ -63,6 +64,7 @@ public class StuffShareApp extends Application {
     public static int notificationId = 1;
     Data data;
     boolean notification;
+    JSONArray messageUser;
 
     private ArrayList<CategoryBarang> CategoryBarangs = new ArrayList<CategoryBarang>();
 
@@ -457,5 +459,13 @@ public class StuffShareApp extends Application {
 
     public void setImgKosong(Bitmap imgKosong) {
         this.imgKosong = imgKosong;
+    }
+
+    public JSONArray getMessageUser() {
+        return messageUser;
+    }
+
+    public void setMessageUser(JSONArray messageUser) {
+        this.messageUser = messageUser;
     }
 }
