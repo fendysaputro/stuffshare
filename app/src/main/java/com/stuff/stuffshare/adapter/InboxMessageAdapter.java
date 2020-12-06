@@ -1,6 +1,7 @@
 package com.stuff.stuffshare.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.stuff.stuffshare.R;
 import com.stuff.stuffshare.StuffShareApp;
@@ -19,10 +21,15 @@ import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.CategoryBarang;
 import com.stuff.stuffshare.model.Message;
 import com.stuff.stuffshare.model.MessageUser;
+import com.stuff.stuffshare.network.AsyncHttpTask;
+import com.stuff.stuffshare.network.OnHttpResponseListener;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * Created by Fendy Saputro on 21/11/2020.
@@ -78,7 +85,37 @@ public class InboxMessageAdapter extends ArrayAdapter<MessageUser> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "this is message", Toast.LENGTH_SHORT).show();
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                alertDialog.setTitle("Hapus Pesan");
+                alertDialog.setMessage("Apakah anda yakin akan menghapus pesan ini?");
+                alertDialog.setPositiveButton("YA",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                AsyncHttpTask deleteMessage = new AsyncHttpTask("id="+rowItem.getId());
+                                deleteMessage.execute(stuffShareApp.HOST + stuffShareApp.DELETE_MESSAGE, "POST");
+                                deleteMessage.setHttpResponseListener(response -> {
+                                    try {
+                                        JSONObject resObj = new JSONObject(response);
+                                        if (resObj.getBoolean("r")){
+                                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                            notifyDataSetChanged();
+                                        } else {
+                                            Toasty.error(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        Toasty.error(getContext(), "server error", Toasty.LENGTH_SHORT, true).show();
+                                    }
+                                });
+                            }
+                        });
+                alertDialog.setNegativeButton("TIDAK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.show();
             }
         });
 
