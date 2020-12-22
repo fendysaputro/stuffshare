@@ -83,7 +83,7 @@ public class InboxMessageAdapter extends ArrayAdapter<MessageUser> {
 
         holder.ivDelete.setImageResource(R.drawable.ic_delete_black_24dp);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
@@ -102,6 +102,7 @@ public class InboxMessageAdapter extends ArrayAdapter<MessageUser> {
                                             if (resObj.getBoolean("r")) {
                                                 JSONObject dataObj = resObj.getJSONObject("d");
                                                 if (dataObj.getBoolean("Delete")) {
+                                                    values.remove(position);
                                                     Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                                                     notifyDataSetChanged();
                                                 } else {
