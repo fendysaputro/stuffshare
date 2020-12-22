@@ -6,7 +6,7 @@ package com.stuff.stuffshare.model;
  */
 public class MessageUser {
     int no;
-    String id;
+    int id;
     String category;
     String text;
     String date;
@@ -20,11 +20,11 @@ public class MessageUser {
         this.no = no;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

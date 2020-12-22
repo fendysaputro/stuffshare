@@ -41,7 +41,7 @@ public class StuffShareApp extends Application {
     public static String GET_USER = "api/user/";
     public static String ALL_CAMPAIGN = "api/penggalangan/user/";
     public static String MESSAGE_USER = "api/message/user/";
-    public static String DELETE_MESSAGE = "api/message/delete/";
+    public static String DELETE_MESSAGE = "api/message/delete";
     public int imgId;
     public String imgCampaign;
     boolean login;

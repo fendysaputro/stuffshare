@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
                                     JSONObject mesObj = mesArray.getJSONObject(j);
                                     MessageUser messageUser = new MessageUser();
                                     messageUser.setNo(mesObj.getInt("no"));
-                                    messageUser.setId(mesObj.getString("id"));
+                                    messageUser.setId(mesObj.getInt("id"));
                                     messageUser.setCategory(mesObj.getString("category"));
                                     messageUser.setDate(mesObj.getString("date"));
                                     messageUser.setText(mesObj.getString("text"));
