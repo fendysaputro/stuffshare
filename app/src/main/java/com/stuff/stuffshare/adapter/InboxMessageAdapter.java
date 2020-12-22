@@ -93,18 +93,25 @@ public class InboxMessageAdapter extends ArrayAdapter<MessageUser> {
                             public void onClick(DialogInterface dialog, int which) {
                                 AsyncHttpTask deleteMessage = new AsyncHttpTask("id="+rowItem.getId());
                                 deleteMessage.execute(stuffShareApp.HOST + stuffShareApp.DELETE_MESSAGE, "POST");
-                                deleteMessage.setHttpResponseListener(response -> {
-                                    try {
-                                        JSONObject resObj = new JSONObject(response);
-                                        if (resObj.getBoolean("r")){
-                                            Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
-                                            notifyDataSetChanged();
-                                        } else {
-                                            Toasty.error(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                deleteMessage.setHttpResponseListener(new OnHttpResponseListener() {
+                                    @Override
+                                    public void OnHttpResponse(String response) {
+                                        try {
+                                            JSONObject resObj = new JSONObject(response);
+                                            if (resObj.getBoolean("r")) {
+                                                JSONObject dataObj = resObj.getJSONObject("d");
+                                                if (dataObj.getBoolean("Delete")) {
+                                                    Toasty.success(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                                    notifyDataSetChanged();
+                                                } else {
+                                                    Toasty.error(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                                }
+                                            } else {
+                                                Toasty.error(getContext(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                        Toasty.error(getContext(), "server error", Toasty.LENGTH_SHORT, true).show();
                                     }
                                 });
                             }
