@@ -76,7 +76,7 @@ public class InboxMessageActivity extends AppCompatActivity {
 
     public void getDataMessage(String data, final ArrayList<MessageUser> messages, InboxMessageAdapter inboxMessageAdapter) {
         AsyncHttpTask messageTask = new AsyncHttpTask("");
-        messageTask.execute(stuffShareApp.HOST + stuffShareApp.MESSAGE_USER + sharedPrefManager.getSPUserid(), "GET");
+        messageTask.execute(StuffShareApp.HOST + StuffShareApp.MESSAGE_USER + sharedPrefManager.getSPUserid(), "GET");
         messageTask.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {
