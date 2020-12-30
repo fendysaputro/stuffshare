@@ -65,12 +65,10 @@ public class RegisterActivity extends AppCompatActivity {
                         +"&phone="+phoneTxt.getText()
                         +"&email="+emailTxt.getText()
                         +"&password="+passwordTxt.getText());
-                Log.i(stuffShareApp.TAG, "Link " + stuffShareApp.HOST + stuffShareApp.REGISTER_PATH);
-                mRegisterTask.execute(stuffShareApp.HOST + stuffShareApp.REGISTER_PATH, "POST");
+                mRegisterTask.execute(StuffShareApp.HOST + StuffShareApp.REGISTER_PATH, "POST");
                 mRegisterTask.setHttpResponseListener(new OnHttpResponseListener() {
                     @Override
                     public void OnHttpResponse(String response) {
-                        Log.i(stuffShareApp.TAG, "response " + response);
                         try {
                             JSONObject resObj = new JSONObject(response);
                             if (resObj.getBoolean("r")){

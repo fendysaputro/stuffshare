@@ -97,13 +97,6 @@ public class MyDonationFragment extends Fragment {
         androidListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Donation donation = (Donation) donations.get(position);
-//                stuffShareApp.setSelectedDonation(donation);
-//                ConfirmationFragment confirmationFragment = new ConfirmationFragment();
-//                Activity activity = (Activity) context;
-//                FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-//                ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
-                Log.i(stuffShareApp.TAG, "touch");
             }
         });
 
@@ -136,9 +129,8 @@ public class MyDonationFragment extends Fragment {
         AsyncHttpTask mDonationTask = new AsyncHttpTask("");
         donations.clear();
         progressBar.setVisibility(View.GONE);
-        mDonationTask.execute(stuffShareApp.HOST + stuffShareApp.DONATION + sharedPrefManager.getSPUserid(), "GET");
+        mDonationTask.execute(StuffShareApp.HOST + StuffShareApp.DONATION + sharedPrefManager.getSPUserid(), "GET");
         mDonationTask.setHttpResponseListener(new OnHttpResponseListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void OnHttpResponse(String response) {
                 try {
@@ -147,7 +139,6 @@ public class MyDonationFragment extends Fragment {
                         JSONArray resArray = resObj.getJSONArray("d");
                         for (int i = 0; i < resArray.length(); i++) {
                             JSONObject jObj = resArray.getJSONObject(i);
-//                            Log.i(stuffShareApp.TAG, "response donation" + jObj);
                             Donation donation = new Donation();
                             donation.setId(jObj.getString("id"));
                             donation.setUserId(jObj.getString("userid"));
@@ -158,26 +149,7 @@ public class MyDonationFragment extends Fragment {
                             donation.setDate(jObj.getString("date"));
                             donation.setDonasiUang(jObj.getString("donasi"));
                             donation.setDonasiBarang(jObj.getJSONArray("donasibarang"));
-//                            donation.setKonfirmasi(jObj.getJSONArray("konfirmasi"));
-//                            JSONArray Confirmation = task.getChannels().getJSONObject(j).getJSONArray("players");
-//                            JSONObject Confirmation = donation.getKonfirmasi();
-//                            if (donation.getKonfirmasi() != null){
-//                                for (int j = 0; j < donation.getKonfirmasi().length(); j++) {
-//                                    JSONObject jsonObject = donation.getKonfirmasi().getJSONObject(j);
-//                                    String metodeBayar = jsonObject.getString("metode_pembayaran");
-//                                    Log.i(stuffShareApp.TAG, "konfirmasi " + metodeBayar);
-//                                }
-//                            }
-//                            JSONArray arrDonasiBarang = new JSONArray(donation.getDonasiBarang());
-//                            String[] arr=new String[arrDonasiBarang.length()];
-//                            for (int j = 0; j < arr.length; j++) {
-//                                arr[j]=arrDonasiBarang.optString(j);
-//                                int sum = IntStream.of(Integer.parseInt(arr[j])).sum();
-//                                System.out.println("The sum is " + sum);
-//                            }
                             donation.setTotalDonation(jObj.getInt("totaldonasibarang"));
-//                            donation.setMetodeBayar(jObj.getString("metode_pembayaran"));
-//                            donation.setMetodeKirim(jObj.getString("metodekirim"));
                             donation.setStatus(jObj.getString("status"));
                             donations.add(donation);
                         }

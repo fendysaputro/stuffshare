@@ -102,7 +102,7 @@ public class ConfirmationFragment extends Fragment {
         sharedPrefManager = new SharedPrefManager(getActivity());
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Konfirmasi Pembayaran");
+        toolbar_title.setText(R.string.txt_confirmation_pembayaran);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
@@ -134,19 +134,19 @@ public class ConfirmationFragment extends Fragment {
         jmlBarang = (TextView) view.findViewById(R.id.txtJmlBarang);
         eDResi = (EditText) view.findViewById(R.id.edResiPengiriman);
 
-        nomTitle.setText("Jumlah Transfer");
+        nomTitle.setText(R.string.txt_jumlah_transfer);
         String jmlUang = appUtils.formatRupiah(Double.parseDouble(stuffShareApp.getSelectedDonation().getDonasiUang()));
         nominal.setText(jmlUang);
-        senderTitle.setText("Pengirim");
+        senderTitle.setText(R.string.txt_sender);
         sender.setText(sharedPrefManager.getSPName());
-        metodeTitle.setText("Metode Kirim");
+        metodeTitle.setText(R.string.txt_method_kirim);
         metodeBayar = "Transfer ATM";
         metode.setText(metodeBayar);
-        bankNameTitle.setText("Nama Bank");
-        bankRekTitle.setText("Nomor Rekening");
-        addressTitle.setText("Alamat");
+        bankNameTitle.setText(R.string.txt_bank_name);
+        bankRekTitle.setText(R.string.txt_norek);
+        addressTitle.setText(R.string.txt_address_title);
         addressSent.setText(stuffShareApp.getSelectedDonation().getAlamatPenyelenggara());
-        jmlBarangTitle.setText("Jumlah Barang");
+        jmlBarangTitle.setText(R.string.txt_jml_barang);
         jmlBarang.setText(stuffShareApp.getSelectedDonation().getTotalDonation() + " Barang");
 
         ivConfirmation = (ImageView) view.findViewById(R.id.imageViewUpload);

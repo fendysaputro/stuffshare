@@ -26,8 +26,8 @@ public class ThankyouCampaignerActivity extends AppCompatActivity {
         thankyou = (TextView) findViewById(R.id.txtThankyouTitle);
         verification = (TextView) findViewById(R.id.txtVerification);
 
-        thankyou.setText("Terima kasih telah melakukan pengajuan penggalangan donasi.");
-        verification.setText("Pengajuan penggalangan donasi akan diverifikasi terlebih dahulu oleh admin");
+        thankyou.setText(R.string.txt_ajukan_donasi);
+        verification.setText(R.string.txt_ajukan_verifikasi);
 
         goBack = (Button) findViewById(R.id.btnBackThankyouCampaigner);
         goBack.setOnClickListener(new View.OnClickListener() {

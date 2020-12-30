@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment {
         sharedPrefManager = new SharedPrefManager(getActivity());
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Akun");
+        toolbar_title.setText(R.string.txt_akun_title);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
@@ -116,15 +116,15 @@ public class ProfileFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                                alertDialog.setTitle("Ubah foto");
-                                alertDialog.setMessage("Apakah anda yakin untuk ganti foto profil?");
-                                alertDialog.setPositiveButton("YA",
+                                alertDialog.setTitle(R.string.txt_ubah_foto_title);
+                                alertDialog.setMessage(R.string.txt_confirm_dialog);
+                                alertDialog.setPositiveButton(R.string.txt_yes,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 onSendPhoto();
                                             }
                                         });
-                                alertDialog.setNegativeButton("TIDAK",
+                                alertDialog.setNegativeButton(R.string.txt_no,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
@@ -147,34 +147,34 @@ public class ProfileFragment extends Fragment {
         userName.setText(sharedPrefManager.getSPName());
 
         whatsappTitle = (TextView) view.findViewById(R.id.txtWhatsapp);
-        whatsappTitle.setText("Whatsapp");
+        whatsappTitle.setText(R.string.txt_wa_title);
 
         whatsappNumber = (TextView) view.findViewById(R.id.txtWhatsappNumber);
         whatsappNumber.setText(sharedPrefManager.getSPPhone());
 
         emailTitle = (TextView) view.findViewById(R.id.txtEmailTitle);
-        emailTitle.setText("Email");
+        emailTitle.setText(R.string.txt_email_title);
 
         email = (TextView) view.findViewById(R.id.txtEmail);
         email.setText(sharedPrefManager.getSPEmail());
 
         statuAccountTitle = (TextView) view.findViewById(R.id.txtstatusAccountTitle);
-        statuAccountTitle.setText("Status Akun");
+        statuAccountTitle.setText(R.string.txt_status_akun);
 
         statusAccountDonatur = (TextView) view.findViewById(R.id.txtstatusAccountDonatur);
         statusAccountCampaigner = (TextView) view.findViewById(R.id.txtstatusAccountCampaign);
         if (sharedPrefManager.getSPAkunplus() == 1 || akunPlus == 1 && status.equals("1")){
-            statusAccountDonatur.setText("Donatur");
+            statusAccountDonatur.setText(R.string.txt_donatur);
             statusAccountDonatur.setTextColor(getResources().getColor(R.color.colorAccent));
-            statusAccountCampaigner.setText("Penggalang");
+            statusAccountCampaigner.setText(R.string.txt_penggalang);
         } else {
-            statusAccountDonatur.setText("Donatur");
-            statusAccountCampaigner.setText("Penggalang");
+            statusAccountDonatur.setText(R.string.txt_donatur);
+            statusAccountCampaigner.setText(R.string.txt_penggalang);
             statusAccountCampaigner.setTextColor(getResources().getColor(R.color.colorAccent));
         }
 
         changePasswordTitle = (TextView) view.findViewById(R.id.txtChangePassword);
-        changePasswordTitle.setText("Ubah Password");
+        changePasswordTitle.setText(R.string.txt_ubah_password);
         changePasswordTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,15 +185,15 @@ public class ProfileFragment extends Fragment {
         });
 
         rememberDonationTitle = (TextView) view.findViewById(R.id.txtRememberDonation);
-        rememberDonationTitle.setText("Ingatkan Donasi");
+        rememberDonationTitle.setText(R.string.txt_remember_donasi);
         rememberDonationTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                alertDialog.setTitle("Notification");
-                alertDialog.setMessage("Apakah anda yakin set notification?");
+                alertDialog.setTitle(R.string.txt_notification_title);
+                alertDialog.setMessage(R.string.txt_confirm_notif);
                 alertDialog.setIcon(R.drawable.logo);
-                alertDialog.setPositiveButton("YA",
+                alertDialog.setPositiveButton(R.string.txt_yes,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 //                                sharedPrefManager.saveSPBoolean(SharedPrefManager.notif, true);
@@ -206,7 +206,7 @@ public class ProfileFragment extends Fragment {
                                 getActivity().finish();
                             }
                         });
-                alertDialog.setNegativeButton("TIDAK",
+                alertDialog.setNegativeButton(R.string.txt_no,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
@@ -218,7 +218,7 @@ public class ProfileFragment extends Fragment {
         });
 
         ratingTitle = (TextView) view.findViewById(R.id.txtGiveRating);
-        ratingTitle.setText("Beri Rating Aplikasi");
+        ratingTitle.setText(R.string.txt_rating_title);
         ratingTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -227,15 +227,15 @@ public class ProfileFragment extends Fragment {
         });
 
         logoutTitle = (TextView) view.findViewById(R.id.txtLogout);
-        logoutTitle.setText("Keluar");
+        logoutTitle.setText(R.string.txt_exit_title);
         logoutTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                alertDialog.setTitle("Keluar");
-                alertDialog.setMessage("Apakah anda yakin untuk keluar?");
+                alertDialog.setTitle(R.string.txt_exit_title);
+                alertDialog.setMessage(R.string.txt_confirm_exit);
                 alertDialog.setIcon(R.drawable.logout);
-                alertDialog.setPositiveButton("YA",
+                alertDialog.setPositiveButton(R.string.txt_yes,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 stuffShareApp.setUser(null);
@@ -247,7 +247,7 @@ public class ProfileFragment extends Fragment {
                                 getActivity().finish();
                             }
                         });
-                alertDialog.setNegativeButton("TIDAK",
+                alertDialog.setNegativeButton(R.string.txt_no,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();

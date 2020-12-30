@@ -84,10 +84,10 @@ public class CollectDonationActivity extends AppCompatActivity {
         }
 
         TextView noteTitle = (TextView) findViewById(R.id.txtNote);
-        noteTitle.setText("Berbagi Barang Layak Pakai Kepada Orang yang Membutuhkan");
+        noteTitle.setText(R.string.txt_layak_pakai);
 
         TextView infoNote = (TextView) findViewById(R.id.txtInfoDonationNote);
-        infoNote.setText("Informasi Penggalangan Donasi");
+        infoNote.setText(R.string.txt_info_penggalangan);
 
         TextView jmlDonation = (TextView) findViewById(R.id.txtJmlDonation);
         jmlDonation.setText(stuffShareApp.getSelectedCampaigner().getCountDonation() + " Donasi");
@@ -109,7 +109,7 @@ public class CollectDonationActivity extends AppCompatActivity {
         communityName.setText(stuffShareApp.getSelectedCampaigner().getOrganization());
 
         TextView hastagName = (TextView) findViewById(R.id.hastag);
-        hastagName.setText("#BekalJadiBerkah");
+        hastagName.setText(R.string.txt_bekal);
 
         Button donationNowBtn = (Button) findViewById(R.id.btnDonation);
         donationNowBtn.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,6 @@ public class CollectDonationActivity extends AppCompatActivity {
         collectDonationAdapter = new CollectDonationAdapter(getApplicationContext(), R.layout.list_view_collect_donation_activity, campaigners);
         listView.setAdapter(collectDonationAdapter);
 
-//        getData("", campaigners, collectDonationAdapter);
         getDataDonasi(stuffShareApp.getSelectedCampaigner(), campaigners, collectDonationAdapter);
     }
 
@@ -147,7 +146,7 @@ public class CollectDonationActivity extends AppCompatActivity {
             case R.id.menuShare:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "jangan lupa untuk saling berbagi install stuffshare di playstore");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.txt_install));
                 sendIntent.setType("text/plain");
 
                 Intent shareIntent = Intent.createChooser(sendIntent, stuffShareApp.TAG);
@@ -172,60 +171,6 @@ public class CollectDonationActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    public void getData (String data, ArrayList<CategoryBarang> campaigners, CollectDonationAdapter collectDonationAdapter) {
-//        AsyncHttpTask campaignTask = new AsyncHttpTask("");
-//        Log.i(stuffShareApp.TAG, "selected Id " + stuffShareApp.getSelectedCampaigner().getId());
-//        campaignTask.execute(stuffShareApp.HOST + stuffShareApp.CAMPAIGN + stuffShareApp.getSelectedCampaigner().getId(), "GET");
-//        campaignTask.setHttpResponseListener(new OnHttpResponseListener() {
-//            @Override
-//            public void OnHttpResponse(String response) {
-//                try {
-//                    JSONObject resObj = new JSONObject(response);
-//                    if (resObj.getBoolean("r")){
-//                        JSONArray resArray = resObj.getJSONArray("d");
-//                        for (int i = 0; i < resArray.length(); i++) {
-//                            JSONObject jObj = resArray.getJSONObject(i);
-//                            Log.i(stuffShareApp.TAG, "response collect " + jObj);
-//                            Campaigner campaigner = new Campaigner();
-//                            campaigner.setId(jObj.getString("id"));
-//                            campaigner.setImageCampaign(jObj.getString("gambar"));
-//                            campaigner.setDesc(jObj.getString("kejadian"));
-//                            campaigner.setTglBuat(jObj.getString("tgl_buat"));
-//                            campaigner.setTglSelesai(jObj.getString("tglselesai"));
-//                            campaigner.setOrganization(jObj.getString("organisasi"));
-//                            campaigner.setCountDonation(jObj.getString("banyakdonasi"));
-//                            String dateBeforeString = campaigner.getTglBuat();
-//                            String dateAfterString = campaigner.getTglSelesai();
-//                            LocalDate dateBefore = LocalDate.parse(dateBeforeString);
-//                            LocalDate dateAfter = LocalDate.parse(dateAfterString);
-//                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
-//                            String dateString = DateFormat.format("yyyy-MM-dd", new Date(noOfDaysBetween)).toString();
-//                            String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-//                            LocalDate dayNow = LocalDate.parse(timeStamp);
-//                            LocalDate dateMass = LocalDate.parse(dateString);
-//                            long massDonation = ChronoUnit.DAYS.between(dayNow, dateAfter);
-//                            campaigner.setMasaDonasi(String.valueOf(massDonation));
-//                            campaigner.setDonasiBarang(jObj.getJSONArray("donasibarang"));
-//                            for (int j = 0; j < campaigner.getDonasiBarang().length(); j++) {
-//                                CategoryBarang categoryBarang = new CategoryBarang();
-//                                categoryBarang.setId(campaigner.getDonasiBarang().getJSONObject(j).getString("id"));
-//                                categoryBarang.setProductName(campaigner.getDonasiBarang().getJSONObject(j).getString("name"));
-//                                categoryBarang.setCount(campaigner.getDonasiBarang().getJSONObject(j).getString("qty"));
-//                                categoryBarang.setImageId(campaigner.getDonasiBarang().getJSONObject(j).getString("url"));
-//                                campaigners.add(categoryBarang);
-//                            }
-//                            stuffShareApp.setCampaigner(campaigner);
-//
-//                        }
-//                    }
-//                    collectDonationAdapter.notifyDataSetChanged();
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 
     public void getDataDonasi (Campaigner campaigner, final ArrayList<CategoryBarang> categoryBarangs, CollectDonationAdapter collectDonationAdapter){
         if (campaigner.getDonasiBarang() != null){

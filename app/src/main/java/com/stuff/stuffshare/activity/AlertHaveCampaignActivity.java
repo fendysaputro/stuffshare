@@ -30,7 +30,7 @@ public class AlertHaveCampaignActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
 
         infoCampaign = (TextView) findViewById(R.id.txtInfoCampaign);
-        infoCampaign.setText("Anda Sudah Mengajukan Penggalangan dan masih berjalan, mohon tunggu sampai Penggalangan selesai");
+        infoCampaign.setText(R.string.txt_info_campaign);
 
         backCampaign = (Button) findViewById(R.id.btnBackCampaigner);
         backCampaign.setOnClickListener(new View.OnClickListener() {

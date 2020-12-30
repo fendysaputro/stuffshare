@@ -106,7 +106,6 @@ public class CollectDonationListActivity extends AppCompatActivity {
         collectDonationListAdapter = new CollectDonationListAdapter(this, R.layout.grid_view_item_list_donation, stuffShareApp.getCategoryBarangs());
         gridView.setAdapter(collectDonationListAdapter);
 
-//        getData("", categoryBarangs, collectDonationListAdapter);
         getDataDonasi(stuffShareApp.getSelectedCampaigner(), stuffShareApp.getCategoryBarangs(), collectDonationListAdapter);
 
         bankArrayList = new ArrayList<Bank>();
@@ -207,7 +206,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
             case R.id.menuShare:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "jangan lupa untuk saling berbagi install stuffshare di playstore");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.txt_install));
                 sendIntent.setType("text/plain");
 
                 Intent shareIntent = Intent.createChooser(sendIntent, stuffShareApp.TAG);
@@ -253,7 +252,7 @@ public class CollectDonationListActivity extends AppCompatActivity {
 
     public void getDataBank (String data, final StuffShareApp stuffShareApp, final ArrayList<Bank> banks) {
         AsyncHttpTask mBankTask = new AsyncHttpTask("");
-        mBankTask.execute(stuffShareApp.HOST + stuffShareApp.BANK, "GET");
+        mBankTask.execute(StuffShareApp.HOST + StuffShareApp.BANK, "GET");
         mBankTask.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {

@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         forgetPassword = (TextView) findViewById(R.id.tVForgetPassword);
-        forgetPassword.setText("Lupa Password?");
+        forgetPassword.setText(R.string.txt_forget_password);
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,15 +94,15 @@ public class LoginActivity extends AppCompatActivity {
     private void onBtnLogin() {
         mProgressBar.setVisibility(View.VISIBLE);
         if (TextUtils.isEmpty(edPassword.getText())){
-            edPassword.setError("Password is must");
+            edPassword.setError(getString(R.string.txt_password_must));
         }
 
         if (TextUtils.isEmpty(edEmail.getText())){
-            edEmail.setError("Email is required");
+            edEmail.setError(getString(R.string.txt_email_required));
         } else {
             if (edEmail.getText().toString().trim().matches(emailPattern)){
                 AsyncHttpTask mLoginTask = new AsyncHttpTask("email="+edEmail.getText()+"&password="+edPassword.getText());
-                mLoginTask.execute(stuffShareApp.HOST + stuffShareApp.LOGIN_PATH, "POST");
+                mLoginTask.execute(StuffShareApp.HOST + StuffShareApp.LOGIN_PATH, "POST");
                 mLoginTask.setHttpResponseListener(new OnHttpResponseListener() {
                     @Override
                     public void OnHttpResponse(String response) {
@@ -142,7 +142,6 @@ public class LoginActivity extends AppCompatActivity {
                                     String imageCom = dataObj.getString("foto_penyelenggara");
                                     Log.i(stuffShareApp.TAG, "img_penyelenggara " + imageCom);
                                     sharedPrefManager.saveSPString(SharedPrefManager.image_community, imageCom);
-//                            stuffShareApp.setImage_community(imageCom);
                                 }
                                 startActivity(new Intent(getApplication(), MainActivity.class)
                                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -166,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                edEmail.setError("email is invalid");
+                edEmail.setError(getString(R.string.txt_email_invalid));
                 mProgressBar.setVisibility(View.GONE);
             }
         }

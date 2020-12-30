@@ -170,11 +170,6 @@ public class SubmissionActivity extends AppCompatActivity {
                 (this,android.R.layout.simple_dropdown_item_1line, target);
 
         final AutoCompleteTextView actv =  (AutoCompleteTextView)findViewById(R.id.edNamereceive);
-//        autoCompleteAdapter = new AutoCompleteAdapter(this, android.R.layout.simple_dropdown_item_1line, campaignCategories);
-//        actv.setAdapter(autoCompleteAdapter);
-
-//        getDataCategoryCampaign("", campaignCategories, autoCompleteAdapter);
-
 
         actv.setText(actv.getText());
         actv.setThreshold(1);//will start working from first character

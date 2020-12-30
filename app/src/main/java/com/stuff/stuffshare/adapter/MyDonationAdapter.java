@@ -92,17 +92,6 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//            convertView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    stuffShareApp.setSelectedDonation(donation);
-//                    ConfirmationFragment confirmationFragment = new ConfirmationFragment();
-//                    Activity activity = (Activity) context;
-//                    FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
-//                    ShowFragment(R.id.fl_container, confirmationFragment, fragmentManager);
-//                }
-//            });
-
             Picasso.with(context)
                     .load(donation.getGambar())
                     .fit()

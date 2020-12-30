@@ -42,7 +42,7 @@ public class ChangePasswordFragment extends Fragment {
         sharedPrefManager = new SharedPrefManager(getContext());
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Password");
+        toolbar_title.setText(R.string.txt_password_title);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
@@ -66,7 +66,7 @@ public class ChangePasswordFragment extends Fragment {
                 "&passwordbaru="+newPass.getText() +
                 "&ulangipasswordbaru="+confirmPass.getText() +
                 "&userid="+sharedPrefManager.getSPUserid());
-        mChangePassword.execute(stuffShareApp.HOST + stuffShareApp.CHANGE_PASSWORD, "POST");
+        mChangePassword.execute(StuffShareApp.HOST + StuffShareApp.CHANGE_PASSWORD, "POST");
         mChangePassword.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {

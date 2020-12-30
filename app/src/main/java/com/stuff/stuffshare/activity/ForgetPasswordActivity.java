@@ -43,7 +43,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.forget_password_activity);
 
         TextView toolbar_title = findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Lupa Password");
+        toolbar_title.setText(R.string.txt_lupa_password);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
@@ -76,10 +76,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public void onResetPasswordButton () {
         if (TextUtils.isEmpty(editTextEmail.getText())){
-            editTextEmail.setError("Email is required");
+            editTextEmail.setError(getString(R.string.txt_email_required));
         } else {
             AsyncHttpTask mForgetPasswordTask = new AsyncHttpTask("email="+email);
-            mForgetPasswordTask.execute(stuffShareApp.HOST + stuffShareApp.FORGET_PASSWORD, "POST");
+            mForgetPasswordTask.execute(StuffShareApp.HOST + StuffShareApp.FORGET_PASSWORD, "POST");
             mForgetPasswordTask.setHttpResponseListener(new OnHttpResponseListener() {
                 @Override
                 public void OnHttpResponse(String response) {
@@ -93,7 +93,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                         }
                     } catch (JSONException e){
                         e.printStackTrace();
-                        Toasty.info(getApplication(), "Email not found", Toasty.LENGTH_LONG).show();
+                        Toasty.info(getApplication(), "Email tidak ditemukan", Toasty.LENGTH_LONG).show();
                     }
                 }
             });

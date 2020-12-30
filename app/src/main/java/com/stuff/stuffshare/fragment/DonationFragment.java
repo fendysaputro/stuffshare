@@ -69,7 +69,7 @@ public class DonationFragment extends Fragment {
         stuffShareApp = (StuffShareApp) getActivity().getApplication();
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Donasi");
+        toolbar_title.setText(R.string.txt_donasi_title);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 

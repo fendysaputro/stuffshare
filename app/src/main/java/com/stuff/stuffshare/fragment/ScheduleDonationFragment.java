@@ -73,7 +73,7 @@ public class ScheduleDonationFragment extends Fragment {
         stuffShareApp = (StuffShareApp) getActivity().getApplication();
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Jadwal Donasi");
+        toolbar_title.setText(R.string.txt_schedule_title);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
@@ -109,7 +109,7 @@ public class ScheduleDonationFragment extends Fragment {
 
     public void getData (String data, ArrayList<Campaigner> campaigners, ScheduleAdapter scheduleAdapter) {
         AsyncHttpTask campaignTask = new AsyncHttpTask("");
-        campaignTask.execute(stuffShareApp.HOST + stuffShareApp.CAMPAIGN, "GET");
+        campaignTask.execute(StuffShareApp.HOST + StuffShareApp.CAMPAIGN, "GET");
         campaignTask.setHttpResponseListener(new OnHttpResponseListener() {
             @Override
             public void OnHttpResponse(String response) {
@@ -117,10 +117,8 @@ public class ScheduleDonationFragment extends Fragment {
                     JSONObject resObj = new JSONObject(response);
                     if (resObj.getBoolean("r")){
                         JSONArray resArray = resObj.getJSONArray("d");
-                        Log.i(stuffShareApp.TAG, "data schecdule " + resArray);
                         for (int i = 0; i < resArray.length(); i++) {
                             JSONObject jObj = resArray.getJSONObject(i);
-                            Log.i(stuffShareApp.TAG, "response collect " + jObj);
                             Campaigner campaigner = new Campaigner();
                             campaigner.setId(jObj.getString("id"));
                             campaigner.setImageCampaign(jObj.getString("gambar"));

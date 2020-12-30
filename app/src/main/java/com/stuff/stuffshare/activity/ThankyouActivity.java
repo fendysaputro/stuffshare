@@ -51,10 +51,10 @@ public class ThankyouActivity extends AppCompatActivity {
         noRekDonation = (TextView) findViewById(R.id.txtNorekDonation);
         quote = (TextView) findViewById(R.id.txtQuote);
 
-        thankyouTitle.setText("Terima Kasih Telah Berdonasi");
-        sendDonation.setText("Kirimkan Barang Donasi ke alamat berikut");
+        thankyouTitle.setText(R.string.txt_thanks_donasi);
+        sendDonation.setText(R.string.txt_sent_donasi);
         addressSent.setText(stuffShareApp.getCampaigner().getAlamatPenyelenggara());
-        quote.setText("satu kebaikan akan mengundang kebaikan lainnya");
+        quote.setText(R.string.txt_quote);
 
 
         backButton = (Button) findViewById(R.id.btnBack);
