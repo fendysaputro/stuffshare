@@ -47,7 +47,7 @@
     <string name="jumat">Jumat</string>
     <string name="sabtu">Sabtu</string>
     <string name="ahad">Minggu</string>
-    <string name="confirmation_title">Konfirmasi Pembayaran</string>
+    <string name="confirmation_title">Konfirmasi Pengiriman</string>
     <string name="splashNote">Mari berbagi untuk sesama yang membutuhkan kami siap membantu anda untuk berbagi</string>
     <string name="txt_inbox">Inbox</string>
     <string name="txt_hapus">Hapus</string>
@@ -96,4 +96,5 @@
     <string name="txt_exit_title">Keluar</string>
     <string name="txt_confirm_exit">Apakah anda yakin untuk keluar?</string>
     <string name="txt_schedule_title">Jadwal Donasi</string>
+    <string name="txt_donasi_saya">Donasi Saya</string>
 </resources>

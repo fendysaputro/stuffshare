@@ -66,6 +66,7 @@ public class StuffShareApp extends Application {
     Data data;
     boolean notification;
     JSONArray messageUser;
+    String qtyBarang;
 
     private ArrayList<CategoryBarang> CategoryBarangs = new ArrayList<CategoryBarang>();
 
@@ -468,5 +469,13 @@ public class StuffShareApp extends Application {
 
     public void setMessageUser(JSONArray messageUser) {
         this.messageUser = messageUser;
+    }
+
+    public String getQtyBarang() {
+        return qtyBarang;
+    }
+
+    public void setQtyBarang(String qtyBarang) {
+        this.qtyBarang = qtyBarang;
     }
 }

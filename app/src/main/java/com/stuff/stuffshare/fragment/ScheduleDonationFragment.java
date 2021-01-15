@@ -92,15 +92,10 @@ public class ScheduleDonationFragment extends Fragment {
                 Activity activity = (Activity) context;
                 Bundle bundle = new Bundle();
                 stuffShareApp.setSelectedCampaigner(campaigner);
-//                Intent goIntent = new Intent(getActivity(), CollectDonationActivity.class);
-//                bundle.putBundle("IMAGE_NAME", campaigner.getImageCampaign());
-//                Intent goIntent = new Intent(getActivity(), CollectDonationActivity.class);
                 bundle.putString("IMAGE_NAME", campaigner.getImageCampaign());
                 FragmentManager fragmentManager = ((FragmentActivity) getContext()).getSupportFragmentManager();
                 ShowFragment(R.id.fl_container, dataScheduleDonationFragment, fragmentManager);
                 dataScheduleDonationFragment.setArguments(bundle);
-//                stuffShareApp.setImgId(rowItem.getImageId());
-//                startActivity(goIntent);
             }
         });
 
@@ -128,7 +123,6 @@ public class ScheduleDonationFragment extends Fragment {
                             campaigner.setOrganization(jObj.getString("organisasi"));
                             campaigner.setCountDonation(jObj.getString("banyakdonasi"));
                             campaigner.setAddressReceiver(jObj.getString("alamat_penerima"));
-                            Log.i(stuffShareApp.TAG, "countDonation " + campaigner.getCountDonation());
                             campaigner.setImageCom(jObj.getString("foto_penyelenggara"));
                             campaigner.setAlamatPenyelenggara(jObj.getString("alamat_penyelenggara"));
                             String dateBeforeString = campaigner.getTglBuat();
@@ -155,6 +149,7 @@ public class ScheduleDonationFragment extends Fragment {
                                 categoryBarang.setId(campaigner.getDonasiBarang().getJSONObject(j).getString("id"));
                                 categoryBarang.setProductName(campaigner.getDonasiBarang().getJSONObject(j).getString("name"));
                                 categoryBarang.setCount(campaigner.getDonasiBarang().getJSONObject(j).getString("qty"));
+                                stuffShareApp.setQtyBarang(categoryBarang.getCount());
                                 categoryBarang.setImageId(campaigner.getDonasiBarang().getJSONObject(j).getString("url"));
                             }
                             campaigners.add(campaigner);

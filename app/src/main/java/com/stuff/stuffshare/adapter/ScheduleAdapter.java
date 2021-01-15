@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 import com.stuff.stuffshare.R;
+import com.stuff.stuffshare.StuffShareApp;
 import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.RowItem;
 import com.stuff.stuffshare.model.ScheduleDonation;
@@ -22,10 +23,12 @@ import java.util.List;
 public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
 
     Context context;
+    StuffShareApp stuffShareApp;
 
     public ScheduleAdapter(Context context, int resourceId, List<Campaigner> items){
         super(context, resourceId, items);
         this.context = context;
+        stuffShareApp = (StuffShareApp) this.context.getApplicationContext();
     }
 
     private class ViewHolder {

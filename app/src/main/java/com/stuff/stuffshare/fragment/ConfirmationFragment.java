@@ -102,7 +102,7 @@ public class ConfirmationFragment extends Fragment {
         sharedPrefManager = new SharedPrefManager(getActivity());
 
         TextView toolbar_title = view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText(R.string.txt_confirmation_pembayaran);
+        toolbar_title.setText(R.string.txt_donasi_saya);
         toolbar_title.setTextColor(getResources().getColor(R.color.textColorToolbar));
         toolbar_title.setTextSize(30);
 
