@@ -18,12 +18,15 @@ import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.RowItem;
 import com.stuff.stuffshare.model.ScheduleDonation;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
 
     Context context;
     StuffShareApp stuffShareApp;
+    String totalBarang;
 
     public ScheduleAdapter(Context context, int resourceId, List<Campaigner> items){
         super(context, resourceId, items);
@@ -82,6 +85,14 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
             holder.txtSisaHari.setText(campaigner.getMasaDonasi());
         }
 
+        try {
+            for (int i = 0; i < campaigner.getDonasiBarang().length(); i++) {
+                stuffShareApp.setQtyBarang(campaigner.getDonasiBarang().getJSONObject(i).getString("qty"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         holder.txtStatus.setText(campaigner.getStatusCampaign());
 //        holder.iVCommunity.setImageResource(scheduleDonation.getIconCommunityId());
         Picasso.with(context)
@@ -89,7 +100,7 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
                 .into(holder.iVCommunity);
         holder.txtRangeDonation.setText(campaigner.getSisaHari());
         holder.txtScheduleDonation.setText(campaigner.getTglBuat());
-        holder.txtCountDonation.setText(campaigner.getCountDonation() + " Barang");
+        holder.txtCountDonation.setText(stuffShareApp.getQtyBarang() + " Barang");
 
         return convertView;
     }

@@ -33,6 +33,7 @@ import com.stuff.stuffshare.adapter.ListInfoItemDonationAdapter;
 import com.stuff.stuffshare.adapter.ScheduleAdapter;
 import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.CategoryBarang;
+import com.stuff.stuffshare.model.DonasiBayar;
 import com.stuff.stuffshare.model.RowItem;
 import com.stuff.stuffshare.model.ScheduleDonation;
 import com.stuff.stuffshare.network.AsyncHttpTask;
@@ -151,6 +152,18 @@ public class ScheduleDonationFragment extends Fragment {
                                 categoryBarang.setCount(campaigner.getDonasiBarang().getJSONObject(j).getString("qty"));
                                 stuffShareApp.setQtyBarang(categoryBarang.getCount());
                                 categoryBarang.setImageId(campaigner.getDonasiBarang().getJSONObject(j).getString("url"));
+                            }
+                            campaigner.setDonasiBayar(jObj.getJSONArray("donasi_bayar"));
+                            for (int k = 0; k < campaigner.getDonasiBayar().length(); k++) {
+                                DonasiBayar donasiBayar = new DonasiBayar();
+                                donasiBayar.setId(campaigner.getDonasiBayar().getJSONObject(k).getString("id"));
+                                donasiBayar.setTglDonasi(campaigner.getDonasiBayar().getJSONObject(k).getString("tgl_donasi"));
+                                donasiBayar.setNmDonasi(campaigner.getDonasiBayar().getJSONObject(k).getString("nm_donasi"));
+                                donasiBayar.setTotalDonasiBarang(campaigner.getDonasiBayar().getJSONObject(k).getJSONArray("donasi_barang"));
+                                JSONArray ttDonasiBarang = donasiBayar.getTotalDonasiBarang();
+                                if (ttDonasiBarang != null) {
+
+                                }
                             }
                             campaigners.add(campaigner);
                         }

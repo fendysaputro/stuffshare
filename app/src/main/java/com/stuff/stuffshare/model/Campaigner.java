@@ -31,6 +31,7 @@ public class Campaigner {
     JSONArray donasiBarang;
     String organization, countDonation, alamatPenyelenggara;
     String imageCom;
+    JSONArray donasiBayar;
 
     public String getId() {
         return id;
@@ -270,5 +271,13 @@ public class Campaigner {
 
     public void setImageCom(String imageCom) {
         this.imageCom = imageCom;
+    }
+
+    public JSONArray getDonasiBayar() {
+        return donasiBayar;
+    }
+
+    public void setDonasiBayar(JSONArray donasiBayar) {
+        this.donasiBayar = donasiBayar;
     }
 }
