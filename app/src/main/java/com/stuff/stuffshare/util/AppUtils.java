@@ -100,7 +100,6 @@ public class AppUtils {
                         JSONArray resArray = resObj.getJSONArray("d");
                         for (int i = 0; i < resArray.length(); i++) {
                             JSONObject jObj = resArray.getJSONObject(i);
-//                            Log.i(stuffShareApp.TAG, "response " + jObj);
                             Campaigner campaigner = new Campaigner();
                             campaigner.setId(jObj.getString("id"));
                             if (jObj.getString("gambar").equals("")){
@@ -120,13 +119,11 @@ public class AppUtils {
                             String dateAfterString = campaigner.getTglSelesai();
                             LocalDate dateBefore = LocalDate.parse(dateBeforeString);
                             LocalDate dateAfter = LocalDate.parse(dateAfterString);
-//                            long noOfDaysBetween = ChronoUnit.DAYS.between(dateBefore, dateAfter);
                             long noOfDaysBetween = dateAfter.until(dateBefore, org.threeten.bp.temporal.ChronoUnit.DAYS);
                             String dateString = DateFormat.format("yyyy-MM-dd", new Date(noOfDaysBetween)).toString();
                             String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                             LocalDate dayNow = LocalDate.parse(timeStamp);
                             LocalDate dateMass = LocalDate.parse(dateString);
-//                            long massDonation = ChronoUnit.DAYS.between(dayNow, dateAfter);
                             long massDonation = dayNow.until(dateAfter, org.threeten.bp.temporal.ChronoUnit.DAYS);
                             campaigner.setMasaDonasi(String.valueOf(massDonation));
                             campaigner.setDonasiBarang(jObj.getJSONArray("donasibarang"));

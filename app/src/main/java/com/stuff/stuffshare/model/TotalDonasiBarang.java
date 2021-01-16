@@ -9,6 +9,7 @@ public class TotalDonasiBarang {
     String barangDonasi;
     String url;
     String qty;
+    String qtyTotal;
 
     public String getId() {
         return id;
@@ -40,5 +41,13 @@ public class TotalDonasiBarang {
 
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    public String getQtyTotal() {
+        return qtyTotal;
+    }
+
+    public void setQtyTotal(String qtyTotal) {
+        this.qtyTotal = qtyTotal;
     }
 }

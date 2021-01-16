@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.stuff.stuffshare.model.Campaigner;
 import com.stuff.stuffshare.model.RowItem;
 import com.stuff.stuffshare.model.ScheduleDonation;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.List;
@@ -43,6 +45,8 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
         TextView txtRangeDonation;
         TextView txtScheduleDonation;
         TextView txtCountDonation;
+        RelativeLayout relativeSisaHari, relativeStatus, relativeMasaDonasi,
+                relativeScheduleDonation, relativeCountDonation;
     }
 
     @NonNull
@@ -62,6 +66,11 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
             holder.txtRangeDonation = (TextView) convertView.findViewById(R.id.tVRangeDonation);
             holder.txtScheduleDonation = (TextView) convertView.findViewById(R.id.tVScheduleDonation);
             holder.txtCountDonation = (TextView) convertView.findViewById(R.id.tVCountDonation);
+            holder.relativeCountDonation = (RelativeLayout) convertView.findViewById(R.id.relativeCountDonation);
+            holder.relativeMasaDonasi = (RelativeLayout) convertView.findViewById(R.id.relativeMasaDonasi);
+            holder.relativeScheduleDonation = (RelativeLayout) convertView.findViewById(R.id.relativeScheduleDonation);
+            holder.relativeSisaHari = (RelativeLayout) convertView.findViewById(R.id.relativeSisaHari);
+            holder.relativeStatus = (RelativeLayout) convertView.findViewById(R.id.relativeStatus);
             convertView.setTag(holder);
         } else {
             holder = (ScheduleAdapter.ViewHolder) convertView.getTag();
@@ -86,8 +95,17 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
         }
 
         try {
-            for (int i = 0; i < campaigner.getDonasiBarang().length(); i++) {
-                stuffShareApp.setQtyBarang(campaigner.getDonasiBarang().getJSONObject(i).getString("qty"));
+            JSONArray donasiBarang;
+            donasiBarang = campaigner.getDonasiBarang();
+            int total = 0;
+            for (int i = 0; i < donasiBarang.length(); i++) {
+                if (donasiBarang.length() > 1) {
+                    String data = donasiBarang.getJSONObject(i).getString("qty");
+                    total += total+Integer.valueOf(data);
+                    stuffShareApp.setQtyBarang(String.valueOf(total));
+                } else {
+                    stuffShareApp.setQtyBarang(donasiBarang.getJSONObject(i).getString("qty"));
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
