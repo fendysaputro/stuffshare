@@ -152,36 +152,8 @@ public class ScheduleDonationFragment extends Fragment {
                                 categoryBarang.setProductName(campaigner.getDonasiBarang().getJSONObject(j).getString("name"));
                                 categoryBarang.setCount(campaigner.getDonasiBarang().getJSONObject(j).getString("qty"));
                                 categoryBarang.setImageId(campaigner.getDonasiBarang().getJSONObject(j).getString("url"));
+                                categoryBarang.setPenerimaan(campaigner.getDonasiBarang().getJSONObject(j).getString("penerimaan"));
                             }
-                            campaigner.setDonasiBayar(jObj.getJSONArray("donasi_bayar"));
-                            JSONArray donasiTerbayar = campaigner.getDonasiBayar();
-                                for (int k = 0; k < donasiTerbayar.length(); k++) {
-                                    DonasiBayar donasiBayar = new DonasiBayar();
-                                    donasiBayar.setId(donasiTerbayar.getJSONObject(k).getString("id"));
-                                    donasiBayar.setTglDonasi(donasiTerbayar.getJSONObject(k).getString("tgl_donasi"));
-                                    donasiBayar.setNmDonasi(donasiTerbayar.getJSONObject(k).getString("nm_donasi"));
-                                    donasiBayar.setTotalDonasiBarang(donasiTerbayar.getJSONObject(k).getJSONArray("donasi_barang"));
-                                    JSONArray ttDonasiBarang = donasiBayar.getTotalDonasiBarang();
-                                    for (int l = 0; l < ttDonasiBarang.length(); l++) {
-                                        TotalDonasiBarang totalDonasiBarang = new TotalDonasiBarang();
-                                        totalDonasiBarang.setId(ttDonasiBarang.getJSONObject(l).getString("id"));
-                                        totalDonasiBarang.setBarangDonasi(ttDonasiBarang.getJSONObject(l).getString("barang_donasi"));
-                                        totalDonasiBarang.setUrl(ttDonasiBarang.getJSONObject(l).getString("url"));
-                                        totalDonasiBarang.setQty(ttDonasiBarang.getJSONObject(l).getString("qty"));
-                                        stuffShareApp.setQtyBarang(totalDonasiBarang.getQty());
-
-//                                        if (ttDonasiBarang.length() > 1) {
-//                                            String totBarang = ttDonasiBarang.getJSONObject(l).getString("qty");
-//                                            String totBarangTwo = ttDonasiBarang.getJSONObject(l+1).getString("qty");
-//                                            totalDonasiBarang.setQtyTotal(totBarang + totBarangTwo);
-//                                            stuffShareApp.setQtyBarang(totalDonasiBarang.getQtyTotal());
-//                                        } else {
-//                                            totalDonasiBarang.setQtyTotal(ttDonasiBarang.getJSONObject(l).getString("qty"));
-//                                            stuffShareApp.setQtyBarang(totalDonasiBarang.getQtyTotal());
-//                                            Log.i("data donasi", stuffShareApp.getQtyBarang());
-//                                        }
-                                    }
-                                }
                             campaigners.add(campaigner);
                         }
                     }

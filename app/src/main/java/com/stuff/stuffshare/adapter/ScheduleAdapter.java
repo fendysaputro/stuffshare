@@ -100,11 +100,11 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
             int total = 0;
             for (int i = 0; i < donasiBarang.length(); i++) {
                 if (donasiBarang.length() > 1) {
-                    String data = donasiBarang.getJSONObject(i).getString("qty");
+                    String data = donasiBarang.getJSONObject(i).getString("penerimaan");
                     total += total+Integer.valueOf(data);
                     stuffShareApp.setQtyBarang(String.valueOf(total));
                 } else {
-                    stuffShareApp.setQtyBarang(donasiBarang.getJSONObject(i).getString("qty"));
+                    stuffShareApp.setQtyBarang(donasiBarang.getJSONObject(i).getString("penerimaan"));
                 }
             }
         } catch (JSONException e) {

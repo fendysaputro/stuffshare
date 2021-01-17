@@ -9,6 +9,7 @@ public class CategoryBarang implements Serializable {
     private String productName;
     private String count;
     private String address;
+    private String penerimaan;
 
     public String getImageId() {
         return imageId;
@@ -48,5 +49,13 @@ public class CategoryBarang implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPenerimaan() {
+        return penerimaan;
+    }
+
+    public void setPenerimaan(String penerimaan) {
+        this.penerimaan = penerimaan;
     }
 }
