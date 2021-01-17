@@ -32,6 +32,7 @@ public class Campaigner {
     String organization, countDonation, alamatPenyelenggara;
     String imageCom;
     JSONArray donasiBayar;
+    JSONArray banyakDonasi;
 
     public String getId() {
         return id;
@@ -279,5 +280,13 @@ public class Campaigner {
 
     public void setDonasiBayar(JSONArray donasiBayar) {
         this.donasiBayar = donasiBayar;
+    }
+
+    public JSONArray getBanyakDonasi() {
+        return banyakDonasi;
+    }
+
+    public void setBanyakDonasi(JSONArray banyakDonasi) {
+        this.banyakDonasi = banyakDonasi;
     }
 }

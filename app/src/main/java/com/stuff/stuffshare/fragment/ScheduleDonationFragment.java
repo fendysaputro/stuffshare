@@ -154,6 +154,7 @@ public class ScheduleDonationFragment extends Fragment {
                                 categoryBarang.setImageId(campaigner.getDonasiBarang().getJSONObject(j).getString("url"));
                                 categoryBarang.setPenerimaan(campaigner.getDonasiBarang().getJSONObject(j).getString("penerimaan"));
                             }
+                            campaigner.setBanyakDonasi(jObj.getJSONArray("banyakdonasi"));
                             campaigners.add(campaigner);
                         }
                     }
