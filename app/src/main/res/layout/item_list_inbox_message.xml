@@ -10,9 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="donasi anda sudah terkirim"
+        android:layout_marginEnd="45dp"
+        android:text="donasi anda sudah terkirim faskjfkdsjafkdsjafkdjakfdsjkfjdsakfjdksjfkdsjfkdjfkdsajfkdlsjafkdjfkldjafkljdsk"
         android:textColor="@color/colorAccent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="12sp" />
 
     <TextView
@@ -23,7 +24,7 @@
         android:textColor="@color/colorAccent"
         android:layout_marginTop="10dp"
         android:text="11 Nov 2020 11:11"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:textSize="12dp" />
 
     <ImageView
@@ -31,7 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_delete_black_24dp"
         android:layout_alignParentEnd="true" />
