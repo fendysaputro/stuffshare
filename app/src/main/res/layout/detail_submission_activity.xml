@@ -124,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:text="Kebutuhan Dana"
                 android:layout_marginLeft="10dp"
+                android:visibility="gone"
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 android:layout_marginTop="20dp"/>

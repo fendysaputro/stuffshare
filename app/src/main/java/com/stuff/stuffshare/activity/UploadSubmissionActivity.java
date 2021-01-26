@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +79,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
     JSONArray donasiBarang;
     ArrayList<CategoryBarang> categoryBarangs;
     CategoryBarang categoryBarang = null;
+    ProgressBar progressBar;
 
     public Context getCtx(){
         return context;
@@ -166,6 +168,8 @@ public class UploadSubmissionActivity extends AppCompatActivity {
 
             }
         });
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     public void takeMedia (String actionType, int codeRequest) {
@@ -291,7 +295,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
             varArgsList.add(stuffShareApp.getAccident());
             varArgsList.add(stuffShareApp.getDateAccident());
             varArgsList.add(stuffShareApp.getTitleCampaign());
-            varArgsList.add(stuffShareApp.getNeedDonation());
+            varArgsList.add("5.000.000");
             varArgsList.add(stuffShareApp.getForWhat());
             varArgsList.add(stuffShareApp.getPeriode());
             varArgsList.add(stuffShareApp.getCerita());

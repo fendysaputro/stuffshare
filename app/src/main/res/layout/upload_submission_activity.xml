@@ -219,6 +219,19 @@
 
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_below="@+id/relativeEditText"
+            android:layout_marginTop="10dp"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@android:color/black" />
+
     </RelativeLayout>
 
 </ScrollView>
