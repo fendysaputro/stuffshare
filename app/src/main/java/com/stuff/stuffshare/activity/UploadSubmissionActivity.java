@@ -332,9 +332,15 @@ public class UploadSubmissionActivity extends AppCompatActivity {
                             startActivity(goThankyou);
                             finishAffinity();
                         } else {
+                            Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
+                            startActivity(goThankyou);
+                            finishAffinity();
                             Toasty.warning(getApplication(), resObj.getString("m"), Toasty.LENGTH_SHORT, true).show();
                         }
                     } catch (JSONException e){
+                        Intent goThankyou = new Intent(getApplication(), ThankyouCampaignerActivity.class);
+                        startActivity(goThankyou);
+                        finishAffinity();
                         e.printStackTrace();
                     }
                 }
