@@ -80,6 +80,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
     ArrayList<CategoryBarang> categoryBarangs;
     CategoryBarang categoryBarang = null;
     ProgressBar progressBar;
+    Bitmap imgNewUpload;
 
     public Context getCtx(){
         return context;
@@ -263,6 +264,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
                 cursor.close();
                 // Set the Image in ImageView after decoding the String
                 Bitmap imageUpload = BitmapFactory.decodeFile(imgDecodableString);
+                imgNewUpload = imageUpload;
                 stuffShareApp.setImageUpload(imageUpload);
                 Log.i(stuffShareApp.TAG, "file akta " + stuffShareApp.getImageUpload());
                 imageStory.setImageURI(selectedImageUpload);
@@ -285,22 +287,35 @@ public class UploadSubmissionActivity extends AppCompatActivity {
             Toasty.warning(getApplication(), "field tidak boleh kosong", Toasty.LENGTH_SHORT, true).show();
         } else {
             ArrayList<Object> varArgsList = new ArrayList<Object>();
-            varArgsList.add(stuffShareApp.HOST + stuffShareApp.ADD_CAMPAIGN);
+            varArgsList.add(StuffShareApp.HOST + StuffShareApp.ADD_CAMPAIGN);
+            Log.i(stuffShareApp.TAG, "data 0" + varArgsList.get(0).toString());
             varArgsList.add(sharedPrefManager.getSPUserid());
+            Log.i(stuffShareApp.TAG, "data 1" + varArgsList.get(1).toString());
             varArgsList.add(stuffShareApp.getKategori());
-            Log.i(stuffShareApp.TAG, "data " + varArgsList.get(2).toString());
+            Log.i(stuffShareApp.TAG, "data 2" + varArgsList.get(2).toString());
             varArgsList.add(stuffShareApp.getPenerima());
+            Log.i(stuffShareApp.TAG, "data 3" + varArgsList.get(3).toString());
             varArgsList.add(stuffShareApp.getPhoneReceiver());
+            Log.i(stuffShareApp.TAG, "data 4" + varArgsList.get(4).toString());
             varArgsList.add(stuffShareApp.getAddressReceiver());
+            Log.i(stuffShareApp.TAG, "data 5" + varArgsList.get(5).toString());
             varArgsList.add(stuffShareApp.getAccident());
+            Log.i(stuffShareApp.TAG, "data 6" + varArgsList.get(6).toString());
             varArgsList.add(stuffShareApp.getDateAccident());
+            Log.i(stuffShareApp.TAG, "data 7" + varArgsList.get(7).toString());
             varArgsList.add(stuffShareApp.getTitleCampaign());
-            varArgsList.add("5.000.000");
+            Log.i(stuffShareApp.TAG, "data 8" + varArgsList.get(8).toString());
+//            varArgsList.add("5.000.000");
             varArgsList.add(stuffShareApp.getForWhat());
+            Log.i(stuffShareApp.TAG, "data 9" + varArgsList.get(9).toString());
             varArgsList.add(stuffShareApp.getPeriode());
+            Log.i(stuffShareApp.TAG, "data 10" + varArgsList.get(10).toString());
             varArgsList.add(stuffShareApp.getCerita());
-            varArgsList.add(stuffShareApp.getImageUpload());
-            for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
+            Log.i(stuffShareApp.TAG, "data 11" + varArgsList.get(11).toString());
+            varArgsList.add(imgNewUpload);
+            Log.i(stuffShareApp.TAG, "data 12" + varArgsList.get(12).toString());
+            for (int i = 0; i < donasiBarang.length(); i++) {
+                Log.i(stuffShareApp.TAG, "data 13" + stuffShareApp.getCategoryBarangs().get(i).toString());
                 varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getCount());
             }
             UploadSubmissionTask uploadSubmissionTask = new UploadSubmissionTask();

@@ -27,18 +27,18 @@ public class UploadSubmissionTask extends AsyncTask<Object, Void, String> {
         String kejadian = (String) params[6];
         String tglkejadian = (String) params[7];
         String judul = (String) params[8];
-        String kebutuhan_dana = (String) params[9];
-        String digunakanuntuk = (String) params[10];
-        String periode = (String) params[11];
-        String cerita = (String) params[12];
-        Bitmap gambar = (Bitmap) params[13];
+//        String kebutuhan_dana = (String) params[9];
+        String digunakanuntuk = (String) params[9];
+        String periode = (String) params[10];
+        String cerita = (String) params[11];
+        Bitmap gambar = (Bitmap) params[12];
 //        String buku = (String) params[14];
 //        String sepatu = (String) params[15];
 //        String elektronik = (String) params[16];
         // iteration array here from params 14
         ArrayList<String> donasiBarangs = new ArrayList<String>();
-        for (int i = 14; i < params.length; i++) {
-//            Log.i("stuffshare", "params " + params[i].toString());
+        for (int i = 13; i < params.length; i++) {
+            Log.i("stuffshare", "params " + params[i].toString());
             donasiBarangs.add((String) params[i]);
         }
 
@@ -57,7 +57,7 @@ public class UploadSubmissionTask extends AsyncTask<Object, Void, String> {
             client.addFormPart("kejadian", kejadian);
             client.addFormPart("tglkejadian", tglkejadian);
             client.addFormPart("judul", judul);
-            client.addFormPart("kebutuhan_dana", kebutuhan_dana);
+//            client.addFormPart("kebutuhan_dana", kebutuhan_dana);
             client.addFormPart("digunakanuntuk", digunakanuntuk);
             client.addFormPart("periode", periode);
             client.addFormPart("cerita", cerita);
