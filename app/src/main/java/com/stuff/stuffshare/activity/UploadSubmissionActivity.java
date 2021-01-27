@@ -314,7 +314,7 @@ public class UploadSubmissionActivity extends AppCompatActivity {
             Log.i(stuffShareApp.TAG, "data 11" + varArgsList.get(11).toString());
             varArgsList.add(imgNewUpload);
             Log.i(stuffShareApp.TAG, "data 12" + varArgsList.get(12).toString());
-            for (int i = 0; i < donasiBarang.length(); i++) {
+            for (int i = 0; i < stuffShareApp.getCategoryBarangs().size(); i++) {
                 Log.i(stuffShareApp.TAG, "data 13" + stuffShareApp.getCategoryBarangs().get(i).toString());
                 varArgsList.add(stuffShareApp.getCategoryBarangs().get(i).getCount());
             }
