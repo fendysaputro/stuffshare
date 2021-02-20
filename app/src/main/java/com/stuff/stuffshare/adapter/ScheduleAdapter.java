@@ -1,6 +1,7 @@
 package com.stuff.stuffshare.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,7 @@ public class ScheduleAdapter extends ArrayAdapter<Campaigner> {
             for (int i = 0; i < donasiBarang.length(); i++) {
                 if (donasiBarang.length() > 1) {
                     String data = donasiBarang.getJSONObject(i).getString("penerimaan");
-                    total += total+Integer.valueOf(data);
+                    total += Integer.parseInt(data);
                     stuffShareApp.setQtyBarang(String.valueOf(total));
                 } else {
                     stuffShareApp.setQtyBarang(donasiBarang.getJSONObject(i).getString("penerimaan"));

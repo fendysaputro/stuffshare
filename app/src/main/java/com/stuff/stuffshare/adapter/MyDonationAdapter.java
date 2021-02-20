@@ -102,7 +102,7 @@ public class MyDonationAdapter extends ArrayAdapter<Donation> {
         holder.statusBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (finalHolder.statusBtn.getText().equals("belum bayar")){
+                    if (finalHolder.statusBtn.getText().equals("belum kirim")){
                         stuffShareApp.setSelectedDonation(donation);
                         ConfirmationFragment confirmationFragment = new ConfirmationFragment();
                         Activity activity = (Activity) context;
